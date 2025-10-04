@@ -26,6 +26,7 @@ class PlayerUnitTests {
   void runTests() {
     testGetters();
     testSetters();
+    testDefend();
   }
 
  private:
@@ -88,6 +89,18 @@ class PlayerUnitTests {
     if (allPassed) {
       cout << "All setter tests passed!" << endl;
     }
+  }
+  void testDefend() {
+    TestPlayer p("Hero", "Sword", 50, 30, 100);
+    p.gameText = false;  // sets game text off for testing
+
+    p.defend();        // sets isDefending = true
+    p.takeDamage(40);  // should halve damage
+
+    if (p.getHealthStat() == 80)
+      std::cout << "Defend test passed!\n";
+    else
+      std::cout << "Defend test failed! Health: " << p.getHealthStat() << "\n";
   }
 };
 
