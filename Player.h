@@ -6,6 +6,7 @@ using namespace std;
 
 class Player: public Action{
     public:
+    Player(string name,string weapon,int attackStat,int defenseStat, int healthStat);
     string getName();
     string getWeapon();
     int getAttackStat();
