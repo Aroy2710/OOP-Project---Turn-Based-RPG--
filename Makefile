@@ -13,7 +13,7 @@ SRCS = playerMain.cpp Player.cpp
 
 .PHONY: all
 #run all tests
-all:
+TESTALL:
 	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
 	./$(TESTTARGET)
 
