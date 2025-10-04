@@ -9,31 +9,31 @@ Player::Player(string name,string weapon,int attackStat,int defenseStat, int hea
     this->healthStat = healthStat;
     
 }
-string Player::getName()
+string Player::getName() const
 {
     return name;
     
 }
 
-string Player::getWeapon()
+string Player::getWeapon() const
 {
     return weapon;
     
 }
 
-int Player::getAttackStat()
+int Player::getAttackStat() const
 {
     return attackStat;
     
 }
 
-int Player::getDefenseStat()
+int Player::getDefenseStat() const
 {
     return defenseStat;
     
 }
 
-int Player::getHealthStat()
+int Player::getHealthStat() const
 {
     return healthStat;
     

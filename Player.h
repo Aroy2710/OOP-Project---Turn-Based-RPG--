@@ -7,18 +7,19 @@ using namespace std;
 class Player: public Action{
     public:
     Player(string name,string weapon,int attackStat,int defenseStat, int healthStat);
-    string getName();
-    string getWeapon();
-    int getAttackStat();
-    int getDefenseStat();
-    int getHealthStat();
+    string getName() const;
+    string getWeapon() const;
+    int getAttackStat() const;
+    int getDefenseStat() const;
+    int getHealthStat() const;
     void setAttackStat(int attackStat);
     void setDefenseStat(int defenseStat);
     void setHealthStat(int healthStat);
-    virtual void useUltimateSkill() = 0;
+    virtual void useUltimateSkill(Action* entity) = 0;
     void basicAttack(Action* entity, int damage) override;
     void defend() override;
     void takeDamage(int damage) override;
+    virtual ~Player() = default;
 
     protected:
     string name;
