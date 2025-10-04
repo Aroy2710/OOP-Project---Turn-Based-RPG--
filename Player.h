@@ -6,6 +6,8 @@ using namespace std;
 
 class Player: public Action{
     public:
+    Player();
+    Player(string name);
     Player(string name,string weapon,int attackStat,int defenseStat, int healthStat);
     string getName() const;
     string getWeapon() const;
