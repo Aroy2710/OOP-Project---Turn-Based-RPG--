@@ -79,7 +79,10 @@ void Player::setHealthStat(int healthStat) {
 void Player::basicAttack(Action* entity, int damage) {
   // if player chooses to attack using their weapon , then the enemy takes
   // damage
-  cout << name << " is now attacking" << endl;
+  if (gameText) {
+    cout << name << " is now attacking" << endl;
+  }
+
   entity->takeDamage(damage);
 }
 
@@ -92,7 +95,7 @@ void Player::defend() { isDefending = true; }
 void Player::takeDamage(int damage) {
   // if the player is defending , defense stat is not taken into consideration,
   // damage is strictly halved
-  if(damage<0){
+  if (damage < 0) {
     damage = 0;
   }
   if (isDefending) {

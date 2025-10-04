@@ -1,19 +1,19 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
-#include "Action.h"
 #include <iostream>
 #include <string>
+#include "Action.h"
 
 using namespace std;
 
 class Player : public Action {
  public:
   // Constructors
-  Player();  // Default constructor for gameplay
+  Player();             // Default constructor for gameplay
   Player(string name);  // Name provided
-  Player(string name, string weapon, int attackStat,
-         int defenseStat, int healthStat);  // Fully parameterized
+  Player(string name, string weapon, int attackStat, int defenseStat,
+         int healthStat);  // Fully parameterized
 
   // Getters
   string getName() const;

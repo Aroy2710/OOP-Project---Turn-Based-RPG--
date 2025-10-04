@@ -30,6 +30,7 @@ class PlayerUnitTests {
     testDefend();
     testTakeDamage();
     testTakeNegativeDamage();
+    testBasicAttack();
   }
 
  private:
@@ -38,24 +39,29 @@ class PlayerUnitTests {
 
     TestPlayer p("Hero", "Sword", 50, 30, 100);
     if (p.getName() != "Hero") {
-      cout << "Player Name getter test failed!" << endl;
+      cout << "Player Name getter test failed! Expected : Hero , Got: "
+           << p.getName() << endl;
       allPassed = false;
     }
     if (p.getWeapon() != "Sword") {
-      cout << "Player Weapon getter test failed!" << endl;
+      cout << "Player Weapon getter test failed! Expected : Sword , Got: "
+           << p.getWeapon() << endl;
       allPassed = false;
     }
 
     if (p.getAttackStat() != 50) {
-      cout << "Attack Stat getter test failed!" << endl;
+      cout << "Attack Stat getter test failed! Expected : 50 , Got: "
+           << p.getAttackStat() << endl;
       allPassed = false;
     }
     if (p.getDefenseStat() != 30) {
-      cout << "Defense Stat getter test failed!" << endl;
+      cout << "Defense Stat getter test failed! Expected : 30 , Got: "
+           << p.getDefenseStat() << endl;
       allPassed = false;
     }
     if (p.getHealthStat() != 100) {
-      cout << "Health Stat getter test failed!" << endl;
+      cout << "Health Stat getter test failed! Expected : 100 , Got: "
+           << p.getHealthStat() << endl;
       allPassed = false;
     }
 
@@ -71,21 +77,24 @@ class PlayerUnitTests {
     // Test attackStat setter
     p.setAttackStat(70);
     if (p.getAttackStat() != 70) {
-      cout << "Attack Stat setter test failed! for attack = 70" << endl;
+      cout << "Attack Stat setter test failed! Expected : 70 , Got: "
+           << p.getAttackStat() << endl;
       allPassed = false;
     }
 
     // Test defenseStat setter
     p.setDefenseStat(40);
     if (p.getDefenseStat() != 40) {
-      cout << "Defense Stat setter test failed! for defense = 40" << endl;
+      cout << "Defense Stat setter test failed! Expected : 40, Got :"
+           << p.getDefenseStat() << endl;
       allPassed = false;
     }
 
     // Test healthStat setter
     p.setHealthStat(120);
     if (p.getHealthStat() != 120) {
-      cout << "Health Stat setter test failed! for health = 120" << endl;
+      cout << "Health Stat setter test failed! Expected : 120 , Got : "
+           << p.getHealthStat() << endl;
       allPassed = false;
     }
 
@@ -99,21 +108,23 @@ class PlayerUnitTests {
     // Test attackStat setter
     p.setAttackStat(-70);
     if (p.getAttackStat() != 0) {
-      cout << "Attack Stat setter test failed! for attack = -70" << endl;
+      cout << "Attack Stat setter test failed! Expected : -70 , Got : "
+           << p.getAttackStat() << endl;
       allPassed = false;
     }
 
     // Test defenseStat setter
     p.setDefenseStat(-40);
     if (p.getDefenseStat() != 0) {
-      cout << "Defense Stat setter test failed! for defense = -40" << endl;
+      cout << "Defense Stat setter test failed! Expected:-40 , Got: "
+           << p.getDefenseStat() << endl;
       allPassed = false;
     }
 
     // Test healthStat setter
     p.setHealthStat(-120);
     if (p.getHealthStat() != 0) {
-      cout << "Health Stat setter test failed! for health = -120" << endl;
+      cout << "Health Stat setter test failed! Expected: -120 , Got " << endl;
       allPassed = false;
     }
 
@@ -130,24 +141,21 @@ class PlayerUnitTests {
     p.defend();        // sets isDefending = true
     p.takeDamage(40);  // should halve damage
 
-    if (p.getHealthStat() != 80){
-
-      cout << "Defend test 1 failed! Health: " << p.getHealthStat() << "\n";
+    if (p.getHealthStat() != 80) {
+      cout << "Defend test 1 failed! Expected : 80  , Got : "
+           << p.getHealthStat() << "\n";
       allPassed = false;
-
     }
 
     // case: player dies
     p.defend();
     p.setHealthStat(100);  // set player health back to default
     p.takeDamage(1000);
-    if (p.getHealthStat() != 0){
-
-      cout << "Defend test 2 failed! Health: " << p.getHealthStat() << "\n";
+    if (p.getHealthStat() != 0) {
+      cout << "Defend test 2 failed! Expected : 0 , Got:" << p.getHealthStat()
+           << "\n";
       allPassed = false;
-
     }
-
 
     if (allPassed) {
       cout << "All defend tests passed!" << endl;
@@ -163,8 +171,8 @@ class PlayerUnitTests {
     // when attackStat>def
     p.takeDamage(40);
     if (p.getHealthStat() != 90) {
-      cout << "Take damage test 1 failed! Health: " << p.getHealthStat()
-           << "\n";
+      cout << "Take damage test 1 failed! Expected : 90, Got "
+           << p.getHealthStat() << "\n";
       allPassed = false;
     }
 
@@ -173,8 +181,8 @@ class PlayerUnitTests {
     p.takeDamage(30);
 
     if (p.getHealthStat() != 100) {
-      cout << "Take damage test 2 failed! Health: " << p.getHealthStat()
-           << "\n";
+      cout << "Take damage test 2 failed! Expected : 100 , Got: "
+           << p.getHealthStat() << "\n";
       allPassed = false;
     }
 
@@ -183,7 +191,8 @@ class PlayerUnitTests {
     p.takeDamage(0);
 
     if (p.getHealthStat() != 100) {
-      cout << "Take damage test 3 failed!" << p.getHealthStat() << "\n";
+      cout << "Take damage test 3 failed! Expected: 100 , Got:"
+           << p.getHealthStat() << "\n";
       allPassed = false;
     }
 
@@ -191,8 +200,8 @@ class PlayerUnitTests {
     p.takeDamage(1000);
 
     if (p.getHealthStat() != 0) {
-      cout << "Take damage test 4 failed! Health: " << p.getHealthStat()
-           << "\n";
+      cout << "Take damage test 4 failed! Expected:0 , Got: "
+           << p.getHealthStat() << "\n";
       allPassed = false;
     }
     if (allPassed) {
@@ -205,11 +214,51 @@ class PlayerUnitTests {
     p.gameText = false;
     p.takeDamage(-20);
     if (p.getHealthStat() != 100) {
-      cout << "Negative damage test  failed! Health" << p.getHealthStat();
+      cout << "Negative damage test  failed!Expected : 100 , Got :"
+           << p.getHealthStat();
     }
     if (allPassed) {
-      cout << "Negative damage test Passed!";
+      cout << "Negative damage test Passed!"<<endl;
     }
+  }
+  void testBasicAttack() {
+    bool allPassed = true;
+
+    TestPlayer* attacker = new TestPlayer("Hero", "Sword", 50, 30, 100);
+    TestPlayer* defender = new TestPlayer("Villain", "Axe", 40, 20, 100);
+
+    attacker->gameText = false;  // suppress game text output
+    defender->gameText = false;
+
+    // attacker attacks defender with 25 damage
+    attacker->basicAttack(defender, 25);
+
+    // defender had 100 health, defense = 20 → takes (25 - 20) = 5 damage
+    if (defender->getHealthStat() != 95) {
+      cout << "BasicAttack test failed! Expected defender health = 95, Got = "
+           << defender->getHealthStat() << endl;
+      allPassed = false;
+    }
+
+    // reset health for next test
+    defender->setHealthStat(100);
+
+    // attacker attacks defender with 121 damage
+    attacker->basicAttack(defender, 121);
+
+    // defender had 100 health, defense = 20 → takes (121 - 20 ) = 101 damage,
+    // hp should be 0 instead of -1
+    if (defender->getHealthStat() != 0) {
+      cout << "BasicAttack test failed! Expected defender health = 0, Got = "
+           << defender->getHealthStat() << endl;
+      allPassed = false;
+    }
+
+    if (allPassed) {
+      cout << "Basic Attack test passed!" << endl;
+    }
+    delete attacker;
+    delete defender;
   }
 };
 
