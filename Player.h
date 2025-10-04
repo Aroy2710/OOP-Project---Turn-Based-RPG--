@@ -14,7 +14,7 @@ class Player: public Action{
     void setAttackStat(int attackStat);
     void setDefenseStat(int defenseStat);
     void setHealthStat(int healthStat);
-    void useUltimateSkill();
+    virtual void useUltimateSkill() = 0;
     void basicAttack(Action* entity, int damage) override;
     void defend() override;
     void takeDamage(int damage) override;
