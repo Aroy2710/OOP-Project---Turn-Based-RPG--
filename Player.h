@@ -17,7 +17,6 @@ class Player: public Action{
     void useUltimateSkill();
     void basicAttack(Action* entity, int damage) override;
     void defend() override;
-    void passiveSkill() override;
     void takeDamage(int damage) override;
 
     protected:
