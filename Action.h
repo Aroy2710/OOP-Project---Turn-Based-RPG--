@@ -10,8 +10,6 @@ class Action {
   // Defend against an attack; reduces damage from the next attack.
   virtual void defend() = 0;  
   // Applies a passive skill that is always active in battle.
-  virtual void passiveSkill() = 0; 
-  // Applies incoming damage, accounting for defense or buffs.
   virtual void takeDamage(int damage) = 0; 
   // Default virtual destructor.
   virtual ~Action() = default;              
