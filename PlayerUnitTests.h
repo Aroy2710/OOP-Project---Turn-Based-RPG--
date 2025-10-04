@@ -16,14 +16,17 @@ class TestPlayer : public Player {
   // concrete.
   void useUltimateSkill(Action* entity) override {
     // avoids unused parameter warning
-    (void)entity;  
+    (void)entity;
     // Intentionally left empty for testing purposes.
   }
 };
 
 class PlayerUnitTests {
  public:
-  void runTests() { testGetters(); }
+  void runTests() {
+    testGetters();
+    testSetters();
+  }
 
  private:
   void testGetters() {
@@ -31,31 +34,61 @@ class PlayerUnitTests {
 
     TestPlayer p("Hero", "Sword", 50, 30, 100);
     if (p.getName() != "Hero") {
-      std::cout << "Name test failed!" << std::endl;
+      cout << "Name test failed!" << endl;
       allPassed = false;
     }
     if (p.getWeapon() != "Sword") {
-      std::cout << "Player Name test failed!" << std::endl;
+      cout << "Player Name test failed!" << endl;
       allPassed = false;
     }
 
     if (p.getAttackStat() != 50) {
-      std::cout << "AttackStat test failed!" << std::endl;
+      cout << "AttackStat test failed!" << endl;
       allPassed = false;
     }
     if (p.getDefenseStat() != 30) {
-      std::cout << "DefenseStat test failed!" << std::endl;
+      cout << "DefenseStat test failed!" << endl;
       allPassed = false;
     }
     if (p.getHealthStat() != 100) {
-      std::cout << "HealthStat test failed!" << std::endl;
+      cout << "HealthStat test failed!" << endl;
       allPassed = false;
     }
 
     if (allPassed) {
-      std::cout << "All getter tests passed!" << std::endl;
+      cout << "All getter tests passed!" << endl;
+    }
+  }
+  void testSetters() {
+    bool allPassed = true;
+
+    TestPlayer p("Hero", "Sword", 50, 30, 100);
+
+    // Test attackStat setter
+    p.setAttackStat(70);
+    if (p.getAttackStat() != 70) {
+      cout << "AttackStat setter test failed!" << endl;
+      allPassed = false;
+    }
+
+    // Test defenseStat setter
+    p.setDefenseStat(40);
+    if (p.getDefenseStat() != 40) {
+      cout << "DefenseStat setter test failed!" << endl;
+      allPassed = false;
+    }
+
+    // Test healthStat setter
+    p.setHealthStat(120);
+    if (p.getHealthStat() != 120) {
+      cout << "HealthStat setter test failed!" << endl;
+      allPassed = false;
+    }
+
+    if (allPassed) {
+      cout << "All setter tests passed!" << endl;
     }
   }
 };
 
-#endif // __PLAYERUNITTESTS_H__
+#endif  // __PLAYERUNITTESTS_H__
