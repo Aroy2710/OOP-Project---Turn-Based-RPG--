@@ -76,10 +76,7 @@ void Player::setHealthStat(int healthStat) {
   }
 }
 
-void Player::setWeapon(string weapon) {
-  this->weapon = weapon;
-
-}
+void Player::setWeapon(string weapon) { this->weapon = weapon; }
 
 void Player::basicAttack(Action* entity, int damage) {
   // if player chooses to attack using their weapon , then the enemy takes
