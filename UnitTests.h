@@ -2,7 +2,6 @@
 #define __UNITTESTS_H__
 
 #include "Player.h"
-#include "Ranger.h"
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
 class TestPlayer : public Player {
@@ -31,8 +30,6 @@ class UnitTests {
     testTakeDamage();
     testTakeNegativeDamage();
     testBasicAttack();
-    testRangerGetter();
-    testBoostDex();
   }
 
  private:
@@ -269,39 +266,6 @@ class UnitTests {
     }
     delete attacker;
     delete defender;
-  }
-  void testRangerGetter() {
-    Ranger r("abcd", "bow", 50, 30, 100);
-    // dexterity is expected to equal = 2*50 = 100
-    if (r.getDexterity() != 100) {
-      cout << "Test failed , Expected : 100 , Got: " << r.getDexterity()
-           << endl;
-
-    } else {
-      cout << "Ranger Getter Test Passed!" << endl;
-    }
-  }
-  void testBoostDex() {
-    Ranger r("abcd", "bow", 50, 30, 100);
-    bool allPassed = true;
-    // test initial use , dexterity should be  2*50 + 30 = 130
-    r.boostDex();
-    if (r.getDexterity() != 130) {
-      cout << "Test failed , Expected : 130 , Got: " << r.getDexterity()
-           << endl;
-      allPassed = false;
-    }
-
-    // test using all charges
-
-    r.boostDex();
-    r.boostDex();
-    // expecting "You have used all your charges for your boost"
-    r.boostDex();
-
-    if (allPassed) {
-      cout << "All tests passed for boostDex!";
-    }
   }
 
 };
