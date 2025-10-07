@@ -26,7 +26,7 @@ class Player : public Action {
   void setAttackStat(int attackStat);
   void setDefenseStat(int defenseStat);
   void setHealthStat(int healthStat);
-  void setWeapon(const string& weapon);
+  void setWeapon( string weapon);
 
   // Combat methods
   void basicAttack(Action* entity, int damage) override;
