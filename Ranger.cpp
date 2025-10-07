@@ -1,25 +1,33 @@
 #include "Ranger.h"
-Ranger::Ranger() : Player() { dexterity = 1.5 * attackStat; }
+// Ranger class if player does not provide name
+Ranger::Ranger() : Player() {
+  Player::setWeapon("Bow");
+  dexterity = 2 * attackStat;
+}
+// Ranger class is player provides name
+Ranger::Ranger(string name) : Player(name) {
+  Player::setWeapon("Bow");
+  dexterity = 2 * attackStat;
+}
 
-Ranger::Ranger(string name) : Player(name) { dexterity = 1.5 * attackStat; }
-
+// Paramaterised constructor for testing purposes
 Ranger::Ranger(string name, string weapon, int attackStat, int defenseStat,
                int healthStat)
     : Player(name, weapon, attackStat, defenseStat, healthStat) {
-  dexterity = 1.5 * attackStat;
+  dexterity = 2 * attackStat;
 }
-
+// getter
 int Ranger::getDexterity() { return dexterity; }
-
+// players can boost their dex and therefore their damage increases
 void Ranger::boostDex() {  // will need battle manager class to account for turn
-                           // cooldown class
+                           // cooldown
   if (useCounter > 0) {
     dexterity += 30;
     useCounter -= 1;
 
   } else {
     if (gameText) {
-      cout << "You have used all your charges for special skills" << endl;
+      cout << "You have used all your charges for your boost" << endl;
     }
   }
 }

@@ -6,10 +6,10 @@ CXXFLAGS = -std=c++11 -Wall -Wextra
 
 #Executable name 
 
-TESTTARGET = playerTestRunner
+TESTTARGET = TestRunner
 
 #Source files
-SRCS = playerMain.cpp Player.cpp 
+SRCS =  main.cpp Player.cpp  Ranger.cpp
 
 .PHONY: all
 #run all tests
