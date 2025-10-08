@@ -33,10 +33,11 @@ class UnitTests {
     testBasicAttack();
     testRangerGetter();
     testBoostDex();
+    testRangerUltimate();
   }
 
  private:
- //Tests for Players
+  // Tests for Players
   void testPlayerGetters() {
     bool allPassed = true;
 
@@ -69,7 +70,7 @@ class UnitTests {
     }
 
     if (allPassed) {
-      cout << "All getter tests passed!" << endl;
+      cout << "All Player getter tests passed!" << endl;
     }
   }
   void testSettersExpectedParameters() {
@@ -102,7 +103,7 @@ class UnitTests {
     }
 
     if (allPassed) {
-      cout << "Setters : All expected parameter tests passed!" << endl;
+      cout << "Player Setters : All expected parameter tests passed!" << endl;
     }
   }
   void testSettersNegativeParameters() {
@@ -140,7 +141,7 @@ class UnitTests {
     }
 
     if (allPassed) {
-      cout << "Setters : All negative parameter tests passed!" << endl;
+      cout << "Player Setters : All negative parameter tests passed!" << endl;
     }
   }
 
@@ -229,7 +230,7 @@ class UnitTests {
            << p.getHealthStat();
     }
     if (allPassed) {
-      cout << "Negative damage test Passed!" << endl;
+      cout << "Negative damage tests passed!" << endl;
     }
   }
   void testBasicAttack() {
@@ -266,12 +267,12 @@ class UnitTests {
     }
 
     if (allPassed) {
-      cout << "Basic Attack test passed!" << endl;
+      cout << "Basic Attack tests passed!" << endl;
     }
     delete attacker;
     delete defender;
   }
-  //Tests for Ranger Class
+  // Tests for Ranger Class
   void testRangerGetter() {
     Ranger r("abcd", "bow", 50, 30, 100);
     // dexterity is expected to equal = 1.5*50 = 75
@@ -280,11 +281,12 @@ class UnitTests {
            << endl;
 
     } else {
-      cout << "Ranger Getter Test Passed!" << endl;
+      cout << "Ranger Getter tests passed!" << endl;
     }
   }
   void testBoostDex() {
     Ranger r("abcd", "bow", 50, 30, 100);
+    r.gameText = false;
     bool allPassed = true;
     // test initial use , dexterity should be  1.5*50 + 30 = 105
     r.boostDex();
@@ -296,28 +298,56 @@ class UnitTests {
 
     // test using all charges
 
+    r.boostDex();  // dex should be 135
+    r.boostDex();  // dex should be 165
+    // expecting dexterity to be
     r.boostDex();
-    r.boostDex();
-    // expecting "You have used all your charges for your boost"
-    r.boostDex();
+    if (r.getDexterity() != 165) {
+      cout << "Test failed expected : 165, Got : " << r.getDexterity() << endl;
+    }
 
     if (allPassed) {
-      cout << "All tests passed for boostDex!";
+      cout << "All boostDex tests passed!" << endl;
     }
   }
-  void testRangerUltimate(){
-
+  void testRangerUltimate() {
+    bool allPassed = true;
     Ranger r1("abcd", "bow", 50, 30, 100);
-    Ranger* r2 = new Ranger("efgh","bow",50,30,1000);
+    Ranger* r2 = new Ranger("efgh", "bow", 50, 30, 1000);
     r1.gameText = false;
     r2->gameText = false;
-    //Ultimate damage = 
+    // Ultimate damage = 50*1.5 + (50*1.5)*0.8 = 135 , r2 hp should be
+    // 1000+30-135 = 895
     r1.useUltimateSkill(r2);
-    
+    if (r2->getHealthStat() != 895) {
+      cout << "Test failed, expected : 895, got: " << r2->getHealthStat()
+           << endl;
+    }
+    // test if the ultimate counter works ,if it does work health should stay as
+    // 895
+    r1.useUltimateSkill(r2);
+    if (r2->getHealthStat() != 895) {
+      cout << "Test failed, expected : 895, got: " << r2->getHealthStat()
+           << endl;
+    }
+    // When defend is active
+    Ranger r3("abcd", "bow", 50, 30, 100);
 
+    Ranger* r4 = new Ranger("efgh", "bow", 50, 30, 1000);
+    r3.gameText = false;
+    r4->gameText  = false;
+    r4->defend();
+    // Ultimate damage = 50*1.5 + (50*1.5)*0.8 = 135 , r2 hp should be 1000 -
+    // 135/2 = 932.5
+    r3.useUltimateSkill(r4);
+    if (r4->getHealthStat() != 932.5) {
+      cout << "Ultimate skill test failed , expected : 932.5 , got <<"
+           << r4->getHealthStat() << endl;
+    }
+    if (allPassed) {
+      cout << "All Ranger ultimate tests passed!" << endl;
+    }
   }
-
-
 };
 
 #endif  // __UNITTESTS_H__
