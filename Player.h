@@ -1,6 +1,7 @@
 #ifndef __PLAYER_H__
 #define __PLAYER_H__
 
+
 #include <iostream>
 #include <string>
 #include "Action.h"
@@ -42,6 +43,7 @@ class Player : public Action {
  protected:
   string name;
   string weapon;
+  string archetype;
   float attackStat;
   float defenseStat;
   float maxHealth;
@@ -51,4 +53,6 @@ class Player : public Action {
   float useCounter;
 };
 
-#endif  // __PLAYER_H__
+
+
+#endif // __PLAYER_H__
