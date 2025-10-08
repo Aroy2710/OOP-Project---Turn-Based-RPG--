@@ -15,7 +15,7 @@ class Ranger: public Player{
     void useUltimateSkill(Action* entity) override;
     ~Ranger();
     protected:
-    int dexterity;
+    float dexterity;
     
 
 };
