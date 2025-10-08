@@ -3,8 +3,8 @@
 // at the start of the game player will not be defending
 // player can only use ultimate skills once
 // player can use their special skills only 3 times in battle
-Player::Player(string name, string weapon, int attackStat, int defenseStat,
-               int healthStat) {
+Player::Player(string name, string weapon, float attackStat, float defenseStat,
+               float healthStat) {
   this->name = name;
   this->weapon = weapon;
   this->attackStat = attackStat;
@@ -44,15 +44,15 @@ string Player::getName() const { return name; }
 
 string Player::getWeapon() const { return weapon; }
 
-int Player::getAttackStat() const { return attackStat; }
+float Player::getAttackStat() const { return attackStat; }
 
-int Player::getDefenseStat() const { return defenseStat; }
+float Player::getDefenseStat() const { return defenseStat; }
 
-int Player::getHealthStat() const { return healthStat; }
+float Player::getHealthStat() const { return healthStat; }
 
 // Setter Methods
 
-void Player::setAttackStat(int attackStat) {
+void Player::setAttackStat(float attackStat) {
   if (attackStat < 0) {
     this->attackStat = 0;
   } else {
@@ -60,7 +60,7 @@ void Player::setAttackStat(int attackStat) {
   }
 }
 
-void Player::setDefenseStat(int defenseStat) {
+void Player::setDefenseStat(float defenseStat) {
   if (defenseStat < 0) {
     this->defenseStat = 0;
   } else {
@@ -68,7 +68,7 @@ void Player::setDefenseStat(int defenseStat) {
   }
 }
 
-void Player::setHealthStat(int healthStat) {
+void Player::setHealthStat(float healthStat) {
   if (healthStat < 0) {
     this->healthStat = 0;
   } else {
@@ -78,7 +78,7 @@ void Player::setHealthStat(int healthStat) {
 
 void Player::setWeapon(string weapon) { this->weapon = weapon; }
 
-void Player::basicAttack(Action* entity, int damage) {
+void Player::basicAttack(Action* entity, float damage) {
   // if player chooses to attack using their weapon , then the enemy takes
   // damage
   if (gameText) {
@@ -94,7 +94,7 @@ void Player::defend() { isDefending = true; }
 
 // Method for player and enemy to take damage , calculation differs whether
 // player is defending or not
-void Player::takeDamage(int damage) {
+void Player::takeDamage(float damage) {
   // if the player is defending , defense stat is not taken into consideration,
   // damage is strictly halved
   if (damage < 0) {
