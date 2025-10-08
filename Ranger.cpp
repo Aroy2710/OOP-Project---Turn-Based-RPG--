@@ -2,22 +2,22 @@
 // Ranger class if player does not provide name
 Ranger::Ranger() : Player() {
   Player::setWeapon("Bow");
-  dexterity = 2 * attackStat;
+  dexterity = 1.5 * attackStat;
 }
 // Ranger class is player provides name
 Ranger::Ranger(string name) : Player(name) {
   Player::setWeapon("Bow");
-  dexterity = 2 * attackStat;
+  dexterity = 1.5 * attackStat;
 }
 
 // Paramaterised constructor for testing purposes
-Ranger::Ranger(string name, string weapon, int attackStat, int defenseStat,
-               int healthStat)
+Ranger::Ranger(string name, string weapon, float attackStat, float defenseStat,
+               float healthStat)
     : Player(name, weapon, attackStat, defenseStat, healthStat) {
-  dexterity = 2 * attackStat;
+  dexterity = 1.5 * attackStat;
 }
 // getter
-int Ranger::getDexterity() { return dexterity; }
+float Ranger::getDexterity() { return dexterity; }
 // players can boost their dex and therefore their damage increases
 void Ranger::boostDex() {  // will need battle manager class to account for turn
                            // cooldown
@@ -37,10 +37,10 @@ void Ranger::useUltimateSkill(Action* entity) {
     cout << "Drawing every ounce of focus... ultimate shot fired!" << endl;
   }
 
-  int damage = (attackStat * 1.5) + (dexterity * 0.8);
+  int damage = (attackStat *1.5) + (dexterity*0.8);
   if (ultimateCounter > 0) {
     entity->takeDamage(damage);
-    ultimateCounter -= 1;
+    ultimateCounter -= 1; 
   } else {
     if (gameText) {
       cout << "You have used up your charge for ultimate skill.." << endl;

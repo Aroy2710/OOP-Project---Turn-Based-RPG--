@@ -6,10 +6,10 @@ class Ranger: public Player{
     public:
     Ranger() ;
     Ranger(string name);
-    Ranger(string name, string weapon, int attackStat, int defenseStat,
-         int healthStat);
+    Ranger(string name, string weapon, float attackStat, float defenseStat,
+         float healthStat);
     //getter
-    int getDexterity();
+    float getDexterity();
     // method to recover dex for a set number of turns;
     void boostDex();
     void useUltimateSkill(Action* entity) override;

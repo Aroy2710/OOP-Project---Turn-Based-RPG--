@@ -12,26 +12,26 @@ class Player : public Action {
   // Constructors
   Player();             // Default constructor for gameplay
   Player(string name);  // Name provided
-  Player(string name, string weapon, int attackStat, int defenseStat,
-         int healthStat);  // Fully parameterized
+  Player(string name, string weapon, float attackStat, float defenseStat,
+         float healthStat);  // Fully parameterized
 
   // Getters
   string getName() const;
   string getWeapon() const;
-  int getAttackStat() const;
-  int getDefenseStat() const;
-  int getHealthStat() const;
+  float getAttackStat() const;
+  float getDefenseStat() const;
+  float getHealthStat() const;
 
   // Setters
-  void setAttackStat(int attackStat);
-  void setDefenseStat(int defenseStat);
-  void setHealthStat(int healthStat);
+  void setAttackStat(float attackStat);
+  void setDefenseStat(float defenseStat);
+  void setHealthStat(float healthStat);
   void setWeapon( string weapon);
 
   // Combat methods
-  void basicAttack(Action* entity, int damage) override;
+  void basicAttack(Action* entity, float damage) override;
   void defend() override;
-  void takeDamage(int damage) override;
+  void takeDamage(float damage) override;
 
   // Pure virtual method for ultimate skill
   virtual void useUltimateSkill(Action* entity) = 0;
@@ -42,10 +42,10 @@ class Player : public Action {
  protected:
   string name;
   string weapon;
-  int attackStat;
-  int defenseStat;
+  float attackStat;
+  float defenseStat;
   bool isDefending;
-  int healthStat;
+  float healthStat;
   int ultimateCounter;
   int useCounter;
 };

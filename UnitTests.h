@@ -9,7 +9,7 @@ class TestPlayer : public Player {
  public:
   // Constructs a TestPlayer with the given name, weapon, attack, defense, and
   // health stats.
-  TestPlayer(string name, string weapon, int atk, int def, int hp)
+  TestPlayer(string name, string weapon, float atk, float def, float hp)
       : Player(name, weapon, atk, def, hp) {}
 
   // Provides an empty implementation of useUltimateSkill to make this class
@@ -36,6 +36,7 @@ class UnitTests {
   }
 
  private:
+ //Tests for Players
   void testPlayerGetters() {
     bool allPassed = true;
 
@@ -270,10 +271,11 @@ class UnitTests {
     delete attacker;
     delete defender;
   }
+  //Tests for Ranger Class
   void testRangerGetter() {
     Ranger r("abcd", "bow", 50, 30, 100);
-    // dexterity is expected to equal = 2*50 = 100
-    if (r.getDexterity() != 100) {
+    // dexterity is expected to equal = 1.5*50 = 75
+    if (r.getDexterity() != 75) {
       cout << "Test failed , Expected : 100 , Got: " << r.getDexterity()
            << endl;
 
@@ -284,9 +286,9 @@ class UnitTests {
   void testBoostDex() {
     Ranger r("abcd", "bow", 50, 30, 100);
     bool allPassed = true;
-    // test initial use , dexterity should be  2*50 + 30 = 130
+    // test initial use , dexterity should be  1.5*50 + 30 = 105
     r.boostDex();
-    if (r.getDexterity() != 130) {
+    if (r.getDexterity() != 105) {
       cout << "Test failed , Expected : 130 , Got: " << r.getDexterity()
            << endl;
       allPassed = false;
@@ -303,6 +305,18 @@ class UnitTests {
       cout << "All tests passed for boostDex!";
     }
   }
+  void testRangerUltimate(){
+
+    Ranger r1("abcd", "bow", 50, 30, 100);
+    Ranger* r2 = new Ranger("efgh","bow",50,30,1000);
+    r1.gameText = false;
+    r2->gameText = false;
+    //Ultimate damage = 
+    r1.useUltimateSkill(r2);
+    
+
+  }
+
 
 };
 
