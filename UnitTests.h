@@ -2,6 +2,7 @@
 #define __UNITTESTS_H__
 
 #include "Player.h"
+#include "Ranger.h"
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
 class TestPlayer : public Player {
