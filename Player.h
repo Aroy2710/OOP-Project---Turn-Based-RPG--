@@ -44,10 +44,11 @@ class Player : public Action {
   string weapon;
   float attackStat;
   float defenseStat;
+  float maxHealth;
   bool isDefending;
   float healthStat;
-  int ultimateCounter;
-  int useCounter;
+  float ultimateCounter;
+  float useCounter;
 };
 
 #endif  // __PLAYER_H__

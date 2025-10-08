@@ -10,7 +10,7 @@ Player::Player(string name, string weapon, float attackStat, float defenseStat,
   this->attackStat = attackStat;
   this->defenseStat = defenseStat;
   this->healthStat = healthStat;
-
+  maxHealth = healthStat;
   isDefending = false;
 
   ultimateCounter = 1;
@@ -24,6 +24,7 @@ Player::Player() {
   attackStat = 50;
   defenseStat = 30;
   healthStat = 1000;
+  maxHealth = 1000;
   isDefending = false;
   ultimateCounter = 1;
   useCounter = 3;
@@ -35,6 +36,7 @@ Player::Player(string name) {
   attackStat = 50;
   defenseStat = 30;
   healthStat = 1000;
+  maxHealth = 1000;
   isDefending = false;
   ultimateCounter = 1;
   useCounter = 3;
