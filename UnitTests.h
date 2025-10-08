@@ -16,9 +16,10 @@ class TestPlayer : public Player {
   void useUltimateSkill(Action* entity) override {
     // avoids unused parameter warning
     (void)entity;
-    // Intentionally left empty for testing purposes.
+    // Intentionally left empty for testing purposes .
   }
 };
+
 
 class UnitTests {
  public:
