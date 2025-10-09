@@ -16,6 +16,7 @@ class Ranger: public Player{
     ~Ranger();
     protected:
     float dexterity;
+
     
 
 };
