@@ -1,63 +1,76 @@
 #include "Warrior.h"
-// Warrior class if player does not provide name
-// strength will be half of attack
+
+// Default constructor.
+// Initializes a Warrior with default Player attributes.
+// The Warrior's weapon defaults to "Club".
+// Strength is set to 50% of the attack stat.
 Warrior::Warrior() : Player() {
   Player::setWeapon("Club");
-
-  strength = (50 / 100) * attackStat;
+  strength = 0.5f * attackStat;
 }
-// Warrior class is player provides name
-Warrior::Warrior(string name) : Player(name) {
+
+// Constructor for Warrior with a custom name.
+// The Warrior's weapon defaults to "Club".
+// Strength is set to 50% of the attack stat.
+Warrior::Warrior(std::string name) : Player(name) {
   Player::setWeapon("Club");
-  strength = (50 / 100) * attackStat;
+  strength = 0.5f * attackStat;
 }
 
-// Paramaterised constructor for testing purposes
-Warrior::Warrior(string name, string weapon, float attackStat,
-                 float defenseStat, float healthStat)
-    : Player(name, weapon, attackStat, defenseStat, healthStat) {
-  strength = 1.5 * attackStat;
+// Parameterized constructor.
+// Useful for testing with explicit stat values.
+// Strength is initialized to 1.5× attack stat.
+Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
+                 float defense_stat, float health_stat)
+    : Player(name, weapon, attack_stat, defense_stat, health_stat) {
+  strength = 1.5f * attackStat;
 }
-// getter
-float Warrior::getStrength() { return strength; }
-// players can boost their dex and therefore their damage increases
-void Warrior::boostStrength() {  // will need battle manager class to account
-                                 // for turn
-                                 // cooldown
+
+// Returns the Warrior's current strength value.
+float Warrior::getStrength() {
+  return strength;
+}
+
+// Increases the Warrior's strength temporarily.
+// Each use consumes one available boost charge.
+// Requires an external battle manager to enforce cooldowns.
+void Warrior::boostStrength() {
   if (useCounter > 0) {
-    strength += 30;
+    strength += 30.0f;
     useCounter -= 1;
-
-  } else {
-    if (gameText) {
-      cout << "You have used all your charges for your boost" << endl;
-    }
+  } else if (gameText) {
+    std::cout << "You have used all your charges for your boost."
+              << std::endl;
   }
 }
 
+// Uses the Warrior's ultimate skill on a target entity.
+// Damage output depends on current health:
+// - Below 50% health: higher damage multiplier.
+// - Above 50% health: lower damage multiplier.
 void Warrior::useUltimateSkill(Action* entity) {
-  int damage;
-  // when health is less than 50%
-  if (healthStat < (0.5) * maxHealth) {
-    damage = 4 * strength + 2 * attackStat;
+  float damage = 0.0f;
 
-  } else {  // whean health is more than 50%
-    damage = 2 * strength + attackStat;
+  // Damage scaling based on current health percentage.
+  if (healthStat < 0.5f * maxHealth) {
+    damage = 4.0f * strength + 2.0f * attackStat;
+  } else {
+    damage = 2.0f * strength + attackStat;
   }
 
   if (ultimateCounter > 0) {
     if (gameText) {
-      cout << " The warrior musters up all their strength! " << endl;
+      std::cout << "The warrior musters up all their strength!" << std::endl;
     }
 
     entity->takeDamage(damage);
-
     ultimateCounter -= 1;
-  } else {  // when ultimate is used up
-    if (gameText) {
-      cout << "You have used up your charge for ultimate skill.. " << endl;
-    }
+
+  } else if (gameText) {
+    std::cout << "You have used up your charge for your ultimate skill."
+              << std::endl;
   }
 }
 
-Warrior::~Warrior() {}
+// Destructor.
+Warrior::~Warrior() = default;

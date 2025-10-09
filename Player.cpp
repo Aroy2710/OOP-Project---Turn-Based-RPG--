@@ -1,50 +1,50 @@
 #include "Player.h"
-// Paramaterised player constructor for testing purposes
-// at the start of the game player will not be defending
-// player can only use ultimate skills once
-// player can use their special skills only 3 times in battle
-Player::Player(string name, string weapon, float attackStat, float defenseStat,
-               float healthStat) {
-  this->name = name;
-  this->weapon = weapon;
-  this->attackStat = attackStat;
-  this->defenseStat = defenseStat;
-  this->healthStat = healthStat;
-  maxHealth = healthStat;
-  isDefending = false;
-  ultimateCounter = 1;
-  useCounter = 3;
-}
-// Player class if player does not enter a name
-Player::Player() {
-  name = "Hero";
-  weapon = "None";
-  attackStat = 50;
-  defenseStat = 30;
-  healthStat = 1000;
-  maxHealth = 1000;
-  isDefending = false;
-  archetype = "";
-  ultimateCounter = 1;
-  useCounter = 3;
-}
-// Player class if player enters a name
-Player::Player(string name) {
-  this->name = name;
-  weapon = "None";
-  attackStat = 50;
-  defenseStat = 30;
-  healthStat = 1000;
-  maxHealth = 1000;
-  isDefending = false;
-  archetype = "";
-  ultimateCounter = 1;
-  useCounter = 3;
-}
-// Getter methods
-string Player::getName() const { return name; }
 
-string Player::getWeapon() const { return weapon; }
+// Parameterized constructor.
+// Used for testing or initializing a Player with specific stats.
+// By default, the player is not defending, can use the ultimate once,
+// and can use special skills three times per battle.
+Player::Player(std::string name, std::string weapon, float attack_stat,
+               float defense_stat, float health_stat)
+    : name(name),
+      weapon(weapon),
+      attackStat(attack_stat),
+      defenseStat(defense_stat),
+      healthStat(health_stat),
+      maxHealth(health_stat),
+      isDefending(false),
+      ultimateCounter(1),
+      useCounter(3) {}
+
+// Default constructor.
+// Initializes a Player with generic "Hero" attributes and default stats.
+Player::Player()
+    : name("Hero"),
+      weapon("None"),
+      attackStat(50.0f),
+      defenseStat(30.0f),
+      healthStat(1000.0f),
+      maxHealth(1000.0f),
+      isDefending(false),
+      ultimateCounter(1),
+      useCounter(3) {}
+
+// Constructor for Player with a custom name but default stats.
+Player::Player(std::string name)
+    : name(name),
+      weapon("None"),
+      attackStat(50.0f),
+      defenseStat(30.0f),
+      healthStat(1000.0f),
+      maxHealth(1000.0f),
+      isDefending(false),
+      ultimateCounter(1),
+      useCounter(3) {}
+
+// Getter methods.
+std::string Player::getName() const { return name; }
+
+std::string Player::getWeapon() const { return weapon; }
 
 float Player::getAttackStat() const { return attackStat; }
 
@@ -52,90 +52,76 @@ float Player::getDefenseStat() const { return defenseStat; }
 
 float Player::getHealthStat() const { return healthStat; }
 
-// Setter Methods
-
-void Player::setAttackStat(float attackStat) {
-  if (attackStat < 0) {
-    this->attackStat = 0;
-  } else {
-    this->attackStat = attackStat;
-  }
+// Setter methods with input validation.
+void Player::setAttackStat(float attack_stat) {
+  attackStat = attack_stat < 0.0f ? 0.0f : attack_stat;
 }
 
-void Player::setDefenseStat(float defenseStat) {
-  if (defenseStat < 0) {
-    this->defenseStat = 0;
-  } else {
-    this->defenseStat = defenseStat;
-  }
+void Player::setDefenseStat(float defense_stat) {
+  defenseStat = defense_stat < 0.0f ? 0.0f : defense_stat;
 }
 
-void Player::setHealthStat(float healthStat) {
-  if (healthStat < 0) {
-    this->healthStat = 0;
-  } else {
-    this->healthStat = healthStat;
-  }
+void Player::setHealthStat(float health_stat) {
+  healthStat = health_stat < 0.0f ? 0.0f : health_stat;
 }
 
-void Player::setWeapon(string weapon) {
-  this->weapon = weapon;
-
+void Player::setWeapon(std::string weapon_name) {
+  weapon = weapon_name;
 }
 
+// Executes a basic attack on another entity.
+// The entity takes damage based on the Player's attack value.
 void Player::basicAttack(Action* entity, float damage) {
-  // if player chooses to attack using their weapon , then the enemy takes
-  // damage
   if (gameText) {
-    cout << name << " is now attacking" << endl;
+    std::cout << name << " is now attacking." << std::endl;
   }
-
   entity->takeDamage(damage);
 }
 
-// Defend option during battle
+// Sets the player to a defending state for the next turn.
+void Player::defend() {
+  isDefending = true;
+}
 
-void Player::defend() { isDefending = true; }
-
-// Method for player and enemy to take damage , calculation differs whether
-// player is defending or not
+// Handles how the Player takes damage during battle.
+// - If defending: damage is halved.
+// - If not defending: defense stat reduces incoming damage.
+// Health is clamped to zero to avoid negative values.
 void Player::takeDamage(float damage) {
-  // if the player is defending , defense stat is not taken into consideration,
-  // damage is strictly halved
-  if (damage < 0) {
-    damage = 0;
+  if (damage < 0.0f) {
+    damage = 0.0f;
   }
-  if (isDefending) {
-    damage = damage / 2;
 
-    healthStat = healthStat - damage;
+  if (isDefending) {
+    // Defending halves all incoming damage.
+    damage *= 0.5f;
+    healthStat -= damage;
+
     if (gameText) {
-      cout << name << " has taken " << damage << " damage" << endl;
-      cout << "Health of " << name << " : " << healthStat << endl;
-      cout << name << " is no longer defending" << endl;
-    }
-    if (healthStat < 0) {
-      healthStat = 0;
+      std::cout << name << " has taken " << damage << " damage." << std::endl;
+      std::cout << "Health of " << name << ": " << healthStat << std::endl;
+      std::cout << name << " is no longer defending." << std::endl;
     }
 
     isDefending = false;
 
-  }
-  // if the player is not defending, defense stat is taken into consideration
-  else {
-    damage = damage - defenseStat;
-    if (damage < 0) {
-      damage = 0;
+  } else {
+    // Non-defending damage is reduced by the defense stat.
+    damage -= defenseStat;
+    if (damage < 0.0f) {
+      damage = 0.0f;
     }
-    healthStat = healthStat - damage;
+
+    healthStat -= damage;
 
     if (gameText) {
-      cout << name << " has taken " << damage << "damage" << endl;
-      cout << "Health of " << name << " " << healthStat << endl;
+      std::cout << name << " has taken " << damage << " damage." << std::endl;
+      std::cout << "Health of " << name << ": " << healthStat << std::endl;
     }
   }
-  // sets health to 0
-  if (healthStat < 0) {
-    healthStat = 0;
+
+  // Clamp health to a minimum of zero.
+  if (healthStat < 0.0f) {
+    healthStat = 0.0f;
   }
 }
