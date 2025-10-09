@@ -1,6 +1,6 @@
 #include "Warrior.h"
 // Warrior class if player does not provide name
-// strength will always half of attack
+// strength will be half of attack
 Warrior::Warrior() : Player() {
   Player::setWeapon("Club");
 
@@ -53,7 +53,7 @@ void Warrior::useUltimateSkill(Action* entity) {
     entity->takeDamage(damage);
 
     ultimateCounter -= 1;
-  } else {
+  } else {  // when ultimate is used up
     if (gameText) {
       cout << "You have used up your charge for ultimate skill.. " << endl;
     }
