@@ -43,7 +43,6 @@ class Player : public Action {
  protected:
   string name;
   string weapon;
-  string archetype;
   float attackStat;
   float defenseStat;
   float maxHealth;

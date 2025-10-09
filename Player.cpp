@@ -12,7 +12,6 @@ Player::Player(string name, string weapon, float attackStat, float defenseStat,
   this->healthStat = healthStat;
   maxHealth = healthStat;
   isDefending = false;
-  archetype = "";
   ultimateCounter = 1;
   useCounter = 3;
 }
