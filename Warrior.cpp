@@ -23,7 +23,7 @@ Warrior::Warrior(std::string name) : Player(name) {
 Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
                  float defense_stat, float health_stat)
     : Player(name, weapon, attack_stat, defense_stat, health_stat) {
-  strength = 1.5f * attackStat;
+  strength = 0.5f * attackStat;
 }
 
 // Returns the Warrior's current strength value.
