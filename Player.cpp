@@ -17,6 +17,7 @@ Player::Player(string name, string weapon, float attackStat,
   isDefending = false;
   ultimateCounter = 1;
   boostCounter = 3;
+  specialSkillCounter = 3;
 }
 
 // Default constructor.
@@ -32,6 +33,7 @@ Player::Player() {
   archetype = "";
   ultimateCounter = 1;
   boostCounter = 3;
+  specialSkillCounter = 3;
 }
 
 // Constructor with custom name but default stats.
@@ -46,6 +48,7 @@ Player::Player(string name) {
   archetype = "";
   ultimateCounter = 1;
   boostCounter = 3;
+  specialSkillCounter = 3;
 }
 
 // Getter methods
@@ -58,6 +61,12 @@ float Player::getAttackStat() const { return attackStat; }
 float Player::getDefenseStat() const { return defenseStat; }
 
 float Player::getHealthStat() const { return healthStat; }
+
+int   Player::getBoostCounter() const { return boostCounter; }
+
+int Player::getUltimateCounter() const { return ultimateCounter; }
+
+int Player::getSpecialSkillCounter() const { return specialSkillCounter; }
 
 
 

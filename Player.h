@@ -63,9 +63,9 @@ class Player : public Action {
 
   // State flags and counters.
   bool isDefending = false;
-  int ultimateCounter = 1;
-  int boostCounter = 3;
-  int specialSkillCounter = 3;
+  int ultimateCounter;
+  int boostCounter;
+  int specialSkillCounter;
 };
 
 #endif  // __PLAYER_H__
