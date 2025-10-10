@@ -3,6 +3,9 @@
 
 #include "Player.h"
 #include "Ranger.h"
+#include "Warrior.h"
+
+
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
 class TestPlayer : public Player {
@@ -35,6 +38,9 @@ class UnitTests {
     testRangerGetter();
     testBoostDex();
     testRangerUltimate();
+    testWarriorGetter();
+    testBoostStrength();
+    testWarriorUltimate();
   }
 
  private:
@@ -349,6 +355,78 @@ class UnitTests {
       cout << "All Ranger ultimate tests passed!" << endl;
     }
   }
+ // Tests for Warrior Class
+  void testWarriorGetter() {
+    Warrior w("abcd", "club", 50, 30, 100);
+    // Strength is expected to equal = 0.5*50 = 25
+    if (w.getStrength() != 25) {
+      cout << "Test failed , Expected : 25 , Got: " << w.getStrength()
+           << endl;
+
+    } else {
+      cout << "Warrior Getter tests passed!" << endl;
+    }
+  }
+  void testBoostStrength() {
+    Warrior w("abcd", "club", 50, 30, 100);
+    w.gameText = false;
+    bool allPassed = true;
+    // test initial use , dexterity should be  0.5*50 + 30 = 55
+    w.boostStrength();
+    if (w.getStrength() != 55) {
+      cout << "Test failed , Expected : 55 , Got: " << w.getStrength()
+           << endl;
+      allPassed = false;
+    }
+
+    // test using all charges
+
+    w.boostStrength();  // dex should be 85
+    w.boostStrength();  // dex should be 115
+    // expecting dexterity to be 115
+    w.boostStrength();
+    if (w.getStrength() != 115) {
+      cout << "Test failed expected : 115, Got : " << w.getStrength() << endl;
+      allPassed = false;
+    }
+
+    if (allPassed) {
+      cout << "All boostStrength tests passed!" << endl;
+    }
+  }
+  void testWarriorUltimate() {
+    bool allPassed = true;
+    //when warriors hp is above 50% 
+    Warrior w1("abcd", "club", 50, 30, 100);
+    Warrior* w2 = new Warrior("efgh", "club", 50, 30, 1000);
+    w1.gameText = false;
+    w2->gameText = false;
+    // Ultimate damage = 2*0.5*50 + 50=100, r2 hp should be
+    // 1000+30-100 = 930
+    w1.useUltimateSkill(w2);
+    if (w2->getHealthStat() != 930) {
+      cout << "Test failed, expected : 930, got: " << w2->getHealthStat()
+           << endl;
+      allPassed = false;
+    }
+    // test if the ultimate counter works ,if it does work health should stay as
+    // 895
+    w1.useUltimateSkill(w2);
+    if (w2->getHealthStat() != 930) {
+      cout << "Test failed, expected : 930, got: " << w2->getHealthStat()
+           << endl;
+      allPassed = false;
+    }
+    w1.
+    if (allPassed) {
+      cout << "All Warrior ultimate tests passed!" << endl;
+    }
+    
+
+
+
+  }
+
 };
 
 #endif  // __UNITTESTS_H__
