@@ -19,7 +19,7 @@ Warrior::Warrior(std::string name) : Player(name) {
 
 // Parameterized constructor.
 // Useful for testing with explicit stat values.
-// Strength is initialized to 1.5× attack stat.
+// Strength is initialized to 0.5× attack stat.
 Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
                  float defense_stat, float health_stat)
     : Player(name, weapon, attack_stat, defense_stat, health_stat) {
@@ -35,9 +35,9 @@ float Warrior::getStrength() {
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
 void Warrior::boostStrength() {
-  if (useCounter > 0) {
+  if (boostCounter > 0) {
     strength += 30.0f;
-    useCounter -= 1;
+    boostCounter -= 1;
   } else if (gameText) {
     std::cout << "You have used all your charges for your boost."
               << std::endl;

@@ -35,9 +35,9 @@ float Ranger::getDexterity() {
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
 void Ranger::boostDex() {
-  if (useCounter > 0) {
+  if (boostCounter > 0) {
     dexterity += 30.0f;
-    useCounter -= 1;
+    boostCounter -= 1;
   } else if (gameText) {
     std::cout << "You have used all your charges for your boost."
               << std::endl;

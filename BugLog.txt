@@ -1,0 +1,1 @@
+11/10/2025 - Resolved bug with warrior ultimate skill not taking health into consideration for damage
