@@ -8,13 +8,13 @@ CXXFLAGS = -std=c++11 -Wall -Wextra
 
 TESTTARGET = TestRunner
 
-#Source files
-SRCS =  main.cpp Player.cpp  Ranger.cpp
+#Source files for testing 
+TESTSRCS =  main.cpp Player.cpp  Ranger.cpp Warrior.cpp
 
 .PHONY: all
 #run all tests
 TESTALL:
-	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(TESTSRCS)
 	./$(TESTTARGET)
 
 # Clean rule
