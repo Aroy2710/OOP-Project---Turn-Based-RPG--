@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+
 #include "Action.h"
 
 using namespace std;
@@ -13,10 +14,10 @@ using namespace std;
 class Player : public Action {
  public:
   // Constructors
-  Player();  // Default constructor for gameplay.
+  Player();             // Default constructor for gameplay.
   Player(string name);  // Custom name constructor.
-  Player(string name, const string weapon,
-         float attack_stat, float defense_stat, float health_stat);
+  Player(string name, const string weapon, float attack_stat,
+         float defense_stat, float health_stat);
 
   // Virtual destructor ensures correct cleanup of derived classes.
   ~Player() override = default;
@@ -27,6 +28,9 @@ class Player : public Action {
   float getAttackStat() const;
   float getDefenseStat() const;
   float getHealthStat() const;
+  int getUltimateCounter() const;
+  int getBoostCounter() const;
+  int getSpecialSkillCounter() const;
 
   // Setters
   void setAttackStat(float attack_stat);
@@ -60,7 +64,8 @@ class Player : public Action {
   // State flags and counters.
   bool isDefending = false;
   int ultimateCounter = 1;
-  int useCounter = 3;
+  int boostCounter = 3;
+  int specialSkillCounter = 3;
 };
 
 #endif  // __PLAYER_H__
