@@ -9,7 +9,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra
 TESTTARGET = TestRunner
 
 #Source files for testing 
-TESTSRCS =  main.cpp Player.cpp  Ranger.cpp Warrior.cpp
+TESTSRCS =  main.cpp Player.cpp  Ranger.cpp Warrior.cpp Mage.cpp
 
 .PHONY: all
 #run all tests

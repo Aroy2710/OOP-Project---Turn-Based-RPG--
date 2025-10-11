@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Ranger.h"
 #include "Warrior.h"
+#include "Mage.h"
 
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
@@ -22,12 +23,12 @@ class TestPlayer : public Player {
   }
 };
 
-// UnitTests contains a collection of methods that test various functionalities
+// UnitTests contains a collection of methods that test (Normal Operations) various functionalities
 // of the Player, Ranger, and Warrior classes.
 class UnitTests {
  public:
   // Executes all defined test methods sequentially.
-  void runTests() {
+  void runNormalOperationTests() {
     testPlayerGetters();
     testSettersExpectedParameters();
     testSettersNegativeParameters();
@@ -41,6 +42,9 @@ class UnitTests {
     testWarriorGetter();
     testBoostStrength();
     testWarriorUltimate();
+    testMageGetter();
+    testBoostMana();
+    testMageUltimate();
   }
 
  private:
@@ -433,6 +437,69 @@ class UnitTests {
     delete w2;
     delete w4;
   }
+  void testMageGetter() {
+    Mage m("abcd", "club", 50, 30, 100);
+    if (m.getMana() != 100) {
+      cout << "Test failed. Expected: 100, Got: " << m.getMana() << endl;
+    } else {
+      cout << "Mage getter tests passed!" << endl;
+    }
+  }
+  void testBoostMana() {
+    bool allPassed = true;
+    Mage m("abcd", "staff", 50, 30, 100);
+    m.gameText = false;
+
+    m.boostMana();
+    if (m.getMana() != 130) {
+      cout << "Test failed. Expected: 100, Got: " << m.getMana() << endl;
+      allPassed = false;
+    }
+
+    m.boostMana(); // mana = 160
+    m.boostMana(); // mana = 190
+    m.boostMana(); // mana = 190
+    if (m.getMana() != 190) {
+      cout << "Test failed. Expected: 190, Got: " << m.getMana() << endl;
+      allPassed = false;
+    }
+
+    if (allPassed) {
+      cout << "All boostMana tests passed!" << endl;
+    }
+  }
+
+  // Verifies that Ranger ultimate attack deals correct damage and respects
+  // cooldowns and defense effects.
+  void testMageUltimate() {
+    bool allPassed = true;
+    Mage m1("abcd", "Staff", 50, 30, 100);
+    Mage* m2 = new Mage("efgh", "bow", 50, 30, 1000);
+    m1.gameText = false;
+    m2->gameText = false;
+
+    //ultimate damage =  2*50 + 2*100 = 300 , hp = 1000 + 30 - 300
+    m1.useUltimateSkill(m2);
+    if (m2->getHealthStat() != 730) {
+      cout << "Test failed. Expected: 730, Got: " << m2->getHealthStat()
+           << endl;
+      allPassed = false;
+    }
+
+    m1.useUltimateSkill(m2);
+    if (m2->getHealthStat() != 730) {
+      cout << "Test failed. Expected: 895, Got: " << m2->getHealthStat()
+           << endl;
+      allPassed = false;
+    }
+
+    if (allPassed) {
+      cout << "All Mage ultimate tests passed!" << endl;
+    }
+
+    delete m2;
+  }
+
 };
 
 #endif  // __UNITTESTS_H__
