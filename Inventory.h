@@ -1,30 +1,31 @@
-#ifndef INVENTORY_H
-#define INVENTORY_H
+#ifndef INVENTORY_H_
+#define INVENTORY_H_
 
+#include <string>
 #include <vector>
+
 #include "Item.h"
+
 using namespace std;
 
-// Forward declaration of th Player class to avoid errors
+// Forward declaration of the Player class to avoid circular dependencies.
 class Player;
 
-// The inventory class aggregates items which the player
-// can use to increase their stats.
+// The Inventory class aggregates items that the player can use to
+// increase their stats.
 class Inventory {
+ public:
+  explicit Inventory(Player* owner);  // Constructor
+  ~Inventory();                       // Destructor
 
-    protected:
-        Player* owner;        // Holds a pointer to player as the target for stat changes
-        vector<Item*> items;  // Aggregates item objects
-    
-    public:
-        Inventory(Player* owner); // Constructor
-        ~Inventory();             // Destructor
+  void addItem(Item* item);            // Adds an item to the inventory
+  void removeItem(Item* item);         // Removes an item from the inventory
+  std::string listItems() const;       // Displays all the items in the inventory
+  void use(Item* item);                // Uses an item
 
-        void addItem(Item* item);    // Adds an item to the inventory
-        void removeItem(Item* item); // Removes an item from the inventory
-        string listItems();          // Displays all the items currently in the inventory
-        void use(Item* item);        // Uses an item
-
+ private:
+  Player* owner;               // Pointer to the player (for stat changes)
+  std::vector<Item*> items;    // Aggregated item objects
 };
 
-#endif
+#endif  // INVENTORY_H_

@@ -1,29 +1,30 @@
-#ifndef ITEM_H
-#define ITEM_H
+#ifndef ITEM_H_
+#define ITEM_H_
 
-#include <string>
 #include <iostream>
+#include <string>
+
 using namespace std;
 
-// Forward declaration of Player class to avoid errors
+// Forward declaration of the Player class to avoid circular dependencies.
 class Player;
 
-// The base item class defines the virtual use() function
-// The three inherited items will then override this function
-// since they each change a different stat
+// The Item class is an abstract base class defining a virtual Use()
+// method. Derived item types override this method to modify different
+// player stats.
 class Item {
+ public:
+  Item(string name, int value);              // Constructor
+  virtual ~Item() = default;                 // Virtual destructor
 
-    protected:
-        string itemName; // The item's name
-        int effectValue; // The amount that the items will change the selected stat
-    
-    public:
-        Item(string name, int value); // Constructor
-        virtual ~Item() = default;    // Destructor
+  virtual void use(Player* target) = 0;      // Must be overridden by subclasses
 
-        virtual void use(Player* target) = 0; // Defines the use() function that must be overriden
-        string getName() const;               // Prints the name of the item
-        void setName(string name);            // Changes the name of the item
+  std::string getName() const;               // Returns the item's name
+  void setName(string name);                 // Sets the item's name
+
+ protected:
+  std::string itemName;  // The item's name
+  int effectValue;       // The effect value that modifies a stat
 };
 
-#endif
+#endif  // ITEM_H_
