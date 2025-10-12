@@ -4,16 +4,16 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
+#include "Player.h"
 
-// Forward declaration of the Player class to avoid circular dependencies.
-class Player;
+using namespace std;
 
 // The Item class is an abstract base class defining a virtual Use()
 // method. Derived item types override this method to modify different
 // player stats.
 class Item {
  public:
+  Item();                                    // Default constructor
   Item(string name, int value);              // Constructor
   virtual ~Item() = default;                 // Virtual destructor
 

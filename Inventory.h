@@ -5,11 +5,9 @@
 #include <vector>
 
 #include "Item.h"
+#include "Player.h"
 
 using namespace std;
-
-// Forward declaration of the Player class to avoid circular dependencies.
-class Player;
 
 // The Inventory class aggregates items that the player can use to
 // increase their stats.
