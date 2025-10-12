@@ -452,7 +452,7 @@ class UnitTests {
 
     m.boostMana();
     if (m.getMana() != 130) {
-      cout << "Test failed. Expected: 100, Got: " << m.getMana() << endl;
+      cout << "Test failed. Expected: 130, Got: " << m.getMana() << endl;
       allPassed = false;
     }
 
@@ -488,7 +488,7 @@ class UnitTests {
 
     m1.useUltimateSkill(m2);
     if (m2->getHealthStat() != 730) {
-      cout << "Test failed. Expected: 895, Got: " << m2->getHealthStat()
+      cout << "Test failed. Expected: 730, Got: " << m2->getHealthStat()
            << endl;
       allPassed = false;
     }
