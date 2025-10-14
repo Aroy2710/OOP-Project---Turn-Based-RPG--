@@ -19,13 +19,14 @@ void Warlock::eldritchBlast(Action* entity) {
   }
 
   if (specialSkillCounter > 0) {
-    float damage = 0.25f * healthStat;
+    float damage = 0.25f * maxHealth;
 
     // Apply damage to the target entity.
     entity->takeDamage(damage);
 
     // Optional: Warlock gains a small health boost after using the skill.
     healthStat += 30;
+    maxHealth += 30;
 
     specialSkillCounter -= 1;
   } else if (gameText) {

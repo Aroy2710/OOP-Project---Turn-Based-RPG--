@@ -25,7 +25,7 @@ Gunner::Gunner(string name, string weapon, float attackStat, float defenseStat,
 void Gunner::gunShot(Action* entity) {
   if (specialSkillCounter > 0) {
     if (gameText) {
-      cout << "The Gunner aims for the enemy’s head with their " << weapon << endl;
+      cout << "The Gunner aims for the enemy's head with their " << weapon << endl;
     }
 
     float damage = 3 * attackStat;

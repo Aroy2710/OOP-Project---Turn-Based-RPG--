@@ -21,10 +21,10 @@ void Wizard::fireBall(Action* entity) {
     if (gameText) {
       cout << "The Wizard summons a fireball out of nowhere!" << endl;
       cout << "Wizard uses up a portion of their life force." << endl;
-      cout << "Wizard's mana has increased!" << endl;
+      cout << "Wizards mana has increased!" << endl;
     }
 
-    float damage = 3 * mana;
+    float damage = 2 * mana;
     entity->takeDamage(damage);
 
     mana += 10;  // Increase mana

@@ -26,14 +26,14 @@ void Swordsman::piercingStrike(Action* entity) {
   if (specialSkillCounter > 0) {
     if (gameText) {
       cout << "The Swordsman charges at the enemy with their sword!" << endl;
-      cout << "The Swordsman’s HP decreases in exchange for greater strength!" << endl;
+      cout << "The Swordsman's HP decreases in exchange for greater strength!" << endl;
     }
 
-    float damage = (3 * strength) + attackStat;
+    float damage = (5 * strength) + attackStat;
     entity->takeDamage(damage);
 
     strength += 10;
-    healthStat -= 50;
+    healthStat -= 30;
     specialSkillCounter -= 1;
 
   } else if (gameText) {
