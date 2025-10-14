@@ -11,7 +11,7 @@ class Gunner : public Ranger {
   Gunner();
 
   // Constructs a Gunner with the given name.
-  explicit Gunner(string name);
+  Gunner(string name);
 
   // Fully parameterized constructor initializing all stats and weapon.
   Gunner(string name, string weapon, float attackStat, float defenseStat,

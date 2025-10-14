@@ -6,12 +6,13 @@ Gunner::Gunner() : Ranger() {
   weapon = "Pistol"; 
 }
 
-// Constructor for Gunner with a custom name.
+// Constructor with a custom name.
+// Initializes a Gunner with default Ranger attributes and the given name.
 Gunner::Gunner(string name) : Ranger(name) { 
   weapon = "Pistol"; 
 }
 
-// Parameterized constructor.
+// Fully parameterized constructor.
 // Useful for testing with explicit stat values.
 Gunner::Gunner(string name, string weapon, float attackStat, float defenseStat,
                float healthStat)
@@ -20,16 +21,21 @@ Gunner::Gunner(string name, string weapon, float attackStat, float defenseStat,
 }
 
 // Executes the Gunner’s special skill.
-// Deals high damage and permanently increases defense.
+// Deals damage and increases defense permanently.
 void Gunner::gunShot(Action* entity) {
-  if (gameText) {
-    cout << "The Gunner aims for the enemy’s head with their " << weapon
-         << "..." << endl;
-  }
+  if (specialSkillCounter > 0) {
+    if (gameText) {
+      cout << "The Gunner aims for the enemy’s head with their " << weapon << endl;
+    }
 
-  float damage = 3 * attackStat;
-  entity->takeDamage(damage);
-  defenseStat += 10;
+    float damage = 3 * attackStat;
+    entity->takeDamage(damage);
+
+    defenseStat += 10;
+    specialSkillCounter -= 1;
+  } else if (gameText) {
+    cout << "You have used up all your special skill charges." << endl;
+  }
 }
 
 // Destructor.

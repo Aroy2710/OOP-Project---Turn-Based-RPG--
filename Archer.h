@@ -11,7 +11,7 @@ class Archer : public Ranger {
   Archer();
 
   // Constructs an Archer with the given name.
-  explicit Archer(string name);
+  Archer(string name);
 
   // Fully parameterized constructor initializing all stats and weapon.
   Archer(string name, string weapon, float attackStat, float defenseStat,

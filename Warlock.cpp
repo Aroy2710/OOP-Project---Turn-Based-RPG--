@@ -1,0 +1,37 @@
+#include "Warlock.h"
+
+// Default constructor initializes a Warlock with base Mage stats.
+Warlock::Warlock() : Mage() {}
+
+// Constructor with a name.
+Warlock::Warlock(string name) : Mage(name) {}
+
+// Fully parameterized constructor.
+Warlock::Warlock(string name, string weapon, float attackStat, float defenseStat,
+                 float healthStat)
+    : Mage(name, weapon, attackStat, defenseStat, healthStat) {}
+
+// Executes the Warlock's special skill on the target entity.
+// Deals damage proportional to 25% of Warlock's health and consumes a skill charge.
+void Warlock::eldritchBlast(Action* entity) {
+  if (gameText) {
+    cout << "The Warlock shouts ELDRITCH BLAST!" << endl;
+  }
+
+  if (specialSkillCounter > 0) {
+    float damage = 0.25f * healthStat;
+
+    // Apply damage to the target entity.
+    entity->takeDamage(damage);
+
+    // Optional: Warlock gains a small health boost after using the skill.
+    healthStat += 30;
+
+    specialSkillCounter -= 1;
+  } else if (gameText) {
+    cout << "You have used up all your special skill charges." << endl;
+  }
+}
+
+// Destructor.
+Warlock::~Warlock() = default;
