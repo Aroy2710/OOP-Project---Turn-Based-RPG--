@@ -23,6 +23,10 @@ Barbarian::Barbarian(string name, string weapon, float attackStat, float defense
 // Executes the Barbarian’s special skill.
 // Deals heavy damage, increases strength, and decreases defense.
 void Barbarian::crushSlam(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (specialSkillCounter > 0) {
     if (gameText) {
       cout << "The Barbarian jumps up at the enemy!" << endl;

@@ -49,6 +49,10 @@ void Warrior::boostStrength() {
 // - Below 50% health: higher damage multiplier.
 // - Above 50% health: lower damage multiplier.
 void Warrior::useUltimateSkill(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   float damage = 0.0f;
 
   // Damage scaling based on current health percentage.

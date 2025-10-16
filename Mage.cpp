@@ -52,6 +52,10 @@ void Mage::boostMana() {
 // Uses the Mage's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
 void Mage::useUltimateSkill(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (ultimateCounter > 0) {
     float damage = (attackStat * 2.0f) + (mana * 2.0f);
 

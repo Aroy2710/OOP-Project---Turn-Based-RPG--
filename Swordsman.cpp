@@ -23,6 +23,10 @@ Swordsman::Swordsman(string name, string weapon, float attackStat, float defense
 // Executes the Swordsman’s special skill.
 // Deals heavy damage, increases strength, and decreases HP.
 void Swordsman::piercingStrike(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (specialSkillCounter > 0) {
     if (gameText) {
       cout << "The Swordsman charges at the enemy with their sword!" << endl;

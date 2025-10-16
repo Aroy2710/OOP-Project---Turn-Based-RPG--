@@ -23,6 +23,10 @@ Gunner::Gunner(string name, string weapon, float attackStat, float defenseStat,
 // Executes the Gunner’s special skill.
 // Deals damage and increases defense permanently.
 void Gunner::gunShot(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (specialSkillCounter > 0) {
     if (gameText) {
       cout << "The Gunner aims for the enemy's head with their " << weapon << endl;

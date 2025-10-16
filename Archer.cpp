@@ -22,6 +22,10 @@ Archer::Archer(string name, string weapon, float attackStat, float defenseStat,
 // Executes the Archer’s special skill.
 // Deals damage and increases attack power permanently.
 void Archer::headShot(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (specialSkillCounter > 0) {
     if (gameText) {
       cout << "The Archer aims carefully for the enemy’s head..." << endl;

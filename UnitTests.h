@@ -58,6 +58,13 @@ class UnitTests {
     testCrushSlam();
     testPiercingStrike();
   }
+  void runEdgeCaseTests(){
+    testOverkillDamage();
+    testNegativeDamage();
+    testNullTarget();
+    testSkillReuseAfterDepletion();
+    testSkillUseAfterDeath();
+  }
 
  private:
   // Verifies that getter methods in the Player class correctly return the
@@ -833,10 +840,77 @@ void testPiercingStrike() {
     }
 
     delete s2;
+  
+}
+// 1. HP cannot drop below zero
+void testOverkillDamage() {
+    TestPlayer p("Edge", "Sword", 50, 30, 100);
+    p.gameText = false;
+    p.takeDamage(1000);
+    if (p.getHealthStat() == 0)
+        cout << "testOverkillDamage passed!\n";
+    else
+        cout << "testOverkillDamage failed! Expected 0, got " << p.getHealthStat() << endl;
+}
+// 2. Negative damage shouldn't heal
+void testNegativeDamage() {
+    TestPlayer p("Edge", "Sword", 50, 30, 100);
+    p.gameText = false;
+    p.takeDamage(-100);
+    if (p.getHealthStat() == 100)
+        cout << "testNegativeDamage passed!\n";
+    else
+        cout << "testNegativeDamage failed! Expected 100, got " << p.getHealthStat() << endl;
+}
+// 3. Attacking a null target should not crash
+void testNullTarget() {
+    bool passed = true;
+    try {
+        TestPlayer attacker("Hero", "Sword", 50, 30, 100);
+        attacker.gameText = false;
+        attacker.basicAttack(nullptr, 50);
+    } catch (...) {
+        passed = false;
+    }
+    cout << (passed ? "testNullTarget passed!\n" : "testNullTarget failed! Exception thrown.\n");
+}
+// 4. Using a skill after counter depletion should have no effect
+void testSkillReuseAfterDepletion() {
+    bool passed = true;
+    Ranger r1("abc", "bow", 50, 30, 100);
+    Ranger r2("xyz", "bow", 50, 30, 200);
+    r1.gameText = false;
+    r2.gameText = false;
+
+    // use all 3 charges
+    r1.useUltimateSkill(&r2);
+    r1.useUltimateSkill(&r2);
+    r1.useUltimateSkill(&r2);
+    float prevHealth = r2.getHealthStat();
+    r1.useUltimateSkill(&r2); // 4th time – should do nothing
+
+    if (r2.getHealthStat() != prevHealth)
+        passed = false;
+
+    cout << (passed ? "testSkillReuseAfterDepletion passed!\n" : "testSkillReuseAfterDepletion failed!\n");
 }
 
+// 5. Skill use on dead player should have no effect
+void testSkillUseAfterDeath() {
+    bool passed = true;
+    Ranger r1("Hero", "bow", 50, 30, 100);
+    Ranger r2("Target", "bow", 50, 30, 10);
+    r1.gameText = false;
+    r2.gameText = false;
 
+    r1.useUltimateSkill(&r2); // kills r2
+    float prevHealth = r2.getHealthStat();
+    r1.useUltimateSkill(&r2); // try again
+    if (r2.getHealthStat() != prevHealth)
+        passed = false;
 
+    cout << (passed ? "testSkillUseAfterDeath passed!\n" : "testSkillUseAfterDeath failed!\n");
+}
 
 
 
