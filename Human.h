@@ -1,17 +1,19 @@
 #ifndef __HUMAN_H__
 #define __HUMAN_H__
 
-class Human : public Player{
-    public:
-    Human();
-    explicit Human(float attackStat, float defenseStat, float healthStat);
+#include "Enemy.h"
 
-    void bruteForce(Action* entity);
-    void useUltimateSkill(Action* entity) override;
-    void performTurn(Action* entity);
+class Human : public Enemy {
+ public:
+  Human();
+  Human(float attackStat, float defenseStat, float healthStat);
 
-    ~Human();
+  void bruteForce(Action* target);
+  void performTurn(Action* target) override;
+  void onLowHP() override;
 
+ private:
+  bool doubleDamage = false;
 };
 
 #endif
