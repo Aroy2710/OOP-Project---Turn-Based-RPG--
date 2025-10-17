@@ -24,11 +24,7 @@ class Enemy : public Action {
   void defend();
   void takeDamage(float damage) override;
 
-  // Only this function is abstract, subclasses must implement it
   virtual void onLowHP() = 0;
-
-  // The enemy does not have an ultimate—no override needed.
-  // But method included for interface consistency
   
   virtual void performTurn(Action* target) = 0;
 
