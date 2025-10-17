@@ -1,9 +1,4 @@
-#include "Goblins.h"
-#include "Human.h"
-#include "Orcs.h"
-#include "Barbarian.h"
-#include "Wizard.h"
-#include "Action.h"
+
 #Compiler
 CXX = g++
 #Compiler flags

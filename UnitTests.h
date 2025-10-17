@@ -798,7 +798,7 @@ void testPiercingStrike() {
     // 1st use:
     // strength = 25, damage = 5*25 + 50 = 175
     // enemy hp = 1000 - (175 - 30) = 855
-    s1.piercingStrike(s2);
+    s1.piercingBlade(s2);
     if (s2->getHealthStat() != 855) {
         cout << "Test 1 failed. Expected enemy HP: 855, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
@@ -807,7 +807,7 @@ void testPiercingStrike() {
     // 2nd use:
     // strength = 35, damage = 5*35 + 50 = 225
     // enemy hp = 855 - (225 - 30) = 660
-    s1.piercingStrike(s2);
+    s1.piercingBlade(s2);
     if (s2->getHealthStat() != 660) {
         cout << "Test 2 failed. Expected enemy HP: 660, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
@@ -816,7 +816,7 @@ void testPiercingStrike() {
     // 3rd use:
     // strength = 45, damage = 5*45 + 50 = 275
     // enemy hp = 660 - (275 - 30) = 415
-    s1.piercingStrike(s2);
+    s1.piercingBlade(s2);
     if (s2->getHealthStat() != 415) {
         cout << "Test 3 failed. Expected enemy HP: 415, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
@@ -826,7 +826,7 @@ void testPiercingStrike() {
     float prevHP = s2->getHealthStat();
     float prevStrength = s1.getStrength();
     float prevHealth = s1.getHealthStat();
-    s1.piercingStrike(s2);
+    s1.piercingBlade(s2);
     if (s2->getHealthStat() != prevHP || s1.getStrength() != prevStrength || s1.getHealthStat() != prevHealth) {
         cout << "Test 4 failed. Skill should have no effect when out of charges." << endl;
         cout << "Enemy HP before: " << prevHP << ", after: " << s2->getHealthStat() << endl;
