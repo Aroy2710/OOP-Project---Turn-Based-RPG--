@@ -1,3 +1,6 @@
+#include "Goblins.h"
+#include "Human.h"
+#include "Orcs.h"
 #include "Barbarian.h"
 #include "Wizard.h"
 #include "Action.h"
@@ -12,7 +15,7 @@ DRMEMORY = C:/Program Files (x86)/Dr. Memory/bin/drmemory.exe
 TESTTARGET = TestRunner
 
 #Source files for testing 
-TESTSRCS =  main.cpp Player.cpp  Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp
+TESTSRCS =  main.cpp Player.cpp  Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp Enemy.cpp Orc.cpp Human.cpp Goblin.cpp
 
 .PHONY: all clean memcheck
 #run all tests

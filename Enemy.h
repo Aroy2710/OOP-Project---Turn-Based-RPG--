@@ -1,13 +1,13 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 
-#include <string>
 #include "Action.h"
-
+#include <iostream>
+using namespace std;
 class Enemy : public Action {
  public:
   Enemy();
-  Enemy(const std::string& typeName, float attackStat, float defenseStat, float healthStat);
+  Enemy(float attackStat, float defenseStat, float healthStat);
 
   virtual ~Enemy() = default;
 
@@ -29,12 +29,11 @@ class Enemy : public Action {
 
   // The enemy does not have an ultimate—no override needed.
   // But method included for interface consistency
-  virtual void useUltimateSkill(Action* target);
   
   virtual void performTurn(Action* target) = 0;
 
  protected:
-  std::string typeName;
+  string typeName;
   float attackStat;
   float defenseStat;
   float healthStat;

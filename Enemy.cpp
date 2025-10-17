@@ -1,44 +1,89 @@
 #include "Enemy.h"
 #include <iostream>
 
-Enemy::Enemy() : typeName("Enemy"), attackStat(40), defenseStat(30), healthStat(1000), maxHealth(1000) {}
+using namespace std;
 
-Enemy::Enemy(const std::string& typeName, float attackStat, float defenseStat, float healthStat)
-    : typeName(typeName),
-      attackStat(attackStat),
-      defenseStat(defenseStat),
-      healthStat(healthStat),
-      maxHealth(healthStat) {}
+// Default constructor.
+// Initializes an Enemy with generic attributes.
+Enemy::Enemy() {
+  typeName = "Enemy";
+  attackStat = 40.0f;
+  defenseStat = 30.0f;
+  healthStat = 1000.0f;
+  maxHealth = 1000.0f;
+  isDefending = false;
+}
 
+// Parameterized constructor.
+// Initializes an Enemy with specific stats.
+Enemy::Enemy(float attackStat, float defenseStat, float healthStat) {
+  this->attackStat = attackStat;
+  this->defenseStat = defenseStat;
+  this->healthStat = healthStat;
+  maxHealth = healthStat;
+  typeName = "Enemy";
+  isDefending = false;
+}
+
+// Getter methods
+string Enemy::getTypeName() const { return typeName; }
+
+float Enemy::getAttackStat() const { return attackStat; }
+
+float Enemy::getDefenseStat() const { return defenseStat; }
+
+float Enemy::getHealthStat() const { return healthStat; }
+
+// Setter methods with validation
+void Enemy::setAttackStat(float attackStat) {
+  this->attackStat = attackStat < 0.0f ? 0.0f : attackStat;
+}
+
+void Enemy::setDefenseStat(float defenseStat) {
+  this->defenseStat = defenseStat < 0.0f ? 0.0f : defenseStat;
+}
+
+void Enemy::setHealthStat(float healthStat) {
+  this->healthStat = healthStat < 0.0f ? 0.0f : healthStat;
+}
+
+// Executes a basic attack on another entity.
 void Enemy::basicAttack(Action* target) {
-    if (gameText) std::cout << typeName << " attacks." << std::endl;
-    target->takeDamage(attackStat);
+  if (!target) {
+    if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) cout << typeName << " attacks." << endl;
+  target->takeDamage(attackStat);
 }
 
+// Sets the enemy to a defending state for the next turn.
 void Enemy::defend() {
-    if (gameText) std::cout << typeName << " defends." << std::endl;
-    isDefending = true;
+  isDefending = true;
+  if (gameText) cout << typeName << " defends." << endl;
 }
 
+// Handles how the Enemy takes damage during battle.
+// - If defending: damage is halved.
+// - If not defending: defense stat reduces incoming damage.
+// Health is clamped to zero to avoid negative values.
 void Enemy::takeDamage(float damage) {
+  if (damage < 0.0f) damage = 0.0f;
+
+  if (isDefending) {
+    damage *= 0.5f;
+    isDefending = false;
+  } else {
+    damage -= defenseStat;
     if (damage < 0.0f) damage = 0.0f;
+  }
 
-    if (isDefending) {
-        damage *= 0.5f;
-        isDefending = false;
-    } else {
-        damage -= defenseStat;
-        if (damage < 0.0f) damage = 0.0f;
-    }
-    healthStat -= damage;
-    if (healthStat < 0.0f) healthStat = 0.0f;
+  healthStat -= damage;
+  if (healthStat < 0.0f) healthStat = 0.0f;
 
-    if (gameText) std::cout << typeName << " takes " << damage << " damage." << std::endl;
-    if (healthStat <= 0.25f * maxHealth) {
-        onLowHP();
-    }
-}
+  if (gameText) cout << typeName << " takes " << damage << " damage." << endl;
 
-void Enemy::useUltimateSkill(Action* target) {
-
+  if (healthStat <= 0.25f * maxHealth) {
+    onLowHP();
+  }
 }

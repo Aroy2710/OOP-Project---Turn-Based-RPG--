@@ -18,7 +18,7 @@ class Swordsman : public Warrior {
             float healthStat);
 
   // Executes the Swordsman's special skill on the target entity.
-  void piercingStrike(Action* entity);
+  void piercingBlade(Action* entity);
 
   // Destructor cleans up any allocated resources.
   ~Swordsman();
