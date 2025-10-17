@@ -9,7 +9,7 @@ Enemy::Enemy() {
   typeName = "Enemy";
   attackStat = 40.0f;
   defenseStat = 30.0f;
-  healthStat = 1000.0f;
+  healthStat = 2000.0f;
   maxHealth = 2000.0f;
   isDefending = false;
 }
