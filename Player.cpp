@@ -88,8 +88,12 @@ void Player::setWeapon(string weapon) { this->weapon = weapon; }
 // Executes a basic attack on another entity.
 // The entity takes damage based on the Player's attack value.
 void Player::basicAttack(Action* entity, float damage) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (gameText) {
-    cout << name << " is now attacking." << endl;
+    cout << name << " is now attacking with their " << weapon << endl;
   }
   entity->takeDamage(damage);
 }

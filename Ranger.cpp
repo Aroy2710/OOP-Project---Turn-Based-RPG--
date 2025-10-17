@@ -47,6 +47,10 @@ void Ranger::boostDex() {
 // Uses the Ranger's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
 void Ranger::useUltimateSkill(Action* entity) {
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
   if (ultimateCounter > 0) {
     float damage = (attackStat * 1.5f) + (dexterity * 0.8f);
 
