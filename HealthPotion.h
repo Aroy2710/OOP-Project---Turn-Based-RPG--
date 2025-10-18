@@ -6,7 +6,6 @@
 using namespace std;
 
 #include "Item.h"
-#include "Player.h"
 
 class HealthPotion : public Item {
  public:

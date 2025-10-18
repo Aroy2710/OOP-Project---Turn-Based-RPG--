@@ -16,7 +16,6 @@ class Item {
 
   bool gameText;         // Controls whether items output to console when used
 
-  Item();                                    // Default constructor
   Item(string name, int value);              // Constructor
   virtual ~Item() = default;                 // Virtual destructor
 

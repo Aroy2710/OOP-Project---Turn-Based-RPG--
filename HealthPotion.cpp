@@ -1,18 +1,17 @@
 #include "HealthPotion.h"
+#include "Player.h"
 
 // Default constructor
 // Sets a default name and heal amount for the health potion.
-HealthPotion::HealthPotion() {
-  itemName = "Health Potion";
-  effectValue = 200;
-}
+HealthPotion::HealthPotion() 
+  : Item("Health Potion", 200)
+{}
 
 // Constructor
 // Initializes the health potion with a custom name and heal amount.
-HealthPotion::HealthPotion(std::string name, int healAmount) {
-  this->itemName = name;
-  this->effectValue = healAmount;
-}
+HealthPotion::HealthPotion(std::string name, int healAmount) 
+  : Item(name, healAmount)
+{}
 
 // Uses the health potion on the player.
 // Increases the player's health by the potion's effect value
@@ -25,3 +24,6 @@ void HealthPotion::use(Player* target) {
     std::cout << target->getName() << " used " << itemName << " and restored " << effectValue << " health!" << std::endl;
   }
 }
+
+// Default destructor
+HealthPotion::~HealthPotion() = default;
