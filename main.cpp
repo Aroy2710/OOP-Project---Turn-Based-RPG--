@@ -5,5 +5,6 @@
 int main() {
   UnitTests UnitTest;
   UnitTest.runNormalOperationTests();
+  UnitTest.runEdgeCaseTests();
   return 0;
 }

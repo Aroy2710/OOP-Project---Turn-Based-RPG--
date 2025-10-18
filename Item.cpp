@@ -6,6 +6,7 @@
 Item::Item(string name, int value) {
     itemName = name;
     effectValue = value;
+    gameText = true;
 }
 
 // Returns the name of the item

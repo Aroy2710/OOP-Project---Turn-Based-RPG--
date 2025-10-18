@@ -1,1 +1,7 @@
+#include "UnitTests.h"
 11/10/2025 - Resolved bug with warrior ultimate skill not taking health into consideration for damage
+Bug Location - Warrior.cpp , line 55 - 58
+What caused the bug = The if conditional for considering health was below 50% was coded incorrectly
+Fix : Created a max health that stores default health at the time of instantiation and used that to compare current health.
+
+

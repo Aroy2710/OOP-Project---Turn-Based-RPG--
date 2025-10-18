@@ -6,6 +6,7 @@
 using namespace std;
 
 #include "Item.h"
+#include "Player.h"
 
 class HealthPotion : public Item {
  public:
@@ -14,7 +15,7 @@ class HealthPotion : public Item {
   ~HealthPotion();  // Destructor
 
   // Override from Item
-  void use(Player* player) override;
+  void use(Player* target) override;
 };
 
 #endif  // HEALTHPOTION_H_

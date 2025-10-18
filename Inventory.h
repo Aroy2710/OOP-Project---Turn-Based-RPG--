@@ -4,10 +4,12 @@
 #include <string>
 #include <vector>
 
-#include "Item.h"
-#include "Player.h"
+#include "HealthPotion.h"
 
 using namespace std;
+
+// Forward declaration to avoid circular dependency
+class Player;
 
 // The Inventory class aggregates items that the player can use to
 // increase their stats.
@@ -19,7 +21,9 @@ class Inventory {
   void addItem(Item* item);            // Adds an item to the inventory
   void removeItem(Item* item);         // Removes an item from the inventory
   std::string listItems() const;       // Displays all the items in the inventory
-  void use(Item* item);                // Uses an item
+  void use(string name);                // Uses an item
+
+  void setGameTextForAll(bool value);  // Sets the gameText flag for all items in the inventory
 
  private:
   Player* owner;               // Pointer to the player (for stat changes)

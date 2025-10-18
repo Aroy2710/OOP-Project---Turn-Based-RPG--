@@ -4,9 +4,10 @@
 #include <iostream>
 #include <string>
 
-#include "Action.h"
-
 using namespace std;
+
+#include "Action.h"
+#include "Inventory.h"
 
 // The Player class defines shared attributes and actions
 // for all playable archetypes (e.g., Warrior, Ranger, Mage).
@@ -31,6 +32,7 @@ class Player : public Action {
   int getUltimateCounter() const;
   int getBoostCounter() const;
   int getSpecialSkillCounter() const;
+  Inventory& getInventory();
 
   // Setters
   void setAttackStat(float attack_stat);
@@ -66,6 +68,9 @@ class Player : public Action {
   int ultimateCounter;
   int boostCounter;
   int specialSkillCounter;
+
+  // Inventory
+  Inventory inventory;
 };
 
 #endif  // __PLAYER_H__

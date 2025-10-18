@@ -1,3 +1,6 @@
 4th October, 2025 - Removed passived skill method from codebase.
 5th October, 2025 - Created Inventory and Item classes, not yet tested
 12th October, 2025 - Added healthPotion, and commented inventory and item
+14th October 2025 - 
+15th October 2025 - Finished inventory system
+18th October 2025 - Created game manager

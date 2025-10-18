@@ -11,7 +11,7 @@ class Mage : public Player {
   Mage();
 
   // Constructs a Mage with the given name.
-  explicit Mage(string name);
+  Mage(string name);
 
   // Fully parameterized constructor initializing all stats and weapon.
   Mage(string name, string weapon, float attackStat, float defenseStat,
