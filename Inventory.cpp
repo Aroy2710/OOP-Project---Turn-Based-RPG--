@@ -39,7 +39,7 @@ string Inventory::listItems() const {
   string list = "";
   for (size_t i = 0; i < items.size(); ++i) {
     if (items[i]) {
-      list += items[i]->getName();
+      list += items[i]->getName() + ", ";
     }
     if (i < items.size() - 1) {
       list += "\n";
