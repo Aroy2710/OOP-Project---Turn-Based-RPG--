@@ -12,7 +12,7 @@ class Action {
   // method for taking damage.
   virtual void takeDamage(float damage) = 0; 
   // method for doing a special skill
-  virtual void useSpecialSkill() = 0;
+  virtual void useSpecialSkill(Action* entity) = 0;
   // Default virtual destructor.
   virtual ~Action() = default;              
 };

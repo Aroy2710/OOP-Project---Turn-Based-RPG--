@@ -31,10 +31,9 @@ float Warrior::getStrength() {
   return strength;
 }
 
-// Increases the Warrior's strength temporarily.
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
-void Warrior::boostStrength() {
+void Warrior::useBoost() {
   if (boostCounter > 0) {
     strength += 30.0f;
     boostCounter -= 1;

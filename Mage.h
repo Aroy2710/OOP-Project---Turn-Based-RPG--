@@ -21,7 +21,7 @@ class Mage : public Player {
   float getMana();
 
   // Temporarily boosts the Mage's mana for a limited number of turns.
-  void boostMana();
+  void useBoost();
 
   // Executes the Mage's ultimate skill on the target entity.
   void useUltimateSkill(Action* entity) override;

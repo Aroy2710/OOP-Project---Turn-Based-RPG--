@@ -31,7 +31,7 @@ float Ranger::getDexterity() {
   return dexterity;
 }
 
-// Increases the Ranger's dexterity temporarily.
+
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
 void Ranger::useBoost() {
