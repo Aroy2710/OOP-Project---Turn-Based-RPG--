@@ -46,6 +46,10 @@ class Player : public Action {
   // Pure virtual method for archetype-specific ultimate skill.
   virtual void useUltimateSkill(Action* entity) = 0;
 
+  //methods for boost and special skill
+  virtual void useBoost();
+  virtual void useSpecialSkill(Action* entity);
+
   // Controls console output (true = print battle messages).
   bool gameText = true;
 

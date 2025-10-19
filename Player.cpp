@@ -141,3 +141,13 @@ void Player::takeDamage(float damage) {
     healthStat = 0.0f;
   }
 }
+
+void Player::useBoost()
+{
+  
+}
+
+void Player::useSpecialSkill(Action* entity)
+{
+  
+}
