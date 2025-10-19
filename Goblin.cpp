@@ -36,7 +36,7 @@ void Goblin::performTurn(Action* target) {
   if (damageBoost) {
     // When in damage boost mode, only use basic attacks or Bleed Damage
     if (r < 50) {
-      basicAttack(target);
+      basicAttack(target,attackStat + extraDamage);
       extraDamage += 2;  // Increase extraDamage per attack
     } else {
       useSpecialSkill(target);
@@ -46,7 +46,7 @@ void Goblin::performTurn(Action* target) {
   } else {
     // Normal behavior
     if (r < 65) {
-      basicAttack(target);
+      basicAttack(target,attackStat);
       if (damageBoost) extraDamage += 2;
 
     } else if (r < 95) {
