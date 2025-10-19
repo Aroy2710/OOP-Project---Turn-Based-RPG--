@@ -22,7 +22,7 @@ class Goblin : public Enemy {
   void onLowHP() override;
 
   //specific basic attack for goblin
-  void basicAttack(Action* entity);
+  void basicAttack(Action* entity) override;
  private:
   // State flags for special mechanics
   bool damageBoost = false;

@@ -38,6 +38,6 @@ void Human::performTurn(Action* target) {
 
 void Human::onLowHP() {
   if (gameText)
-    std::cout << typeName << " becomes enraged! Damage doubled!" << std::endl;
+    std::cout << typeName << " becomes enraged! Damage doubled for Piercing Strike!" << std::endl;
   doubleDamage = true;
 }

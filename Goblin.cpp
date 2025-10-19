@@ -1,5 +1,5 @@
 #include "Goblin.h"
-#include "Goblin.h"
+
 
 
 using namespace std;
@@ -48,14 +48,12 @@ void Goblin::performTurn(Action* target) {
     // Normal behavior
     if (r < 65) {
       basicAttack(target);
-      if (damageBoost) extraDamage += 2;
 
     } else if (r < 95) {
       defend();
 
     } else {
       useSpecialSkill(target);
-      if (damageBoost) extraDamage += 2;
     }
   }
 }
@@ -64,8 +62,6 @@ void Goblin::basicAttack(Action* target) {
   float damage;
   if (damageBoost){
     damage = attackStat + extraDamage;
-    
-    
   }
   else{
     damage = attackStat;

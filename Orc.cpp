@@ -48,14 +48,14 @@ void Orcs::performTurn(Action* target) {
   // Defend:       30% (65-94)
   // Bleed Damage:  5% (95-99)
   if (randomAction < 65) {
-    basicAttack(target,attackStat);
+    basicAttack(target);
 
   } else if (randomAction < 95) {
     if (!isDefending) {
       defend();
     } else {
       // If already defending, fallback to Basic Attack
-      basicAttack(target , attackStat);
+      basicAttack(target);
     }
 
   } else {
