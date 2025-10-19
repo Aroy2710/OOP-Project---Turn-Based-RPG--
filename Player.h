@@ -48,7 +48,7 @@ class Player : public Action {
 
   //methods for boost and special skill
   virtual void useBoost();
-  virtual void useSpecialSkill(Action* entity);
+  void useSpecialSkill(Action* entity) override;
 
   // Controls console output (true = print battle messages).
   bool gameText = true;

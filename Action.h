@@ -9,8 +9,10 @@ class Action {
   virtual void basicAttack(Action* entity, float damage) = 0;  
   // Defend against an attack; reduces damage from the next attack.
   virtual void defend() = 0;  
-  // Applies a passive skill that is always active in battle.
+  // method for taking damage.
   virtual void takeDamage(float damage) = 0; 
+  // method for doing a special skill
+  virtual void useSpecialSkill() = 0;
   // Default virtual destructor.
   virtual ~Action() = default;              
 };
