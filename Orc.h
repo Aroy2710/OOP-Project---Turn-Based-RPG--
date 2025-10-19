@@ -1,14 +1,14 @@
-#ifndef __ORCS_H__
-#define __ORCS_H__
+#ifndef __ORC_H__
+#define __ORC_H__
 
 #include "Enemy.h"
 
 // Represents an Orc enemy with aggressive behavior and brute force attacks.
-class Orcs : public Enemy {
+class Orc : public Enemy {
  public:
   // Constructors
-  Orcs();
-  Orcs(float attackStat, float defenseStat, float healthStat);
+  Orc();
+  Orc(float attackStat, float defenseStat, float healthStat);
 
   // Unique attack action for the Orc.
   void useSpecialSkill(Action* target) override;
