@@ -120,3 +120,13 @@ void BattleManager::getPlayerAction() {
     }
 
 }
+
+void BattleManager::checkWinCondition() {
+    if (player->getHealthStat() <= 0) {
+        isBattleActive = false;
+        std::cout << player->getName() << " has been defeated! Game Over." << std::endl;
+    } else if (enemy->getHealthStat() <= 0) {
+        isBattleActive = false;
+        std::cout << enemy->getTypeName() << " has been defeated! You win!" << std::endl;
+    }
+}

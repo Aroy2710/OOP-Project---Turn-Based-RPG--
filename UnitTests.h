@@ -11,6 +11,10 @@
 #include "Gunner.h"
 #include "Wizard.h"
 #include "Warlock.h"
+#include "BattleManager.h"
+#include "Enemy.h"
+#include "Orc.h"
+#include "Goblin.h"
 
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
@@ -65,6 +69,14 @@ class UnitTests {
     testNullTarget();
     testSkillReuseAfterDepletion();
     testSkillUseAfterDeath();
+  }
+  void testBattleManager() {
+    
+    Warrior* user = new Warrior("Player", "Sword", 80, 50, 300);
+    Orcs* enemy = new Orcs(70, 40, 250);
+    BattleManager bm(user,enemy);
+    bm.startBattle();
+
   }
 
  private:

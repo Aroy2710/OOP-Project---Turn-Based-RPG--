@@ -6,5 +6,6 @@ int main() {
   UnitTests UnitTest;
   UnitTest.runNormalOperationTests();
   UnitTest.runEdgeCaseTests();
+  UnitTest.testBattleManager();
   return 0;
 }
