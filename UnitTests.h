@@ -273,7 +273,7 @@ class UnitTests {
     attacker->gameText = false;
     defender->gameText = false;
 
-    attacker->basicAttack(defender, 25);
+    attacker->basicAttack(defender);
     if (defender->getHealthStat() != 95) {
       cout << "BasicAttack test failed! Expected defender health: 95, Got: "
            << defender->getHealthStat() << endl;
@@ -281,7 +281,7 @@ class UnitTests {
     }
 
     defender->setHealthStat(100);
-    attacker->basicAttack(defender, 121);
+    attacker->basicAttack(defender);
     if (defender->getHealthStat() != 0) {
       cout << "BasicAttack test failed! Expected defender health: 0, Got: "
            << defender->getHealthStat() << endl;
@@ -868,7 +868,7 @@ void testNullTarget() {
     try {
         TestPlayer attacker("Hero", "Sword", 50, 30, 100);
         attacker.gameText = false;
-        attacker.basicAttack(nullptr, 50);
+        attacker.basicAttack(nullptr);
     } catch (...) {
         passed = false;
     }

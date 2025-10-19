@@ -5,20 +5,20 @@ using namespace std;
 
 // Default constructor.
 // Initializes an Orc with default Enemy stats.
-Orcs::Orcs() : Enemy() {
+Orc::Orc() : Enemy() {
   typeName = "Orc";
 }
 
 // Parameterized constructor.
 // Initializes an Orc with specific stats.
-Orcs::Orcs(float attackStat, float defenseStat, float healthStat)
+Orc::Orc(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
   typeName = "Orc";
 }
 
 // Special attack: Brute Force.
 // Deals damage based on attack and defense stats.
-void Orcs::useSpecialSkill(Action* target) {
+void Orc::useSpecialSkill(Action* target) {
   float damage = attackStat * 1.2f + defenseStat * 0.5f;
 
   if (gameText) {
@@ -33,7 +33,7 @@ void Orcs::useSpecialSkill(Action* target) {
 // Uses probability to decide between Basic Attack, Defend, or Bleed Damage.
 // Defines the Orc's behavior during its turn.
 // If aggressive, always brute forces enemy. Otherwise, uses probability to choose an action.
-void Orcs::performTurn(Action* target) {
+void Orc::performTurn(Action* target) {
   if (aggressive) {
     // Aggressive Orc always attacks
     useSpecialSkill(target);
@@ -67,7 +67,7 @@ void Orcs::performTurn(Action* target) {
 
 // Triggered when Orc HP is low.
 // Orc goes berserk, becomes aggressive, and increases stats.
-void Orcs::onLowHP() {
+void Orc::onLowHP() {
   if (gameText) {
     cout << typeName << " goes berserk! No longer defends! Orc will now do brute force" << endl;
   }
