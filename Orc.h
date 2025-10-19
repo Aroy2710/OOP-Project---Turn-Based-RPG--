@@ -11,7 +11,7 @@ class Orcs : public Enemy {
   Orcs(float attackStat, float defenseStat, float healthStat);
 
   // Unique attack action for the Orc.
-  void bruteForce(Action* target);
+  void useSpecialSkill(Action* target) override;
 
   // Determines the Orc's behavior during its turn.
   void performTurn(Action* target) override;

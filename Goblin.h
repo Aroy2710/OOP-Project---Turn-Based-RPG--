@@ -13,7 +13,7 @@ class Goblin : public Enemy {
   Goblin(float attackStat, float defenseStat, float healthStat);  // Custom stats
 
   // Special attack
-  void bleedDamage(Action* target);
+  void useSpecialSkill(Action* target);
 
   // Defines behavior during the Goblin's turn
   void performTurn(Action* target) override;

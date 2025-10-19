@@ -18,7 +18,7 @@ class Barbarian : public Warrior {
             float healthStat);
 
   // Executes the Barbarian's special skill on the target entity.
-  void crushSlam(Action* entity);
+  void useSpecialSkill(Action* entity) override;
 
   // Destructor.
   ~Barbarian();

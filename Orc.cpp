@@ -18,7 +18,7 @@ Orcs::Orcs(float attackStat, float defenseStat, float healthStat)
 
 // Special attack: Brute Force.
 // Deals damage based on attack and defense stats.
-void Orcs::bruteForce(Action* target) {
+void Orcs::useSpecialSkill(Action* target) {
   float damage = attackStat * 1.2f + defenseStat * 0.5f;
 
   if (gameText) {
@@ -36,7 +36,7 @@ void Orcs::bruteForce(Action* target) {
 void Orcs::performTurn(Action* target) {
   if (aggressive) {
     // Aggressive Orc always attacks
-    bruteForce(target);
+    useSpecialSkill(target);
     return;
   }
 
@@ -59,7 +59,7 @@ void Orcs::performTurn(Action* target) {
     }
 
   } else {
-    bruteForce(target);
+    useSpecialSkill(target);
   }
 }
 

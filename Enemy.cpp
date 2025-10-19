@@ -87,3 +87,8 @@ void Enemy::takeDamage(float damage) {
     onLowHP();
   }
 }
+
+void Enemy::useSpecialSkill(Action* target)
+{
+  
+}

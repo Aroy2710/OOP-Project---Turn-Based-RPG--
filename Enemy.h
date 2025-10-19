@@ -28,6 +28,8 @@ class Enemy : public Action {
   
   virtual void performTurn(Action* target) = 0;
 
+  virtual void useSpecialSkill(Action* target);
+
  protected:
   string typeName;
   float attackStat;

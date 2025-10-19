@@ -18,7 +18,7 @@ class Warlock : public Mage {
           float healthStat);
 
   // Executes the Warlock's special skill on the target entity.
-  void eldritchBlast(Action* entity);
+  void useSpecialSkill(Action* entity) override;
 
   // Destructor.
   ~Warlock();
