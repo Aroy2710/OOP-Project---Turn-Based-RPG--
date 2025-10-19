@@ -90,5 +90,6 @@ void Enemy::takeDamage(float damage) {
 
 void Enemy::useSpecialSkill(Action* target)
 {
+  (void)target;  // suppress unused warning
   
 }

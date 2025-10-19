@@ -150,5 +150,6 @@ void Player::useBoost()
 
 void Player::useSpecialSkill(Action* entity)
 {
+  (void)entity;  // suppress unused warning
   
 }
