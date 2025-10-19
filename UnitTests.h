@@ -847,14 +847,16 @@ void testInventory() {
 
   bool allPassed = true;
   TestPlayer p("Hero", "Sword", 50,30,1000);
-  p.getInventory().setGameTextForAll("false");
-
-  p.getInventory().listItems();
+  p.getInventory().setGameTextForAll(false);
 
   p.getInventory().use("Health Potion");
   if (p.getHealthStat() != 1200) {
     cout << "Inventory use test failed! Expected: 1200, Got: " << p.getHealthStat() << endl;
     allPassed = false;
+  }
+
+  if (allPassed) {
+    cout << "All inventory tests passed!" << endl;
   }
 
 }
