@@ -1,4 +1,5 @@
 #include "Goblin.h"
+#include "Goblin.h"
 
 
 using namespace std;
@@ -36,7 +37,7 @@ void Goblin::performTurn(Action* target) {
   if (damageBoost) {
     // When in damage boost mode, only use basic attacks or Bleed Damage
     if (r < 50) {
-      basicAttack(target,attackStat + extraDamage);
+      basicAttack(target);
       extraDamage += 2;  // Increase extraDamage per attack
     } else {
       useSpecialSkill(target);
@@ -46,7 +47,7 @@ void Goblin::performTurn(Action* target) {
   } else {
     // Normal behavior
     if (r < 65) {
-      basicAttack(target,attackStat);
+      basicAttack(target);
       if (damageBoost) extraDamage += 2;
 
     } else if (r < 95) {
@@ -57,6 +58,25 @@ void Goblin::performTurn(Action* target) {
       if (damageBoost) extraDamage += 2;
     }
   }
+}
+// Basic attack specifically for goblin
+void Goblin::basicAttack(Action* target) {
+  float damage;
+  if (damageBoost){
+    damage = attackStat + extraDamage;
+    
+    
+  }
+  else{
+    damage = attackStat;
+  }
+  
+  if (!target) {
+    if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) cout << typeName << " attacks." << endl;
+  target->takeDamage(damage);
 }
 
 

@@ -39,7 +39,7 @@ class Player : public Action {
   void setWeapon(const string weapon_name);
 
   // Combat methods
-  void basicAttack(Action* entity, float damage) override;
+  void basicAttack(Action* entity) override;
   void defend() override;
   void takeDamage(float damage) override;
 

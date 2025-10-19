@@ -21,6 +21,8 @@ class Goblin : public Enemy {
   // Triggered when Goblin HP is low
   void onLowHP() override;
 
+  //specific basic attack for goblin
+  void basicAttack(Action* entity);
  private:
   // State flags for special mechanics
   bool damageBoost = false;

@@ -20,7 +20,7 @@ class Enemy : public Action {
   void setDefenseStat(float defenseStat);
   void setHealthStat(float healthStat);
 
-  void basicAttack(Action* entity, float damage) override;
+  virtual void basicAttack(Action* entity);
   void defend();
   void takeDamage(float damage) override;
 

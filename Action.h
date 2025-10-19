@@ -6,7 +6,7 @@
 class Action {
  public:
   // Attacks given entity with a specified damage
-  virtual void basicAttack(Action* entity, float damage) = 0;  
+  virtual void basicAttack(Action* entity) = 0;  
   // Defend against an attack; reduces damage from the next attack.
   virtual void defend() = 0;  
   // method for taking damage.
