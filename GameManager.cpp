@@ -16,7 +16,7 @@ void GameManager::startNewGame() {
     string playerName;
     cin.ignore();
     getline(cin, playerName);
-    
+     
     bool validChoice = true;
     int archetypeChoice;
     do {
