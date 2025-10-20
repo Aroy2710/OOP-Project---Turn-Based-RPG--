@@ -9,8 +9,8 @@ Enemy::Enemy() {
   typeName = "Enemy";
   attackStat = 40.0f;
   defenseStat = 30.0f;
-  healthStat = 2000.0f;
-  maxHealth = 2000.0f;
+  healthStat = 1600.0f;
+  maxHealth = 1600.0f;
   isDefending = false;
 }
 
@@ -101,6 +101,9 @@ void Enemy::takeDamage(float damage) {
   // Clamp health to zero.
   if (healthStat < 0.0f) {
     healthStat = 0.0f;
+  }
+  if (healthStat<0.5*maxHealth){
+    onLowHP();
   }
 }
 

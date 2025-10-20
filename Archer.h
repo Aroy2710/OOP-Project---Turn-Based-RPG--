@@ -19,7 +19,7 @@ class Archer : public Ranger {
 
   // Executes the Archer's special skill on the target entity.
   void useSpecialSkill(Entity* entity);
-
+  void basicAttack(Entity* entity) override;
   // Destructor cleans up any allocated resources.
   ~Archer();
 };

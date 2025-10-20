@@ -5,10 +5,10 @@
 
 // main file to run the tests for player class
 int main() {
-  UnitTests UnitTest;
-  UnitTest.runNormalOperationTests();
-  UnitTest.runEdgeCaseTests();
-  UnitTest.testBattleManager();
+  // UnitTests UnitTest;
+  // UnitTest.runNormalOperationTests();
+  // UnitTest.runEdgeCaseTests();
+  // UnitTest.testBattleManager();
 
   GameManager game;
 

@@ -19,7 +19,7 @@ class Barbarian : public Warrior {
 
   // Executes the Barbarian's special skill on the target entity.
   void useSpecialSkill(Entity* entity) override;
-
+  void basicAttack(Entity* entity) override ;
   // Destructor.
   ~Barbarian();
 };

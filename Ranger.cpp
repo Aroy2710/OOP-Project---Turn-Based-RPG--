@@ -64,7 +64,7 @@ void Ranger::useUltimateSkill(Entity* entity) {
     return;
   }
   if (ultimateCounter > 0) {
-    float damage = (attackStat * 1.5f) + (dexterity * 0.8f);
+    float damage = 2.5*((attackStat * 1.5f) + (dexterity * 0.8f));
 
     
 

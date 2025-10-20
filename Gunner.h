@@ -19,7 +19,8 @@ class Gunner : public Ranger {
 
   // Executes the Gunner's special skill on the target entity.
   void useSpecialSkill(Entity* entity) override;
-
+  
+  void basicAttack(Entity* entity) override;
   // Destructor cleans up any allocated resources.
   ~Gunner();
 };

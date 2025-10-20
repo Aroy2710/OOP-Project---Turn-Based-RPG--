@@ -20,6 +20,21 @@ Barbarian::Barbarian(string name, string weapon, float attackStat, float defense
   this->weapon = "Fist"; 
 }
 
+void Barbarian::basicAttack(Entity* entity)
+{
+  float damage = 1.2*strength;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+  
+  
+}
+
 // Executes the Barbarian’s special skill.
 // Deals heavy damage, increases strength, and decreases defense.
 void Barbarian::useSpecialSkill(Entity* entity) {

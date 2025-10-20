@@ -32,7 +32,7 @@ void Wizard::useSpecialSkill(Entity* entity) {
     entity->takeDamage(damage);
 
     mana += 10;  // Increase mana
-    takeDamage(30);  // Wizard sacrifices some health
+    healthStat = healthStat - 30;  // Wizard sacrifices some health
     specialSkillCounter -= 1;
   } else if (gameText) {
     cout << "You have used up all your special skill charges." << endl;
