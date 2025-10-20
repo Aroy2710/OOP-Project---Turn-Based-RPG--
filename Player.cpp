@@ -70,6 +70,8 @@ int Player::getSpecialSkillCounter() const { return specialSkillCounter; }
 
 Inventory& Player::getInventory() { return inventory; }
 
+float Player::getUniqueStat() const { return 0; }
+
 // Setter methods with validation
 void Player::setAttackStat(float attackStat) {
   this->attackStat = attackStat < 0.0f ? 0.0f : attackStat;

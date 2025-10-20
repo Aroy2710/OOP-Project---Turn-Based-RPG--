@@ -312,8 +312,8 @@ class UnitTests {
   // Verifies that Ranger getter returns the correct computed dexterity value.
   void testRangerGetter() {
     Ranger r("abcd", "bow", 50, 30, 100);
-    if (r.getDexterity() != 75) {
-      cout << "Test failed. Expected: 75, Got: " << r.getDexterity() << endl;
+    if (r.getUniqueStat() != 75) {
+      cout << "Test failed. Expected: 75, Got: " << r.getUniqueStat() << endl;
     } else {
       cout << "Ranger getter tests passed!" << endl;
     }
@@ -327,16 +327,16 @@ class UnitTests {
     r.gameText = false;
 
     r.useBoost();
-    if (r.getDexterity() != 105) {
-      cout << "Test failed. Expected: 105, Got: " << r.getDexterity() << endl;
+    if (r.getUniqueStat() != 105) {
+      cout << "Test failed. Expected: 105, Got: " << r.getUniqueStat() << endl;
       allPassed = false;
     }
 
     r.useBoost();
     r.useBoost();
     r.useBoost();
-    if (r.getDexterity() != 165) {
-      cout << "Test failed. Expected: 165, Got: " << r.getDexterity() << endl;
+    if (r.getUniqueStat() != 165) {
+      cout << "Test failed. Expected: 165, Got: " << r.getUniqueStat() << endl;
       allPassed = false;
     }
 
@@ -392,8 +392,8 @@ class UnitTests {
   // Verifies that Warrior getter returns the correct computed strength value.
   void testWarriorGetter() {
     Warrior w("abcd", "club", 50, 30, 100);
-    if (w.getStrength() != 25) {
-      cout << "Test failed. Expected: 25, Got: " << w.getStrength() << endl;
+    if (w.getUniqueStat() != 25) {
+      cout << "Test failed. Expected: 25, Got: " << w.getUniqueStat() << endl;
     } else {
       cout << "Warrior getter tests passed!" << endl;
     }
@@ -407,16 +407,16 @@ class UnitTests {
     w.gameText = false;
 
     w.useBoost();
-    if (w.getStrength() != 55) {
-      cout << "Test failed. Expected: 55, Got: " << w.getStrength() << endl;
+    if (w.getUniqueStat() != 55) {
+      cout << "Test failed. Expected: 55, Got: " << w.getUniqueStat() << endl;
       allPassed = false;
     }
 
     w.useBoost();
     w.useBoost();
     w.useBoost();
-    if (w.getStrength() != 115) {
-      cout << "Test failed. Expected: 115, Got: " << w.getStrength() << endl;
+    if (w.getUniqueStat() != 115) {
+      cout << "Test failed. Expected: 115, Got: " << w.getUniqueStat() << endl;
       allPassed = false;
     }
 
@@ -471,8 +471,8 @@ class UnitTests {
   }
   void testMageGetter() {
     Mage m("abcd", "club", 50, 30, 100);
-    if (m.getMana() != 100) {
-      cout << "Test failed. Expected: 100, Got: " << m.getMana() << endl;
+    if (m.getUniqueStat() != 100) {
+      cout << "Test failed. Expected: 100, Got: " << m.getUniqueStat() << endl;
     } else {
       cout << "Mage getter tests passed!" << endl;
     }
@@ -483,16 +483,16 @@ class UnitTests {
     m.gameText = false;
 
     m.useBoost();
-    if (m.getMana() != 130) {
-      cout << "Test failed. Expected: 130, Got: " << m.getMana() << endl;
+    if (m.getUniqueStat() != 130) {
+      cout << "Test failed. Expected: 130, Got: " << m.getUniqueStat() << endl;
       allPassed = false;
     }
 
     m.useBoost(); // mana = 160
     m.useBoost(); // mana = 190
     m.useBoost(); // mana = 190
-    if (m.getMana() != 190) {
-      cout << "Test failed. Expected: 190, Got: " << m.getMana() << endl;
+    if (m.getUniqueStat() != 190) {
+      cout << "Test failed. Expected: 190, Got: " << m.getUniqueStat() << endl;
       allPassed = false;
     }
 
@@ -675,13 +675,13 @@ void testWizardSpecialSkill() {
     // 4th use: should have NO EFFECT (counter depleted)
     float prevHP = w2->getHealthStat();
     float prevWizardHP = w1.getHealthStat();
-    float prevMana = w1.getMana();
+    float prevMana = w1.getUniqueStat();
     w1.useSpecialSkill(w2);
-    if (w2->getHealthStat() != prevHP || w1.getHealthStat() != prevWizardHP || w1.getMana() != prevMana) {
+    if (w2->getHealthStat() != prevHP || w1.getHealthStat() != prevWizardHP || w1.getUniqueStat() != prevMana) {
         cout << "Test 4 failed. Skill should have no effect when out of charges." << endl;
         cout << "Enemy HP before: " << prevHP << ", after: " << w2->getHealthStat() << endl;
         cout << "Wizard HP before: " << prevWizardHP << ", after: " << w1.getHealthStat() << endl;
-        cout << "Wizard Mana before: " << prevMana << ", after: " << w1.getMana() << endl;
+        cout << "Wizard Mana before: " << prevMana << ", after: " << w1.getUniqueStat() << endl;
         allPassed = false;
     }
 
@@ -783,13 +783,13 @@ void testBarbarianSpecialSkill() {
 
     // 4th use: should have NO EFFECT (counter depleted)
     float prevHP = b2->getHealthStat();
-    float prevStrength = b1.getStrength();
+    float prevStrength = b1.getUniqueStat();
     float prevDefense = b1.getDefenseStat();
     b1.useSpecialSkill(b2);
-    if (b2->getHealthStat() != prevHP || b1.getStrength() != prevStrength || b1.getDefenseStat() != prevDefense) {
+    if (b2->getHealthStat() != prevHP || b1.getUniqueStat() != prevStrength || b1.getDefenseStat() != prevDefense) {
         cout << "Test 4 failed. Skill should have no effect when out of charges." << endl;
         cout << "Enemy HP before: " << prevHP << ", after: " << b2->getHealthStat() << endl;
-        cout << "Barbarian strength before: " << prevStrength << ", after: " << b1.getStrength() << endl;
+        cout << "Barbarian strength before: " << prevStrength << ", after: " << b1.getUniqueStat() << endl;
         cout << "Barbarian defense before: " << prevDefense << ", after: " << b1.getDefenseStat() << endl;
         allPassed = false;
     }
@@ -837,13 +837,13 @@ void testSwordsmanSpecialSkill() {
 
     // 4th use: should have NO EFFECT (counter depleted)
     float prevHP = s2->getHealthStat();
-    float prevStrength = s1.getStrength();
+    float prevStrength = s1.getUniqueStat();
     float prevHealth = s1.getHealthStat();
     s1.useSpecialSkill(s2);
-    if (s2->getHealthStat() != prevHP || s1.getStrength() != prevStrength || s1.getHealthStat() != prevHealth) {
+    if (s2->getHealthStat() != prevHP || s1.getUniqueStat() != prevStrength || s1.getHealthStat() != prevHealth) {
         cout << "Test 4 failed. Skill should have no effect when out of charges." << endl;
         cout << "Enemy HP before: " << prevHP << ", after: " << s2->getHealthStat() << endl;
-        cout << "Swordsman strength before: " << prevStrength << ", after: " << s1.getStrength() << endl;
+        cout << "Swordsman strength before: " << prevStrength << ", after: " << s1.getUniqueStat() << endl;
         cout << "Swordsman health before: " << prevHealth << ", after: " << s1.getHealthStat() << endl;
         allPassed = false;
     }

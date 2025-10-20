@@ -19,7 +19,7 @@ class Warrior : public Player {
           float healthStat);
 
   // Returns the current strength value of the Warrior.
-  float getStrength();
+  float getUniqueStat() const override;
 
   // Boosts the warriors strength
   void useBoost() override;

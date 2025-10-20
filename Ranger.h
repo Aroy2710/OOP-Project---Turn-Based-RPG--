@@ -18,7 +18,7 @@ class Ranger : public Player {
          float healthStat);
 
   // Returns the current dexterity value of the Ranger.
-  float getDexterity();
+  float getUniqueStat() const override;
 
   // oosts the Ranger's dexterity , has a turn cooldown.
   void useBoost() override;

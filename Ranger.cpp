@@ -27,8 +27,10 @@ Ranger::Ranger(std::string name, std::string weapon, float attack_stat,
 }
 
 // Returns the Ranger's current dexterity value.
-float Ranger::getDexterity() {
+float Ranger::getUniqueStat() const 
+{
   return dexterity;
+  
 }
 
 

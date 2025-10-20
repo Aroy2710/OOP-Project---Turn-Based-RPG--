@@ -26,9 +26,10 @@ Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
   strength = 0.5f * attackStat;
 }
 
-// Returns the Warrior's current strength value.
-float Warrior::getStrength() {
+float Warrior::getUniqueStat() const 
+{
   return strength;
+  
 }
 
 // Each use consumes one available boost charge.

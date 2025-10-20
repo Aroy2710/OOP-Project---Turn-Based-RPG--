@@ -33,6 +33,7 @@ class Player : public Action {
   int getBoostCounter() const;
   int getSpecialSkillCounter() const;
   Inventory& getInventory();
+  virtual float getUniqueStat() const;
 
   // Setters
   void setAttackStat(float attack_stat);

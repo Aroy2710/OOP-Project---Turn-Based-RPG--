@@ -31,9 +31,10 @@ Mage::Mage(std::string name, std::string weapon, float attack_stat,
   mana = 2.0f * attackStat;
 }
 
-// Returns the Mage's current mana value.
-float Mage::getMana() {
+float Mage::getUniqueStat() const 
+{
   return mana;
+  
 }
 
 // Increases the Mage's mana
