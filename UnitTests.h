@@ -72,7 +72,7 @@ class UnitTests {
   }
   void testBattleManager() {
     
-    Warrior* user = new Warrior("Player", "Sword", 80, 50, 300);
+    Swordsman* user = new Swordsman("Player", "Sword", 80, 50, 300);
     Orc* enemy = new Orc(70, 40, 250);
     BattleManager bm(user,enemy);
     bm.startBattle();

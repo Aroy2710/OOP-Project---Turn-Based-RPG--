@@ -33,16 +33,15 @@ void Inventory::removeItem(Item* item) {
 string Inventory::listItems() const {
 
   if (items.empty()) {
-    return "Inventory is empty.\n";
+    return "Empty\n";
   }
 
   string list = "";
   for (size_t i = 0; i < items.size(); ++i) {
-    if (items[i]) {
+    if (i <= items.size() - 1) {
+      list += items[i]->getName() + "\n";
+    } else if (items[i]) {
       list += items[i]->getName() + ", ";
-    }
-    if (i < items.size() - 1) {
-      list += "\n";
     }
   }
   return list;
@@ -61,9 +60,10 @@ void Inventory::use(string name) {
   for (Item* item : items) {
     if (item && item->getName() == name) {
       item->use(owner);
+      delete item;
       removeItem(item);
       return;
     }
   }
-  std::cout << name << " not found in inventory." << std::endl;
+  throw std::invalid_argument("Item not found in inventory.");
 }

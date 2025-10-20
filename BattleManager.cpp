@@ -1,3 +1,7 @@
+#include <cstdlib>
+#include <unistd.h>
+#include <limits>
+
 #include "BattleManager.h"
 
 BattleManager::BattleManager(Player* player, Enemy* enemy) {
@@ -38,22 +42,26 @@ void BattleManager::processTurn() {
     cout << "Special Skill Charges: " << player->getSpecialSkillCounter() << endl;
     cout << "----------------------------------------" << endl;
     cout << "Items in Inventory:" << endl;
-    cout << player->getInventory().listItems() << endl;
+    cout << player->getInventory().listItems();
     cout << "----------------------------------------" << endl;
+    sleep(1);
 
     cout << "Player's turn:" << endl;
     getPlayerAction();
+    sleep(2);
+    cout << endl;
 
     cout << "Enemy's turn:" << endl;
     enemy->performTurn(player);
+    sleep(3);
+    
+    system("clear");
 
     checkWinCondition();
     turnCounter++;
 }
 
 void BattleManager::getPlayerAction() {
-    
-    int choice;
 
     cout << "Choose an action for " << player->getName() << ":" << std::endl;
     cout << "1. Basic Attack" << endl;
@@ -62,67 +70,100 @@ void BattleManager::getPlayerAction() {
     cout << "4. Use boost" << endl;
     cout << "5. Use ultimate skill" << endl;
     cout << "6. Use item" << endl;
-    cout << "Enter the number of your choice: ";
 
-    
 
-    // Read and validate choice (must be integer 1-6)
-    while (true) {
-        
-        cin >> choice;
+    bool validCommand = false;
 
-        if (choice < 1 || choice > 6) {
-            cout << "Choice out of range. Please enter a number between 1 and 6: ";
-            cin.ignore(10000, '\n');
+    do {
+        cout << "Enter the number of your choice: ";
+        validCommand = true;
+
+        int command;
+
+        while (!(cin >> command)) {
+            cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter a number between 1 and 6." << endl;
+            cout << "Enter the number of your choice: ";
             continue;
         }
-        cin.ignore(10000, '\n'); // consume remaining input on the line
-        break;
-    }
-    cout << endl;
+        cout << endl;
 
-    switch (choice)
-    {
-    case 1:
-        cout << player->getName() << " attacks " << enemy->getTypeName() << "!" << endl;
-        player->basicAttack(enemy);
-        break;
-    case 2:
-        // Defend
-        cout << player->getName() << " is defending this turn!" << endl;
-        player->defend();
-        break;
-    case 3:
-        // Use special skill
-        break;
-    case 4:
-        // Use boost
+        switch (command)
+        {
+        case 1:
+            player->basicAttack(enemy);
+            break;
+        case 2:
+            // Defend
+            player->defend();
+            break;
+        case 3:
+            // Use special skill
+            player->useSpecialSkill(enemy);
+            break;
+        case 4:
+            // Use boost
+            if (player->getBoostCounter() <= 0) {
+                cout << "No boost charges left!" << endl;
+                validCommand = false;
+                break;
+            }
+            player->useBoost();
+            break;
+        case 5:
+            // Use ultimate skill
+            if (player->getUltimateCounter() <= 0 || turnCounter < 2) {
+                cout << "Ultimate skill not available!" << endl;
+                validCommand = false;
+                break;
+            }
+            player->useUltimateSkill(enemy);
+            break;
+        case 6:
+            // Use item
+            {
+
+                if (player->getInventory().listItems() == "Empty\n") {
+                    cout << "No items available in inventory!" << endl;
+                    validCommand = false;
+                    break;
+                }
+
+                bool validItem = false;
+
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+                do {
+                    string chosenItem = "";
+                    cout << "Inventory items:\n" << player->getInventory().listItems() << endl;
+                    cout << "Enter the name of the item to use: ";
+                    std::getline(std::cin, chosenItem);
+
+                    try {
+                        player->getInventory().use(chosenItem);
+                        validItem = true;
+                    }
+                    catch (const std::exception& e) {
+                        cout << "Item \"" << chosenItem << "\" not found or could not be used: " << e.what() << endl;
+                        cout << "Please enter a valid item.\n\n";
+                    }
+                    catch (...) {
+                        cout << "Unknown error using item \"" << chosenItem << "\".\n";
+                        cout << "Please try again.\n\n";
+                    }
+                
+                } while (!validItem); // only repeats this case if invalid
+            }
+            break;
         
-        break;
-    case 5:
-        // Use ultimate skill
-        if (player->getUltimateCounter() <= 0) {
-            cout << "Ultimate skill not available!" << endl;
+        default:
+            // Invalid choice
+            cout << "Not sure how you got here, turn skipped" << endl;
             break;
         }
-        cout << player->getName() << " uses their ultimate skill!" << endl;
-        player->useUltimateSkill(enemy);
-        break;
-    case 6:
-        // Use item
-        {
-            string chosenItem = "";
-            cout << "Inventory items:\n" << player->getInventory().listItems();
-            cout << "Enter the name of the item to use: ";
-            cin >> chosenItem;
-            player->getInventory().use(chosenItem);
-        }
-        break;
-    default:
-        // Invalid choice
-        cout << "Not sure how you got here, turn skipped" << endl;
-        break;
-    }
+    } while (!validCommand);
+
 }
 
 void BattleManager::checkWinCondition() {
