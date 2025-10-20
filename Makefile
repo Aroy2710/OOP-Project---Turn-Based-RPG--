@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11 -Wall -Wextra -g
 DRMEMORY = C:/Program Files (x86)/Dr. Memory/bin/drmemory.exe
 #Executable names
 
-TESTTARGET = TestRunner
+
 TARGET = main
 
 #Source files for testing 
@@ -23,7 +23,7 @@ all:
 #run all tests
 TESTALL:
 	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
-	./$(TESTTARGET)
+	./$(TARGET)
 
 #deleting object files
 clean:
