@@ -72,12 +72,13 @@ void Mage::useUltimateSkill(Entity* entity) {
   if (ultimateCounter > 0) {
     float damage = (attackStat * 2.0f) + (mana * 2.0f);
 
-    entity->takeDamage(damage);
+    
 
     if (gameText) {
       std::cout << "The Mage calls upon the light from the heavens!"
                 << std::endl;
     }
+    entity->takeDamage(damage);
 
     ultimateCounter -= 1;
   } else if (gameText) {

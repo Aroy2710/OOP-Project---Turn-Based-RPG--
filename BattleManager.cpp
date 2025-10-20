@@ -74,7 +74,6 @@ void BattleManager::processTurn() {
     enemy->performTurn(player);
     sleep(3);
     
-    system("clear");
 
     checkWinCondition();
     turnCounter++;

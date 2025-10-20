@@ -66,12 +66,13 @@ void Ranger::useUltimateSkill(Entity* entity) {
   if (ultimateCounter > 0) {
     float damage = (attackStat * 1.5f) + (dexterity * 0.8f);
 
-    entity->takeDamage(damage);
+    
 
     if (gameText) {
       std::cout << "Drawing every ounce of focus... ultimate shot fired!"
                 << std::endl;
     }
+    entity->takeDamage(damage);
 
     ultimateCounter -= 1;
   } else if (gameText) {
