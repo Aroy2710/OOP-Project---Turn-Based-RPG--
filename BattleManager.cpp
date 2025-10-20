@@ -13,6 +13,11 @@ void BattleManager::startBattle() {
     isBattleActive = true;
     turnCounter = 1;
     std::cout << "Battle started between " << player->getName() << " and " << enemy->getTypeName() << "!" << std::endl;
+
+    while (isBattleActive) {
+        processTurn();
+    }
+
 }
 
 void BattleManager::processTurn() {
@@ -118,15 +123,18 @@ void BattleManager::getPlayerAction() {
         cout << "Not sure how you got here, turn skipped" << endl;
         break;
     }
-
 }
 
 void BattleManager::checkWinCondition() {
     if (player->getHealthStat() <= 0) {
-        isBattleActive = false;
         std::cout << player->getName() << " has been defeated! Game Over." << std::endl;
+        endBattle();
     } else if (enemy->getHealthStat() <= 0) {
-        isBattleActive = false;
         std::cout << enemy->getTypeName() << " has been defeated! You win!" << std::endl;
+        endBattle();
     }
+}
+
+void BattleManager::endBattle() {
+    isBattleActive = false;
 }

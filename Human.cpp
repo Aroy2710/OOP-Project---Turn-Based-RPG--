@@ -26,7 +26,7 @@ void Human::performTurn(Action* target) {
   // Defend:           10% (Interval 90–99)
   if (randomAction < 60) {
     // 60% chance: Basic Attack
-    basicAttack(target);
+    basicAttack(target, attackStat);
   } else if (randomAction < 90) {
     // 30% chance: Piercing Strike
     piercingStrike(target);
