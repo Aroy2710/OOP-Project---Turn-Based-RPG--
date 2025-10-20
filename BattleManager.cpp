@@ -26,6 +26,8 @@ void BattleManager::startBattle() {
 }
 
 void BattleManager::processTurn() {
+    // in case enemy kills player
+    checkWinCondition();
     if (!isBattleActive) {
         std::cout << "No active battle to process." << std::endl;
         return;
@@ -71,11 +73,12 @@ void BattleManager::processTurn() {
     cout << endl;
 
     cout << "Enemy's turn:" << endl;
+    checkWinCondition(); // just in case player kills enemy before turn ends 
     enemy->performTurn(player);
     sleep(3);
     
 
-    checkWinCondition();
+    checkWinCondition(); //checking win condition after end of turn 
     turnCounter++;
 }
 
