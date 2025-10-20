@@ -85,7 +85,7 @@ void BattleManager::getPlayerAction() {
     {
     case 1:
         cout << player->getName() << " attacks " << enemy->getTypeName() << "!" << endl;
-        player->basicAttack(enemy, player->getAttackStat());
+        player->basicAttack(enemy);
         break;
     case 2:
         // Defend

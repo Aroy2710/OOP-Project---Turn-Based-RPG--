@@ -48,18 +48,13 @@ void Enemy::setHealthStat(float healthStat) {
 }
 
 // Executes a basic attack on another entity.
-<<<<<<< HEAD
-void Enemy::basicAttack(Action* target, float damage) {
-=======
 void Enemy::basicAttack(Action* target) {
-  float damage = attackStat;
->>>>>>> main
   if (!target) {
     if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
     return;
   }
   if (gameText) cout << typeName << " attacks." << endl;
-  target->takeDamage(damage);
+  target->takeDamage(attackStat);
 }
 
 // Sets the enemy to a defending state for the next turn.

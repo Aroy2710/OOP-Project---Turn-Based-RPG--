@@ -47,7 +47,7 @@ void Goblin::performTurn(Action* target) {
   } else {
     // Normal behavior
     if (r < 65) {
-      basicAttack(target, attackStat);
+      basicAttack(target);
       if (damageBoost) extraDamage += 2;
 
     } else if (r < 95) {
@@ -59,7 +59,7 @@ void Goblin::performTurn(Action* target) {
   }
 }
 // Basic attack specifically for goblin
-void Goblin::basicAttack(Action* target, int damage) {
+void Goblin::basicAttack(Action* target) {
   float damage;
   if (damageBoost){
     damage = attackStat + extraDamage;
