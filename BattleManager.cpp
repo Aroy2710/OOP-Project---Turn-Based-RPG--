@@ -1,6 +1,7 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <limits>
+#include <iomanip>
 
 #include "BattleManager.h"
 
