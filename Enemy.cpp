@@ -69,25 +69,42 @@ void Enemy::defend() {
 // - If not defending: defense stat reduces incoming damage.
 // Health is clamped to zero to avoid negative values.
 void Enemy::takeDamage(float damage) {
-  if (damage < 0.0f) damage = 0.0f;
+  if (damage < 0.0f) {
+    damage = 0.0f;
+  }
 
   if (isDefending) {
+    // Defending halves all incoming damage.
     damage *= 0.5f;
+    healthStat -= damage;
+
+    if (gameText) {
+      cout << typeName << " has taken " << damage << " damage." << endl;
+      cout << typeName << " is no longer defending." << endl;
+    }
+
     isDefending = false;
+
   } else {
+    // Non-defending damage is reduced by the defense stat.
     damage -= defenseStat;
-    if (damage < 0.0f) damage = 0.0f;
+    if (damage < 0.0f) {
+      damage = 0.0f;
+    }
+
+    healthStat -= damage;
+
+    if (gameText) {
+      cout << typeName << " has taken " << damage << " damage." << endl;
+    }
   }
 
-  healthStat -= damage;
-  if (healthStat < 0.0f) healthStat = 0.0f;
-
-  if (gameText) cout << typeName << " takes " << damage << " damage." << endl;
-
-  if (healthStat <= 0.25f * maxHealth) {
-    onLowHP();
+  // Clamp health to zero.
+  if (healthStat < 0.0f) {
+    healthStat = 0.0f;
   }
 }
+
 
 void Enemy::useSpecialSkill(Action* target)
 {

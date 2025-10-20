@@ -11,7 +11,7 @@ class Enemy : public Action {
 
   virtual ~Enemy() = default;
 
-  std::string getTypeName() const;
+  string getTypeName() const;
   float getAttackStat() const;
   float getDefenseStat() const;
   float getHealthStat() const;
