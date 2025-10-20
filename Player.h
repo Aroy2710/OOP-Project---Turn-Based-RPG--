@@ -6,13 +6,13 @@
 
 using namespace std;
 
-#include "Action.h"
+#include "Entity.h"
 #include "Inventory.h"
 
 // The Player class defines shared attributes and actions
 // for all playable archetypes (e.g., Warrior, Ranger, Mage).
 // Players can attack, defend, and use special or ultimate abilities.
-class Player : public Action {
+class Player : public Entity {
  public:
   // Constructors
   Player();             // Default constructor for gameplay.
@@ -42,16 +42,16 @@ class Player : public Action {
   void setWeapon(const string weapon_name);
 
   // Combat methods
-  void basicAttack(Action* entity) override;
+  void basicAttack(Entity* entity) override;
   void defend() override;
   void takeDamage(float damage) override;
 
   // Pure virtual method for archetype-specific ultimate skill.
-  virtual void useUltimateSkill(Action* entity) = 0;
+  virtual void useUltimateSkill(Entity* entity) = 0;
 
   //methods for boost and special skill
   virtual void useBoost();
-  void useSpecialSkill(Action* entity) override;
+  void useSpecialSkill(Entity* entity) override;
 
   // Controls console output (true = print battle messages).
   bool gameText = true;

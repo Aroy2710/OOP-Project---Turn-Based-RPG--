@@ -18,7 +18,7 @@ Orc::Orc(float attackStat, float defenseStat, float healthStat)
 
 // Special attack: Brute Force.
 // Deals damage based on attack and defense stats.
-void Orc::useSpecialSkill(Action* target) {
+void Orc::useSpecialSkill(Entity* target) {
   float damage = attackStat * 1.2f + defenseStat * 0.5f;
 
   if (gameText) {
@@ -33,7 +33,7 @@ void Orc::useSpecialSkill(Action* target) {
 // Uses probability to decide between Basic Attack, Defend, or Bleed Damage.
 // Defines the Orc's behavior during its turn.
 // If aggressive, always brute forces enemy. Otherwise, uses probability to choose an action.
-void Orc::performTurn(Action* target) {
+void Orc::performTurn(Entity* target) {
   if (aggressive) {
     // Aggressive Orc always attacks
     useSpecialSkill(target);

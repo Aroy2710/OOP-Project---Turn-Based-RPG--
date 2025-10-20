@@ -19,7 +19,7 @@ Goblin::Goblin(float attackStat, float defenseStat, float healthStat)
 
 // Special attack: Bleed Damage.
 // Deals enhanced damage and increases the Goblin's attack stat.
-void Goblin::useSpecialSkill(Action* target) {
+void Goblin::useSpecialSkill(Entity* target) {
   float damage = attackStat * 1.3f + (damageBoost ? extraDamage : 0);
   attackStat += 10.0f;
 
@@ -31,7 +31,7 @@ void Goblin::useSpecialSkill(Action* target) {
 }
 
 // Defines the Goblin's behavior during its turn.
-void Goblin::performTurn(Action* target) {
+void Goblin::performTurn(Entity* target) {
   int r = rand() % 100;  // Random number between 0-99
 
   if (damageBoost) {
@@ -59,7 +59,7 @@ void Goblin::performTurn(Action* target) {
   }
 }
 // Basic attack specifically for goblin
-void Goblin::basicAttack(Action* target) {
+void Goblin::basicAttack(Entity* target) {
   float damage;
   if (damageBoost){
     damage = attackStat + extraDamage;

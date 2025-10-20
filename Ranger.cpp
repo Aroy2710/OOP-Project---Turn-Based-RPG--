@@ -29,6 +29,7 @@ Ranger::Ranger(std::string name, std::string weapon, float attack_stat,
 // Returns the Ranger's current dexterity value.
 float Ranger::getUniqueStat() const 
 {
+  cout<< "Player DEX :         " ;
   return dexterity;
   
 }
@@ -51,7 +52,7 @@ void Ranger::useBoost() {
 
 // Uses the Ranger's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
-void Ranger::useUltimateSkill(Action* entity) {
+void Ranger::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

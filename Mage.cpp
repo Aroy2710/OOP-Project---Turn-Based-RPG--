@@ -33,6 +33,7 @@ Mage::Mage(std::string name, std::string weapon, float attack_stat,
 
 float Mage::getUniqueStat() const 
 {
+  cout<< "Player Mana  :       " ;
   return mana;
   
 }
@@ -58,7 +59,7 @@ void Mage::useBoost() {
 
 // Uses the Mage's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
-void Mage::useUltimateSkill(Action* entity) {
+void Mage::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

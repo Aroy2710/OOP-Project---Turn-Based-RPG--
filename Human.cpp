@@ -9,14 +9,14 @@ Human::Human(float attackStat, float defenseStat, float healthStat)
   typeName = "Human";
 }
 
-void Human::useSpecialSkill(Action* target) {
+void Human::useSpecialSkill(Entity* target) {
   float damage = attackStat * 1.5f;
   if (doubleDamage) damage *= 2.0f;
   if (gameText) std::cout << typeName << " uses Piercing Strike!" << std::endl;
   target->takeDamage(damage);
 }
 
-void Human::performTurn(Action* target) {
+void Human::performTurn(Entity* target) {
   // Generate a random number from 0 to 99.
   int randomAction = rand() % 100;
 

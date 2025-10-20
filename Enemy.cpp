@@ -48,7 +48,7 @@ void Enemy::setHealthStat(float healthStat) {
 }
 
 // Executes a basic attack on another entity.
-void Enemy::basicAttack(Action* target) {
+void Enemy::basicAttack(Entity* target) {
   if (!target) {
     if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
     return;
@@ -104,7 +104,7 @@ void Enemy::takeDamage(float damage) {
   }
 }
 
-void Enemy::useSpecialSkill(Action* target)
+void Enemy::useSpecialSkill(Entity* target)
 {
   (void)target;  // suppress unused warning
   

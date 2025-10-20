@@ -22,7 +22,7 @@ Swordsman::Swordsman(string name, string weapon, float attackStat, float defense
 
 // Executes the Swordsman’s special skill.
 // Deals heavy damage, increases strength, and decreases HP.
-void Swordsman::useSpecialSkill(Action* entity) {
+void Swordsman::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

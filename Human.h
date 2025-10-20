@@ -8,8 +8,8 @@ class Human : public Enemy {
   Human();
   Human(float attackStat, float defenseStat, float healthStat);
 
-  void useSpecialSkill(Action* target) override;
-  void performTurn(Action* target) override;
+  void useSpecialSkill(Entity* target) override;
+  void performTurn(Entity* target) override;
   void onLowHP() override;
 
  private:

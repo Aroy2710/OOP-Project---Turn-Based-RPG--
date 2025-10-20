@@ -30,12 +30,31 @@ void BattleManager::processTurn() {
         std::cout << "No active battle to process." << std::endl;
         return;
     }
+    cout << "Turn " << turnCounter << " begins!\n";
 
-    std::cout << "Turn " << turnCounter << " begins!" << std::endl;
+    cout << left
+        << setw(18) << "Player HP:"      << right << setw(6) << player->getHealthStat()
+        << "   |   "
+        << left << setw(18) << "Enemy HP:"      << right << setw(6) << enemy->getHealthStat() << '\n';
 
-    cout << "Player HP: " << player->getHealthStat() << " | Enemy HP: " << enemy->getHealthStat() << endl;
-    cout << "Player Attack: " << player->getAttackStat() << " | Enemy Attack: " << enemy->getAttackStat() << endl;
-    cout << "Player Defense: " << player->getDefenseStat() << " | Enemy Defense: " << enemy->getDefenseStat() << endl;
+    cout << left
+        << setw(18) << "Player Attack:"  << right << setw(6) << player->getAttackStat()
+        << "   |   "
+        << left << setw(18) << "Enemy Attack:"  << right << setw(6) << enemy->getAttackStat() << '\n';
+
+    cout << left
+        << setw(18) << "Player Defense:" << right << setw(6) << player->getDefenseStat()
+        << "   |   "
+        << left << setw(18) << "Enemy Defense:" << right << setw(6) << enemy->getDefenseStat() << '\n';
+
+    // Polymorphic unique stat — the derived class prints its own label (e.g. "Player Mana :")
+    cout << left;
+     // prints "Player Mana :" or similar
+    cout << setw(8) << right << player->getUniqueStat() <<   // show numeric value aligned
+         "   |" << endl;
+
+    cout<<endl;
+
     cout << "----------------------------------------" << endl;
     cout << "Skills/Items available:" << endl;
     cout << "Ultimate Skill Charges: " << player->getUltimateCounter() << endl;

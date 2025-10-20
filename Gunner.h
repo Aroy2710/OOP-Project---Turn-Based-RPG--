@@ -18,7 +18,7 @@ class Gunner : public Ranger {
          float healthStat);
 
   // Executes the Gunner's special skill on the target entity.
-  void useSpecialSkill(Action* entity) override;
+  void useSpecialSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Gunner();

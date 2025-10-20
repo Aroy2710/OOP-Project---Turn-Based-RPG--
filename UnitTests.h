@@ -27,7 +27,7 @@ class TestPlayer : public Player {
 
   // Provides an empty implementation of useUltimateSkill to make this class
   // concrete.
-  void useUltimateSkill(Action* entity) override {
+  void useUltimateSkill(Entity* entity) override {
     (void)entity;  // Avoid unused parameter warning.
     // Intentionally left empty for testing purposes.
   }
@@ -72,7 +72,7 @@ class UnitTests {
   }
   void testBattleManager() {
     
-    Swordsman* user = new Swordsman("Player", "Sword", 80, 50, 300);
+    Player* user = new Archer("Player", "Sword", 80, 50, 300);
     Orc* enemy = new Orc(70, 40, 250);
     BattleManager bm(user,enemy);
     bm.startBattle();

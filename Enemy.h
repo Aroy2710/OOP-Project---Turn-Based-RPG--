@@ -1,10 +1,10 @@
 #ifndef __ENEMY_H__
 #define __ENEMY_H__
 
-#include "Action.h"
+#include "Entity.h"
 #include <iostream>
 using namespace std;
-class Enemy : public Action {
+class Enemy : public Entity {
  public:
   Enemy();
   Enemy(float attackStat, float defenseStat, float healthStat);
@@ -20,15 +20,15 @@ class Enemy : public Action {
   void setDefenseStat(float defenseStat);
   void setHealthStat(float healthStat);
 
-  void basicAttack(Action* target) override;
+  void basicAttack(Entity* target) override;
   void defend();
   void takeDamage(float damage) override;
 
   virtual void onLowHP() = 0;
   
-  virtual void performTurn(Action* target) = 0;
+  virtual void performTurn(Entity* target) = 0;
 
-  virtual void useSpecialSkill(Action* target);
+  virtual void useSpecialSkill(Entity* target);
 
  protected:
   string typeName;

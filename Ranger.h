@@ -24,7 +24,7 @@ class Ranger : public Player {
   void useBoost() override;
 
   // Executes the Ranger's ultimate skill on the target entity.
-  void useUltimateSkill(Action* entity) override;
+  void useUltimateSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Ranger();

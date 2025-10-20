@@ -16,7 +16,7 @@ Wizard::Wizard(string name, string weapon, float attackStat, float defenseStat,
 
 // Executes the Wizard’s special skill.
 // Deals magic damage proportional to mana and reduces Wizard's own health.
-void Wizard::useSpecialSkill(Action* entity) {
+void Wizard::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

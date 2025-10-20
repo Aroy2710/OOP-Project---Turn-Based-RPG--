@@ -13,16 +13,16 @@ class Goblin : public Enemy {
   Goblin(float attackStat, float defenseStat, float healthStat);  // Custom stats
 
   // Special attack
-  void useSpecialSkill(Action* target);
+  void useSpecialSkill(Entity* target);
 
   // Defines behavior during the Goblin's turn
-  void performTurn(Action* target) override;
+  void performTurn(Entity* target) override;
 
   // Triggered when Goblin HP is low
   void onLowHP() override;
 
   //specific basic attack for goblin
-  void basicAttack(Action* entity) override;
+  void basicAttack(Entity* entity) override;
  private:
   // State flags for special mechanics
   bool damageBoost = false;

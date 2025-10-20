@@ -18,7 +18,7 @@ class Wizard : public Mage {
          float healthStat);
 
   // Executes the Wizard's special skill on the target entity.
-  void useSpecialSkill(Action* entity) override;
+  void useSpecialSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Wizard();

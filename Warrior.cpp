@@ -28,6 +28,7 @@ Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
 
 float Warrior::getUniqueStat() const 
 {
+  cout<< "Player STR :          " ;
   return strength;
   
 }
@@ -55,7 +56,7 @@ void Warrior::useBoost() {
 // Damage output depends on current health:
 // - Below 50% health: higher damage multiplier.
 // - Above 50% health: lower damage multiplier.
-void Warrior::useUltimateSkill(Action* entity) {
+void Warrior::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
