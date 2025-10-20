@@ -45,7 +45,6 @@ void BattleManager::processTurn() {
     cout << "Items in Inventory:" << endl;
     cout << player->getInventory().listItems();
     cout << "----------------------------------------" << endl;
-    sleep(1);
 
     cout << "Player's turn:" << endl;
     getPlayerAction();

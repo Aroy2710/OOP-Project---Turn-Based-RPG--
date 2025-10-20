@@ -20,6 +20,8 @@ void GameManager::startNewGame() {
     bool validChoice = true;
     int archetypeChoice;
     do {
+        validChoice = true;
+
         cout << "Choose your archetype:\n1. Warrior\n2. Mage\n3. Ranger\n";
         cout << "Enter the number of your choice: ";
         cin >> archetypeChoice;
@@ -32,10 +34,11 @@ void GameManager::startNewGame() {
 
     } while (!validChoice);
 
-    validChoice = true;
     int classType;
 
     do {
+        validChoice = true;
+
         if (archetypeChoice == 1) {
             cout << "Please choose your warrior type:\n1. Swordsman\n2. Barbarian\n";
             cout << "Enter the number of your choice: ";
@@ -83,11 +86,15 @@ void GameManager::startNewGame() {
     
     cout << "Character created successfully! Welcome, " << player->getName() << "!\n";
 
-    cout << "Please choose an enemy to battle:\n1. Goblin\n2. Orc\n3. Human\n";
-    cout << "Enter the number of your choice: ";
     int enemyChoice;
 
     do {
+         
+        validChoice = true;
+
+        cout << "Please choose an enemy to battle:\n1. Goblin\n2. Orc\n3. Human\n";
+        cout << "Enter the number of your choice: ";
+
         cin >> enemyChoice;
 
         if (enemyChoice == 1) {
@@ -125,6 +132,7 @@ void GameManager::showMainMenu() {
     bool validChoice = true;
 
     do {
+        validChoice = true;
         cout << "Enter the number of your choice: ";
         cin >> choice;
 
