@@ -18,7 +18,7 @@ class Archer : public Ranger {
          float healthStat);
 
   // Executes the Archer's special skill on the target entity.
-  void headShot(Action* entity);
+  void useSpecialSkill(Action* entity);
 
   // Destructor cleans up any allocated resources.
   ~Archer();

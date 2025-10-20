@@ -20,8 +20,8 @@ class Mage : public Player {
   // Returns the current mana value of the Mage.
   float getMana();
 
-  // Temporarily boosts the Mage's mana for a limited number of turns.
-  void boostMana();
+  // boosts the Mage's mana.
+  void useBoost() override;
 
   // Executes the Mage's ultimate skill on the target entity.
   void useUltimateSkill(Action* entity) override;

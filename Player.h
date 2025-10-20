@@ -41,12 +41,16 @@ class Player : public Action {
   void setWeapon(const string weapon_name);
 
   // Combat methods
-  void basicAttack(Action* entity, float damage) override;
+  void basicAttack(Action* entity) override;
   void defend() override;
   void takeDamage(float damage) override;
 
   // Pure virtual method for archetype-specific ultimate skill.
   virtual void useUltimateSkill(Action* entity) = 0;
+
+  //methods for boost and special skill
+  virtual void useBoost();
+  void useSpecialSkill(Action* entity) override;
 
   // Controls console output (true = print battle messages).
   bool gameText = true;

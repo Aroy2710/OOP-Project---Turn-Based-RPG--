@@ -87,7 +87,8 @@ void Player::setWeapon(string weapon) { this->weapon = weapon; }
 
 // Executes a basic attack on another entity.
 // The entity takes damage based on the Player's attack value.
-void Player::basicAttack(Action* entity, float damage) {
+void Player::basicAttack(Action* entity) {
+  float damage = attackStat;
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -140,4 +141,16 @@ void Player::takeDamage(float damage) {
   if (healthStat < 0.0f) {
     healthStat = 0.0f;
   }
+}
+
+void Player::useBoost()
+{
+  
+}
+
+
+void Player::useSpecialSkill(Action* entity)
+{
+  (void)entity;  // suppress unused warning
+  
 }

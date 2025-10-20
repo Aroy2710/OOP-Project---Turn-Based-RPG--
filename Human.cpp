@@ -9,7 +9,7 @@ Human::Human(float attackStat, float defenseStat, float healthStat)
   typeName = "Human";
 }
 
-void Human::piercingStrike(Action* target) {
+void Human::useSpecialSkill(Action* target) {
   float damage = attackStat * 1.5f;
   if (doubleDamage) damage *= 2.0f;
   if (gameText) std::cout << typeName << " uses Piercing Strike!" << std::endl;
@@ -26,10 +26,10 @@ void Human::performTurn(Action* target) {
   // Defend:           10% (Interval 90–99)
   if (randomAction < 60) {
     // 60% chance: Basic Attack
-    basicAttack(target, attackStat);
+    basicAttack(target);
   } else if (randomAction < 90) {
     // 30% chance: Piercing Strike
-    piercingStrike(target);
+    useSpecialSkill(target);
   } else {
     // 10% chance: Defend
     defend();

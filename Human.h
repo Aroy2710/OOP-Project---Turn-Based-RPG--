@@ -8,7 +8,7 @@ class Human : public Enemy {
   Human();
   Human(float attackStat, float defenseStat, float healthStat);
 
-  void piercingStrike(Action* target);
+  void useSpecialSkill(Action* target) override;
   void performTurn(Action* target) override;
   void onLowHP() override;
 

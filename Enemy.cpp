@@ -48,7 +48,12 @@ void Enemy::setHealthStat(float healthStat) {
 }
 
 // Executes a basic attack on another entity.
+<<<<<<< HEAD
 void Enemy::basicAttack(Action* target, float damage) {
+=======
+void Enemy::basicAttack(Action* target) {
+  float damage = attackStat;
+>>>>>>> main
   if (!target) {
     if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
     return;
@@ -86,4 +91,10 @@ void Enemy::takeDamage(float damage) {
   if (healthStat <= 0.25f * maxHealth) {
     onLowHP();
   }
+}
+
+void Enemy::useSpecialSkill(Action* target)
+{
+  (void)target;  // suppress unused warning
+  
 }

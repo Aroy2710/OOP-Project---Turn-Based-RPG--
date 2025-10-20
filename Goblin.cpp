@@ -1,6 +1,7 @@
 #include "Goblin.h"
 
 
+
 using namespace std;
 
 // Default constructor.
@@ -18,7 +19,7 @@ Goblin::Goblin(float attackStat, float defenseStat, float healthStat)
 
 // Special attack: Bleed Damage.
 // Deals enhanced damage and increases the Goblin's attack stat.
-void Goblin::bleedDamage(Action* target) {
+void Goblin::useSpecialSkill(Action* target) {
   float damage = attackStat * 1.3f + (damageBoost ? extraDamage : 0);
   attackStat += 10.0f;
 
@@ -36,10 +37,10 @@ void Goblin::performTurn(Action* target) {
   if (damageBoost) {
     // When in damage boost mode, only use basic attacks or Bleed Damage
     if (r < 50) {
-      basicAttack(target, attackStat);
+      basicAttack(target);
       extraDamage += 2;  // Increase extraDamage per attack
     } else {
-      bleedDamage(target);
+      useSpecialSkill(target);
       extraDamage += 2;
     }
 
@@ -53,10 +54,26 @@ void Goblin::performTurn(Action* target) {
       defend();
 
     } else {
-      bleedDamage(target);
-      if (damageBoost) extraDamage += 2;
+      useSpecialSkill(target);
     }
   }
+}
+// Basic attack specifically for goblin
+void Goblin::basicAttack(Action* target, int damage) {
+  float damage;
+  if (damageBoost){
+    damage = attackStat + extraDamage;
+  }
+  else{
+    damage = attackStat;
+  }
+  
+  if (!target) {
+    if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) cout << typeName << " attacks." << endl;
+  target->takeDamage(damage);
 }
 
 

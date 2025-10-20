@@ -39,7 +39,7 @@ float Mage::getMana() {
 // Increases the Mage's mana
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
-void Mage::boostMana() {
+void Mage::useBoost() {
   if (boostCounter > 0) {
     mana += 30.0f;
     boostCounter -= 1;

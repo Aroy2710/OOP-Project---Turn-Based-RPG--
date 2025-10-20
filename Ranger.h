@@ -20,8 +20,8 @@ class Ranger : public Player {
   // Returns the current dexterity value of the Ranger.
   float getDexterity();
 
-  // Temporarily boosts the Ranger's dexterity , has a turn cooldown.
-  void boostDex();
+  // oosts the Ranger's dexterity , has a turn cooldown.
+  void useBoost() override;
 
   // Executes the Ranger's ultimate skill on the target entity.
   void useUltimateSkill(Action* entity) override;

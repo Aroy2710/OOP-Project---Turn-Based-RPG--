@@ -21,8 +21,8 @@ class Warrior : public Player {
   // Returns the current strength value of the Warrior.
   float getStrength();
 
-  // Temporarily boosts the Warrior's strength for a limited number of turns.
-  void boostStrength();
+  // Boosts the warriors strength
+  void useBoost() override;
 
   // Executes the Warrior's ultimate skill on the target entity.
   void useUltimateSkill(Action* entity) override;

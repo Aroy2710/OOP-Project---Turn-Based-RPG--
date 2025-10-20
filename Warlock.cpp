@@ -13,7 +13,7 @@ Warlock::Warlock(string name, string weapon, float attackStat, float defenseStat
 
 // Executes the Warlock's special skill on the target entity.
 // Deals damage proportional to 25% of Warlock's health and consumes a skill charge.
-void Warlock::eldritchBlast(Action* entity) {
+void Warlock::useSpecialSkill(Action* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

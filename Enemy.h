@@ -20,13 +20,15 @@ class Enemy : public Action {
   void setDefenseStat(float defenseStat);
   void setHealthStat(float healthStat);
 
-  void basicAttack(Action* target, float damage) override;
+  void basicAttack(Action* target) override;
   void defend();
   void takeDamage(float damage) override;
 
   virtual void onLowHP() = 0;
   
   virtual void performTurn(Action* target) = 0;
+
+  virtual void useSpecialSkill(Action* target);
 
  protected:
   string typeName;

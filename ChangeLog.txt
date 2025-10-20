@@ -1,6 +1,9 @@
 4th October, 2025 - Removed passived skill method from codebase.
 5th October, 2025 - Created Inventory and Item classes, not yet tested
 12th October, 2025 - Added healthPotion, and commented inventory and item
-14th October 2025 - 
-15th October 2025 - Finished inventory system
-18th October 2025 - Created game manager
+14th October, 2025 - 
+15th October, 2025 - Finished inventory system
+18th October, 2025 - Created game manager
+19th October, 2025 - Finished basic implementation of game manager
+20th October, 2025 - Made every boost skill a virtual method of player and every special skill a pure virtual method
+of Action. This was done to make implementation of battle manager simpler.
