@@ -1,7 +1,7 @@
 #include "Orc.h"
 
 
-using namespace std;
+
 
 // Default constructor.
 // Initializes an Orc with default Enemy stats.
@@ -41,7 +41,12 @@ void Orc::performTurn(Entity* target) {
   }
 
   // Non-aggressive Orc: choose action based on probability
-  int randomAction = rand() % 100;
+    // Create a static random generator once (not every turn)
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> dist(0, 99);
+  
+  int randomAction = dist(gen);  // truly random in [0, 99]
 
   // Probability map:
   // Basic Attack: 65% (0-64)

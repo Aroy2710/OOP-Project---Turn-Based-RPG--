@@ -102,7 +102,10 @@ void Player::basicAttack(Entity* entity) {
 }
 
 // Sets the player to a defending state for the next turn.
-void Player::defend() { isDefending = true; }
+void Player::defend() {
+  cout<<name<<" is now defending"<<endl; 
+  isDefending = true; 
+}
 
 // Handles how the Player takes damage during battle.
 // - If defending: damage is halved.

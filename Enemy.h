@@ -3,6 +3,7 @@
 
 #include "Entity.h"
 #include <iostream>
+#include <random>
 using namespace std;
 class Enemy : public Entity {
  public:

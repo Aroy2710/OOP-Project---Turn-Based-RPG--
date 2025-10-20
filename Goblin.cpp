@@ -32,11 +32,16 @@ void Goblin::useSpecialSkill(Entity* target) {
 
 // Defines the Goblin's behavior during its turn.
 void Goblin::performTurn(Entity* target) {
-  int r = rand() % 100;  // Random number between 0-99
+  // Generate a random number from 0 to 99.
+  // Create a static random generator once (not every turn)
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> dist(0, 99);
+  int randomAction = dist(gen);  // truly random in [0, 99]
 
   if (damageBoost) {
     // When in damage boost mode, only use basic attacks or Bleed Damage
-    if (r < 50) {
+    if (randomAction < 50) {
       basicAttack(target);
       extraDamage += 2;  // Increase extraDamage per attack
     } else {
@@ -46,11 +51,11 @@ void Goblin::performTurn(Entity* target) {
 
   } else {
     // Normal behavior
-    if (r < 65) {
+    if (randomAction < 65) {
       basicAttack(target);
       if (damageBoost) extraDamage += 2;
 
-    } else if (r < 95) {
+    } else if (randomAction < 95) {
       defend();
 
     } else {

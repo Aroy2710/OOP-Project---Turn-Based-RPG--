@@ -18,8 +18,11 @@ void Human::useSpecialSkill(Entity* target) {
 
 void Human::performTurn(Entity* target) {
   // Generate a random number from 0 to 99.
-  int randomAction = rand() % 100;
-
+  // Create a static random generator once (not every turn)
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> dist(0, 99);
+  int randomAction = dist(gen);  // truly random in [0, 99]
   // Probability Map:
   // Basic Attack:     60% (Interval 0–59)
   // Piercing Strike:  30% (Interval 60–89)
