@@ -29,7 +29,13 @@ Ranger::Ranger(std::string name, std::string weapon, float attack_stat,
 // Returns the Ranger's current dexterity value.
 float Ranger::getUniqueStat() const 
 {
-  cout<< "Player DEX :         " ;
+  if (gameText)
+  {
+    cout<< "Player DEX :         " ;
+    
+  }
+  
+  
   return dexterity;
   
 }

@@ -33,7 +33,12 @@ Mage::Mage(std::string name, std::string weapon, float attack_stat,
 
 float Mage::getUniqueStat() const 
 {
-  cout<< "Player Mana  :       " ;
+  if (gameText)
+  {
+    cout<< "Player Mana  :       " ;
+  }
+  
+  
   return mana;
   
 }

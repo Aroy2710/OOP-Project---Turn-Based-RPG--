@@ -312,6 +312,7 @@ class UnitTests {
   // Verifies that Ranger getter returns the correct computed dexterity value.
   void testRangerGetter() {
     Ranger r("abcd", "bow", 50, 30, 100);
+    r.gameText = false;
     if (r.getUniqueStat() != 75) {
       cout << "Test failed. Expected: 75, Got: " << r.getUniqueStat() << endl;
     } else {
@@ -392,6 +393,7 @@ class UnitTests {
   // Verifies that Warrior getter returns the correct computed strength value.
   void testWarriorGetter() {
     Warrior w("abcd", "club", 50, 30, 100);
+    w.gameText = false;
     if (w.getUniqueStat() != 25) {
       cout << "Test failed. Expected: 25, Got: " << w.getUniqueStat() << endl;
     } else {
@@ -471,6 +473,7 @@ class UnitTests {
   }
   void testMageGetter() {
     Mage m("abcd", "club", 50, 30, 100);
+    m.gameText  = false;
     if (m.getUniqueStat() != 100) {
       cout << "Test failed. Expected: 100, Got: " << m.getUniqueStat() << endl;
     } else {

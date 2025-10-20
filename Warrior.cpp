@@ -28,7 +28,12 @@ Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
 
 float Warrior::getUniqueStat() const 
 {
-  cout<< "Player STR :          " ;
+  if (gameText)
+  {
+    cout<< "Player STR :          " ;
+  }
+  
+  
   return strength;
   
 }
