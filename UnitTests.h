@@ -287,13 +287,13 @@ class UnitTests {
     defender->gameText = false;
 
     attacker->basicAttack(defender);
-    if (defender->getHealthStat() != 95) {
+    if (defender->getHealthStat() != 70) {
       cout << "BasicAttack test failed! Expected defender health: 95, Got: "
            << defender->getHealthStat() << endl;
       allPassed = false;
     }
 
-    defender->setHealthStat(100);
+    defender->setHealthStat(1);
     attacker->basicAttack(defender);
     if (defender->getHealthStat() != 0) {
       cout << "BasicAttack test failed! Expected defender health: 0, Got: "

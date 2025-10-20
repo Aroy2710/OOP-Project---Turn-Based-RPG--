@@ -36,6 +36,9 @@ float Ranger::getDexterity() {
 // Requires an external battle manager to enforce cooldowns.
 void Ranger::useBoost() {
   if (boostCounter > 0) {
+    if(gameText){
+      cout<<name<<"'s mana has been boosted by 30 points! "<<endl;
+    }
     dexterity += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {

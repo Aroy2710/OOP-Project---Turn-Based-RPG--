@@ -11,27 +11,28 @@ TESTTARGET = TestRunner
 TARGET = main
 
 #Source files for testing 
-TESTSRCS =  main.cpp Player.cpp Inventory.cpp Item.cpp HealthPotion.cpp Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp Enemy.cpp Orc.cpp Human.cpp Goblin.cpp BattleManager.cpp GameManager.cpp
+SRCS =  main.cpp Player.cpp Inventory.cpp Item.cpp HealthPotion.cpp Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp Enemy.cpp Orc.cpp Human.cpp Goblin.cpp BattleManager.cpp GameManager.cpp
 
 .PHONY: all clean memcheck TESTALL
 
 # default: compile everything and run main
 all:
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(TESTSRCS)	
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)	
 	./$(TARGET)
 
 #run all tests
 TESTALL:
-	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(TESTSRCS)
+	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
 	./$(TESTTARGET)
 
 #deleting object files
 clean:
-	rm -f $(TESTTARGET)
+	rm -f $(TESTTARGET) $(TARGET)
+
 
 # Memory check target
 memcheck:
-	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(TESTSRCS)
+	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
 ifeq ($(OS),Windows_NT)
 	@echo "Running Dr. Memory (Windows)..."
 	"$(DRMEMORY)" -- ./$(TESTTARGET)

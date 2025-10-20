@@ -35,8 +35,13 @@ float Warrior::getStrength() {
 // Requires an external battle manager to enforce cooldowns.
 void Warrior::useBoost() {
   if (boostCounter > 0) {
-    cout << "The warrior channels their inner strength!" << endl;
-    cout << "Strength increased by 30 points." << endl;
+    if (gameText)
+    {
+      cout<<name<<"'s strength has been boosted by 30 points! "<<endl;
+
+    }
+    
+
     strength += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {

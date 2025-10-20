@@ -41,6 +41,12 @@ float Mage::getMana() {
 // Requires an external battle manager to enforce cooldowns.
 void Mage::useBoost() {
   if (boostCounter > 0) {
+    if (gameText)
+    {
+      cout<<name<<"'s mana has been boosted by 30 points! "<<endl;
+      
+    }
+    
     mana += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {
