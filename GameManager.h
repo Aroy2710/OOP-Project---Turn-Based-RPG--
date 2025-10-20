@@ -1,3 +1,6 @@
+#ifndef __GAMEMANAGER_H__
+#define __GAMEMANAGER_H__
+
 #include "Player.h"
 #include "Ranger.h"
 #include "Warrior.h"
@@ -36,3 +39,4 @@ class GameManager {
         bool saveFileExists;
 
 };
+#endif // __GAMEMANAGER_H__

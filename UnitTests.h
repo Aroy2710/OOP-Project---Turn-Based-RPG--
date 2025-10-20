@@ -1,6 +1,6 @@
 #ifndef __UNITTESTS_H__
 #define __UNITTESTS_H__
-
+#include <sstream>
 #include "Player.h"
 #include "Ranger.h"
 #include "Warrior.h"
@@ -15,6 +15,7 @@
 #include "Enemy.h"
 #include "Orc.h"
 #include "Goblin.h"
+#include "GameManager.h"
 
 // TestPlayer is a minimal subclass of Player used for unit testing.
 // It implements the pure virtual method useUltimateSkill with an empty body.
@@ -69,6 +70,7 @@ class UnitTests {
     testNullTarget();
     testSkillReuseAfterDepletion();
     testSkillUseAfterDeath();
+    
   }
   void testBattleManager() {
     
@@ -945,8 +947,6 @@ void testSkillUseAfterDeath() {
 
     cout << (passed ? "testSkillUseAfterDeath passed!\n" : "testSkillUseAfterDeath failed!\n");
 }
-
-
 
 
 
