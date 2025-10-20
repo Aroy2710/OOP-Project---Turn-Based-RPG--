@@ -10,7 +10,7 @@ Human::Human(float attackStat, float defenseStat, float healthStat)
 }
 
 void Human::useSpecialSkill(Entity* target) {
-  float damage = attackStat * 1.5f;
+  float damage = attackStat *1.2;
   if (doubleDamage) damage *= 2.0f;
   if (gameText) std::cout << typeName << " uses Piercing Strike!" << std::endl;
   target->takeDamage(damage);

@@ -19,7 +19,7 @@ Orc::Orc(float attackStat, float defenseStat, float healthStat)
 // Special attack: Brute Force.
 // Deals damage based on attack and defense stats.
 void Orc::useSpecialSkill(Entity* target) {
-  float damage = attackStat * 1.2f + defenseStat * 0.5f;
+  float damage = attackStat * 1.2f + defenseStat;
 
   if (gameText) {
     cout << typeName << " uses Brute Force!" << endl;

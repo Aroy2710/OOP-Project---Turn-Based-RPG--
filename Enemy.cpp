@@ -7,10 +7,10 @@ using namespace std;
 // Initializes an Enemy with generic attributes.
 Enemy::Enemy() {
   typeName = "Enemy";
-  attackStat = 40.0f;
-  defenseStat = 30.0f;
-  healthStat = 1600.0f;
-  maxHealth = 1600.0f;
+  attackStat = 100.0f;
+  defenseStat = 70.0f;
+  healthStat = 1800.0f;
+  maxHealth = 1800.0f;
   isDefending = false;
 }
 
