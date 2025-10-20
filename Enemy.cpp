@@ -10,7 +10,7 @@ Enemy::Enemy() {
   attackStat = 100.0f;
   defenseStat = 70.0f;
   healthStat = 1800.0f;
-  maxHealth = 1800.0f;
+  maxHealth = 1500.0f;
   isDefending = false;
 }
 
