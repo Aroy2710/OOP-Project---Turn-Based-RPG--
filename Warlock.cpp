@@ -1,15 +1,21 @@
 #include "Warlock.h"
 
 // Default constructor initializes a Warlock with base Mage stats.
-Warlock::Warlock() : Mage() {}
+Warlock::Warlock() : Mage() {
+  this->weapon = "Tome";
+}
 
 // Constructor with a name.
-Warlock::Warlock(string name) : Mage(name) {}
+Warlock::Warlock(string name) : Mage(name) {
+  this->weapon = "Tome";
+}
 
 // Fully parameterized constructor.
 Warlock::Warlock(string name, string weapon, float attackStat, float defenseStat,
                  float healthStat)
-    : Mage(name, weapon, attackStat, defenseStat, healthStat) {}
+    : Mage(name, weapon, attackStat, defenseStat, healthStat) {
+      this->weapon = "Tome";
+    }
 
 // Executes the Warlock's special skill on the target entity.
 // Deals damage proportional to 25% of Warlock's health and consumes a skill charge.

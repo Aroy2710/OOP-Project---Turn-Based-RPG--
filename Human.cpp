@@ -2,11 +2,13 @@
 
 
 
-Human::Human() : Enemy() {}
+Human::Human() : Enemy() {
+  this->typeName = "Human";
+}
 
 Human::Human(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
-  typeName = "Human";
+  this->typeName = "Human";
 }
 
 void Human::useSpecialSkill(Entity* target) {

@@ -255,7 +255,12 @@ void BattleManager::saveGame() {
     outFile << enemy->getAttackStat() << endl;
     outFile << enemy->getDefenseStat() << endl;
     outFile << enemy->getHealthStat() << endl;
-
+    
+    // --- Battle state ---
+    outFile << turnCounter << endl;
+    outFile << player->getUltimateCounter() << " "
+            << player->getBoostCounter() << " "
+            << player->getSpecialSkillCounter() << endl;
     // Close the file
     outFile.close();
 

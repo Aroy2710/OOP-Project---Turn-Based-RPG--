@@ -3,12 +3,12 @@
 // Default constructor.
 // Initializes an Archer with default Ranger attributes.
 Archer::Archer() : Ranger() { 
-  weapon = "Bow"; 
+  this->weapon = "Bow"; 
 }
 
 // Constructor for Archer with a custom name.
 Archer::Archer(string name) : Ranger(name) { 
-  weapon = "Bow"; 
+  this->weapon = "Bow"; 
 }
 
 // Parameterized constructor.

@@ -234,6 +234,8 @@ void GameManager::loadGame() {
         string playerName, playerWeapon, enemyType;
         float playerAttack, playerDefense, playerHealth, playerUnique;
         float enemyAttack, enemyDefense, enemyHealth;
+        int turnCount;
+        int ultimate, boost, special;
 
         // Check if player data exists
         if (!getline(inFile, playerName))
@@ -254,7 +256,17 @@ void GameManager::loadGame() {
 
         if (!(inFile >> enemyAttack >> enemyDefense >> enemyHealth))
             throw runtime_error("Invalid or missing enemy stats in save file.");
+        if (!(inFile >> turnCount)){
+          throw runtime_error("Missing turn count in save file.");
+        }
+          
+        if (!(inFile >> ultimate >> boost >> special)){
+          throw runtime_error("Missing player counters in save file.");
 
+        }
+          
+ 
+      
         inFile.close();
 
         // Create player object
@@ -290,11 +302,15 @@ void GameManager::loadGame() {
         } else {
             throw runtime_error("Unknown enemy type: " + enemyType);
         }
+        player->setUltimateCounter(ultimate);
+        player->setBoostCounter(boost);
+        player->setSpecialSkillCounter(special);
 
         cout << "Game loaded successfully!" << endl;
 
         // Start battle
         currentBattle = new BattleManager(player, enemy, saveFileName);
+        currentBattle->turnCounter = turnCount;
         currentBattle->startBattle();
         showBattleResults();
     }

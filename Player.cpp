@@ -87,6 +87,24 @@ void Player::setHealthStat(float healthStat) {
 
 void Player::setWeapon(string weapon) { this->weapon = weapon; }
 
+void Player::setUltimateCounter(int ultimateCounter)
+{
+  this->ultimateCounter = ultimateCounter;
+  
+}
+
+void Player::setBoostCounter(int boostCounter)
+{
+  this->boostCounter = boostCounter;
+  
+}
+
+void Player::setSpecialSkillCounter(int specialSkillCounter)
+{
+  this->specialSkillCounter = specialSkillCounter;
+  
+}
+
 // Executes a basic attack on another entity.
 // The entity takes damage based on the Player's attack value.
 void Player::basicAttack(Entity* entity) {

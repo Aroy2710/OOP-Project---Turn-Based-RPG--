@@ -7,14 +7,14 @@ using namespace std;
 // Default constructor.
 // Initializes a Goblin with default Enemy stats.
 Goblin::Goblin() : Enemy() {
-  typeName = "Goblin";
+  this->typeName = "Goblin";
 }
 
 // Parameterized constructor.
 // Initializes a Goblin with specific stats.
 Goblin::Goblin(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
-  typeName = "Goblin";
+  this->typeName = "Goblin";
 }
 
 // Special attack: Bleed Damage.

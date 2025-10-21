@@ -41,6 +41,9 @@ class Player : public Entity {
   void setHealthStat(float health_stat);
   void setWeapon(const string weapon_name);
   virtual void setUniqueStat(float value) = 0;
+  void setUltimateCounter(int ultimateCounter);
+  void setBoostCounter(int boostCounter);
+  void setSpecialSkillCounter(int specialSkillCounter);
 
   // Combat methods
   void basicAttack(Entity* entity) override;

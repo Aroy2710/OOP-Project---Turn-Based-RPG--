@@ -3,13 +3,13 @@
 // Default constructor.
 // Initializes a Gunner with default Ranger attributes.
 Gunner::Gunner() : Ranger() { 
-  weapon = "Pistol"; 
+  this->weapon = "Gun"; 
 }
 
 // Constructor with a custom name.
 // Initializes a Gunner with default Ranger attributes and the given name.
 Gunner::Gunner(string name) : Ranger(name) { 
-  weapon = "Pistol"; 
+  this->weapon = "Gun"; 
 }
 
 // Fully parameterized constructor.
@@ -17,7 +17,7 @@ Gunner::Gunner(string name) : Ranger(name) {
 Gunner::Gunner(string name, string weapon, float attackStat, float defenseStat,
                float healthStat)
     : Ranger(name, weapon, attackStat, defenseStat, healthStat) { 
-  this->weapon = "Pistol"; 
+  this->weapon = "Gun"; 
 }
 
 // Executes the Gunner’s special skill.

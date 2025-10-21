@@ -4,13 +4,13 @@
 // Default constructor.
 // Initializes a Swordsman with default Warrior attributes.
 Swordsman::Swordsman() : Warrior() { 
-  weapon = "Sword"; 
+  this->weapon = "Sword"; 
 }
 
 // Constructor with a custom name.
 // Initializes a Swordsman with the given name.
 Swordsman::Swordsman(string name) : Warrior(name) { 
-  weapon = "Sword"; 
+  this->weapon = "Sword"; 
 }
 
 // Fully parameterized constructor.

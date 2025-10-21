@@ -3,13 +3,13 @@
 // Default constructor.
 // Initializes a Barbarian with default Warrior attributes.
 Barbarian::Barbarian() : Warrior() { 
-  weapon = "Fist"; 
+  this->weapon = "Axe"; 
 }
 
 // Constructor with a custom name.
 // Initializes a Barbarian with the given name.
 Barbarian::Barbarian(string name) : Warrior(name) { 
-  weapon = "Fist"; 
+  this->weapon = "Axe"; 
 }
 
 // Fully parameterized constructor.
@@ -17,7 +17,7 @@ Barbarian::Barbarian(string name) : Warrior(name) {
 Barbarian::Barbarian(string name, string weapon, float attackStat, float defenseStat,
                      float healthStat)
     : Warrior(name, weapon, attackStat, defenseStat, healthStat) { 
-  this->weapon = "Fist"; 
+  this->weapon = "Axe"; 
 }
 
 void Barbarian::basicAttack(Entity* entity)

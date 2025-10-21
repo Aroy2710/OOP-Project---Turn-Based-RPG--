@@ -6,14 +6,14 @@
 // Default constructor.
 // Initializes an Orc with default Enemy stats.
 Orc::Orc() : Enemy() {
-  typeName = "Orc";
+  this->typeName = "Orc";
 }
 
 // Parameterized constructor.
 // Initializes an Orc with specific stats.
 Orc::Orc(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
-  typeName = "Orc";
+  this->typeName = "Orc";
 }
 
 // Special attack: Brute Force.
