@@ -6,9 +6,8 @@
 #include <stdexcept>
 #include <algorithm>
 #include <cctype>
-/**
- *Constructs a new GameManager and immediately shows the main menu.
- */
+
+//Constructs a new GameManager and immediately shows the main menu.
 GameManager::GameManager() {
   player = nullptr;
   enemy = nullptr;
@@ -18,9 +17,9 @@ GameManager::GameManager() {
   showMainMenu();
 }
 
-/**
- * Destructor cleans up dynamically allocated game resources.
- */
+
+//Destructor cleans up dynamically allocated game resources.
+
 GameManager::~GameManager() {
   delete player;
   delete enemy;
@@ -103,6 +102,7 @@ while (true) {
          << "2. Mage\n"
          << "3. Ranger\n";
     cout << "Enter the number of your choice: ";
+    //checks if input is non numeric
     if (!(cin >> archetypeChoice)) {
       cin.clear();
       cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -267,9 +267,7 @@ while (true) {
 
 }
 
-/**
- * Displays the main menu and handles menu navigation.
- */
+//Displays the main menu and handles menu navigation.
 void GameManager::showMainMenu() {
   cout << "Welcome to the Turn-Based RPG!" << endl
        << "1. Start New Game" << endl
@@ -313,7 +311,7 @@ void GameManager::loadGame() {
     cin >> saveFileName;
 
     string fullFile = saveFileName + ".dat";
-
+    //check to see if file exists
     try {
         ifstream inFile(fullFile);
         if (!inFile.is_open()) {
@@ -412,14 +410,14 @@ void GameManager::loadGame() {
 }
 
 
-/**
- * Quits the game after saving progress.
- */
+
+//Quits the game after saving progress.
 void GameManager::quitGame() {
   cout << "Thank you for playing! Goodbye." << endl;
   exit(0);
 }
 
+//Show battle stats
 void GameManager::showBattleResults() {
   cout << "Press any key to view battle results..." << endl;
   cout << "The battle lasted " << currentBattle->turnCounter << " turns." << endl;

@@ -27,7 +27,7 @@ TESTALL:
 
 #deleting object files
 clean:
-	rm -f $(TESTTARGET) $(TARGET)
+	@rm -f $(TESTTARGET) $(TARGET)
 
 
 # Memory check target
