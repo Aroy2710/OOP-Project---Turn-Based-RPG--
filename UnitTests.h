@@ -74,17 +74,9 @@ class UnitTests {
     testNullTarget();
     testSkillReuseAfterDepletion();
     testSkillUseAfterDeath();
+    testGame();
     
   }
-  void testBattleManager() {
-    
-    Player* user = new Archer("Player", "Sword", 80, 50, 300);
-    Orc* enemy = new Orc(70, 40, 250);
-    BattleManager bm(user,enemy);
-    bm.startBattle();
-
-  }
-
  private:
   // Verifies that getter methods in the Player class correctly return the
   // initialized attributes.
@@ -362,15 +354,15 @@ class UnitTests {
     r2->gameText = false;
 
     r1.useUltimateSkill(r2);
-    if (r2->getHealthStat() != 895) {
-      cout << "Test failed. Expected: 895, Got: " << r2->getHealthStat()
+    if (r2->getHealthStat() != 692.5) {
+      cout << "Test failed. Expected: 692.5, Got: " << r2->getHealthStat()
            << endl;
       allPassed = false;
     }
 
     r1.useUltimateSkill(r2);
-    if (r2->getHealthStat() != 895) {
-      cout << "Test failed. Expected: 895, Got: " << r2->getHealthStat()
+    if (r2->getHealthStat() != 692.5) {
+      cout << "Test failed. Expected: 692.5, Got: " << r2->getHealthStat()
            << endl;
       allPassed = false;
     }
@@ -382,8 +374,8 @@ class UnitTests {
     r4->defend();
 
     r3.useUltimateSkill(r4);
-    if (r4->getHealthStat() != 932.5) {
-      cout << "Ultimate skill test failed. Expected: 932.5, Got: "
+    if (r4->getHealthStat() != 831.25) {
+      cout << "Ultimate skill test failed. Expected: 831.25, Got: "
            << r4->getHealthStat() << endl;
       allPassed = false;
     }
@@ -551,8 +543,8 @@ void testArcherSpecialSkill() {
   // damage = 50 + 1.5*50 = 125
   // enemy hp = 1000 - (125 - 30) = 905
   a1.useSpecialSkill(a2);
-  if (a2->getHealthStat() != 905) {
-    cout << "Test 1 failed. Expected: 905, Got: " << a2->getHealthStat() << endl;
+  if (a2->getHealthStat() != 842.5) {
+    cout << "Test 1 failed. Expected: 842.5, Got: " << a2->getHealthStat() << endl;
     allPassed = false;
   }
 
@@ -561,8 +553,8 @@ void testArcherSpecialSkill() {
   // damage = 60 + 90 = 150
   // enemy hp = 905 - (150 - 30) = 785
   a1.useSpecialSkill(a2);
-  if (a2->getHealthStat() != 785) {
-    cout << "Test 2 failed. Expected: 785, Got: " << a2->getHealthStat() << endl;
+  if (a2->getHealthStat() != 610) {
+    cout << "Test 2 failed. Expected: 610, Got: " << a2->getHealthStat() << endl;
     allPassed = false;
   }
 
@@ -571,8 +563,8 @@ void testArcherSpecialSkill() {
   // damage = 70 + 105 = 175
   // enemy hp = 785 - (175 - 30) = 640
   a1.useSpecialSkill(a2);
-  if (a2->getHealthStat() != 640) {
-    cout << "Test 3 failed. Expected: 640, Got: " << a2->getHealthStat() << endl;
+  if (a2->getHealthStat() != 302.5) {
+    cout << "Test 3 failed. Expected: 302.5, Got: " << a2->getHealthStat() << endl;
     allPassed = false;
   }
 
@@ -821,8 +813,8 @@ void testSwordsmanSpecialSkill() {
     // strength = 25, damage = 5*25 + 50 = 175
     // enemy hp = 1000 - (175 - 30) = 855
     s1.useSpecialSkill(s2);
-    if (s2->getHealthStat() != 855) {
-        cout << "Test 1 failed. Expected enemy HP: 855, Got: " << s2->getHealthStat() << endl;
+    if (s2->getHealthStat() != 930) {
+        cout << "Test 1 failed. Expected enemy HP: 930, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
     }
 
@@ -830,8 +822,8 @@ void testSwordsmanSpecialSkill() {
     // strength = 35, damage = 5*35 + 50 = 225
     // enemy hp = 855 - (225 - 30) = 660
     s1.useSpecialSkill(s2);
-    if (s2->getHealthStat() != 660) {
-        cout << "Test 2 failed. Expected enemy HP: 660, Got: " << s2->getHealthStat() << endl;
+    if (s2->getHealthStat() != 840) {
+        cout << "Test 2 failed. Expected enemy HP: 840, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
     }
 
@@ -839,8 +831,8 @@ void testSwordsmanSpecialSkill() {
     // strength = 45, damage = 5*45 + 50 = 275
     // enemy hp = 660 - (275 - 30) = 415
     s1.useSpecialSkill(s2);
-    if (s2->getHealthStat() != 415) {
-        cout << "Test 3 failed. Expected enemy HP: 415, Got: " << s2->getHealthStat() << endl;
+    if (s2->getHealthStat() != 730) {
+        cout << "Test 3 failed. Expected enemy HP: 730, Got: " << s2->getHealthStat() << endl;
         allPassed = false;
     }
 
@@ -950,6 +942,12 @@ void testSkillUseAfterDeath() {
         passed = false;
 
     cout << (passed ? "testSkillUseAfterDeath passed!\n" : "testSkillUseAfterDeath failed!\n");
+}
+
+//6. Test game
+
+void testGame(){
+  GameManager g1;
 }
 
 

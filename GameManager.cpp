@@ -38,6 +38,10 @@ while (true) {
   cout << "Please enter your character's name: ";
   std::getline(cin >> std::ws, playerName);  // Trim leading spaces
 
+  // --- Remove quotation marks first ---
+  playerName.erase(std::remove(playerName.begin(), playerName.end(), '"'),
+                    playerName.end());
+
   // Trim trailing spaces
   playerName.erase(
       std::find_if(playerName.rbegin(), playerName.rend(),
@@ -99,7 +103,13 @@ while (true) {
          << "2. Mage\n"
          << "3. Ranger\n";
     cout << "Enter the number of your choice: ";
-    cin >> archetypeChoice;
+    if (!(cin >> archetypeChoice)) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number between 1 and 3.\n";
+      validChoice = false;
+      continue;
+    }
 
     if (archetypeChoice < 1 || archetypeChoice > 3) {
       cout << "Invalid choice. Please choose a valid archetype.\n";
@@ -125,7 +135,13 @@ while (true) {
            << "1. Swordsman- a disciplined fighter who trades health for explosive power.\n"
            << "2. Barbarian - a fierce brawler who gains strength at the cost of defense, favoring raw aggression\n";
       cout << "Enter the number of your choice: ";
-      cin >> classType;
+      if (!(cin >> classType)) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number between 1 and 3.\n";
+      validChoice = false;
+      continue;
+      }
 
       if (classType == 1) {
         player = new Swordsman(playerName);
@@ -154,8 +170,13 @@ while (true) {
            << "2. Warlock - unleashes an eldritch blast based on their max "
               "health and restores vitality\n";
       cout << "Enter the number of your choice: ";
-      cin >> classType;
-
+      if (!(cin >> classType)) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number between 1 and 3.\n";
+      validChoice = false;
+      continue;
+      }
       if (classType == 1) {
         player = new Wizard(playerName);
       } else if (classType == 2) {
@@ -180,8 +201,13 @@ while (true) {
            << "1. Archer - a precise marksman whose attacks grow stronger with every shot.\n"
            << "2. Gunner - a tactical fighter who delivers precise bursts and hardens defense after each shot.\n";
       cout << "Enter the number of your choice: ";
-      cin >> classType;
-
+      if (!(cin >> classType)) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number between 1 and 3.\n";
+      validChoice = false;
+      continue;
+      }
       if (classType == 1) {
         player = new Archer(playerName);
       } else if (classType == 2) {
@@ -207,8 +233,14 @@ while (true) {
          << "2. Orc - a brutal warrior who relies on raw strength and defense, going berserk at low health to attack relentlessly with devastating force.\n"
          << "3. Human - disciplined fighter who balances offense and defense, doubling their power in a rage when their health runs low.\n";
     cout << "Enter the number of your choice: ";
-    cin >> enemyChoice;
 
+    if (!(cin >> enemyChoice)) {
+      cin.clear();
+      cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+      cout << "Invalid input. Please enter a number between 1 and 3.\n";
+      validChoice = false;
+      continue;
+    }
     if (enemyChoice == 1) {
       enemy = new Goblin();
     } else if (enemyChoice == 2) {

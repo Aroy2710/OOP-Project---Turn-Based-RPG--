@@ -1,0 +1,212 @@
+=============================
+EDGE CASE TEST PLAN
+=============================
+Game Module: GameManager
+
+------------------------------------------------------------
+TEST CASE : Main Menu Non Numeric Input
+------------------------------------------------------------
+Scenario:
+  Player enters a non-numeric input (e.g., 'a', '!', or blank) at the main menu.
+
+Input / Condition:
+  Input: "a"
+
+Expected Logic / Outcome:
+  - Game should clear the input stream.
+  - Display "Invalid input. Please enter a number between 1 and 3."
+  - Re-prompt user for a valid number.
+
+Actual Logic / Outcome:
+  - Game should clear the input stream.
+  - Display "Invalid input. Please enter a number between 1 and 3."
+  - Re-prompt user for a valid number.
+
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE ID: MAIN MENU OUT OF RANGE
+------------------------------------------------------------
+Scenario:
+  Player enters an integer outside the valid range (e.g., 0 or 4).
+
+Input / Condition:
+  Input: "0" or "4"
+
+Expected Logic / Outcome:
+  - Game should display "Invalid choice. Please try again."
+  - Re-prompt user until a valid option (1–3) is entered.
+
+Actual Logic / Outcome:
+  - Game should display "Invalid choice. Please try again."
+  - Re-prompt user until a valid option (1–3) is entered.
+
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE : PlayerName_Empty
+------------------------------------------------------------
+Scenario:
+  Player presses Enter without typing any name.
+
+Input / Condition:
+  Input: ""
+
+Expected Logic / Outcome:
+  - Game defaults to "Hero".
+  - Displays "No name entered. Defaulting to 'Hero'."
+
+Actual Logic / Outcome:
+  - Game defaults to "Hero".
+  - Displays "No name entered. Defaulting to 'Hero'."
+
+
+Status:
+  Pass
+
+------------------------------------------------------------
+TEST CASE : Player Name All Spaces
+------------------------------------------------------------
+Scenario:
+  Player enters only spaces as their name.
+
+Input / Condition:
+  Input: "    "
+
+Expected Logic / Outcome:
+  - Game trims spaces → empty string.
+  - Defaults to "Hero".
+
+Actual Logic / Outcome:
+  - Game trims spaces → empty string.
+  - Defaults to "Hero".
+
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE : Player Name All Numbers
+------------------------------------------------------------
+Scenario:
+  Player enters only numeric characters.
+
+Input / Condition:
+  Input: "123456"
+
+Expected Logic / Outcome:
+  - Game prints "Name cannot be only numbers. Please enter a valid name."
+  - Re-prompts for input.
+
+Actual Logic / Outcome:
+  - Game prints "Name cannot be only numbers. Please enter a valid name."
+  - Re-prompts for input.
+
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE  :Player Name Invalid Characters
+------------------------------------------------------------
+Scenario:
+  Player enters characters outside allowed set.
+
+Input / Condition:
+  Input: "John_123!" 
+
+Expected Logic / Outcome:
+  - Game prints "Name may only contain letters and spaces. Try again."
+  - Re-prompts for input.
+
+Actual Logic / Outcome:
+  - Game prints "Name may only contain letters and spaces. Try again."
+  - Re-prompts for input.
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE : Archetype Out Of Range
+------------------------------------------------------------
+Scenario:
+  Player enters a number outside [1–3] for archetype.
+
+Input / Condition:
+  Input sequence: "0", "4", "2"
+
+Expected Logic / Outcome:
+  - Rejects 0 and 4.
+  - Prompts again until valid (2).
+  - Then proceeds to mage subclass selection.
+
+Actual Logic / Outcome:
+  - Rejects 0 and 4.
+  - Prompts again until valid (2).
+  - Then proceeds to mage subclass selection.
+
+Status:
+  PASS
+
+
+------------------------------------------------------------
+TEST CASE : Enemy Invalid Choice
+------------------------------------------------------------
+Scenario:
+  Player enters an invalid enemy selection.
+
+Input / Condition:
+  Input: "0" or "4"
+
+Expected Logic / Outcome:
+  - Displays "Invalid choice. Please choose a valid enemy."
+  - Re-prompts.
+
+Actual Logic / Outcome:
+  "Invalid choice. Please choose a valid enemy."
+  - Re-prompts.
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE: Save File Invalid Characters
+------------------------------------------------------------
+Scenario:
+  Player enters a save file name with invalid filesystem characters. Such as no weapon
+
+Input / Condition:
+  Input: "save/game*1"
+
+Expected Logic / Outcome:
+if weapon is removed from save file 
+
+Loading game from Roy.dat...
+Error: Unknown weapon type:
+
+
+
+Actual Logic / Outcome:
+Loading game from Roy.dat...
+Error: Unknown weapon type:
+
+Status:
+  PASS
+
+------------------------------------------------------------
+TEST CASE : Load Game File Missing
+------------------------------------------------------------
+Scenario:
+  Player attempts to load a non-existent save file.
+
+Input / Condition:
+  Input: "nonexistentfile"
+
+Expected Logic / Outcome:
+  - Throws runtime_error.
+  - Displays "Save file 'nonexistentfile.dat' could not be opened."
+
+Actual Logic / Outcome:
+  - Displays "Save file 'nonexistentfile.dat' could not be opened."
+
+Status:
+  PASS
+

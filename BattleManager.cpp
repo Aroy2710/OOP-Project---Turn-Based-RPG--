@@ -3,7 +3,7 @@
 #include <limits>
 #include <iomanip>
 #include <fstream>
-
+#include <algorithm>
 #include "BattleManager.h"
 #include "GameManager.h"
 
@@ -163,35 +163,48 @@ void BattleManager::getPlayerAction() {
         break;
 
       case 6: {
-        if (player->getInventory().listItems() == "Empty\n") {
-          cout << "No items available in inventory!" << endl;
-          validCommand = false;
-          break;
-        }
-
-        bool validItem = false;
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-
-        do {
-          string chosenItem = "";
-          cout << "Inventory items:\n"
-               << player->getInventory().listItems() << endl;
-          cout << "Enter the name of the item to use: ";
-          getline(cin, chosenItem);
-
-          try {
-            player->getInventory().use(chosenItem);
-            validItem = true;
-          } catch (const exception& e) {
-            cout << "Item \"" << chosenItem
-                 << "\" not found or could not be used: " << e.what() << endl;
-            cout << "Please enter a valid item.\n\n";
-          } catch (...) {
-            cout << "Unknown error using item \"" << chosenItem << "\".\n";
-            cout << "Please try again.\n\n";
+          if (player->getInventory().listItems() == "Empty\n") {
+              cout << "No items available in inventory!" << endl;
+              validCommand = false;
+              break;
           }
-        } while (!validItem);
-        break;
+
+          bool validItem = false;
+          cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+          do {
+              string chosenItem;
+              cout << "\nInventory items:\n"
+                  << player->getInventory().listItems() << endl;
+              cout << "Enter the name of the item to use "
+                  << "(or type 'back' to return): ";
+              getline(cin, chosenItem);
+
+              // Convert input to lowercase for flexible matching
+              std::transform(chosenItem.begin(), chosenItem.end(), chosenItem.begin(),
+                            [](unsigned char c){ return std::tolower(c); });
+
+              if (chosenItem == "back" || chosenItem == "cancel") {
+                  cout << "Returning to action menu...\n";
+                  validItem = true;  // exit the loop
+                  validCommand = false;  // return to main action menu
+                  break;
+              }
+
+              try {
+                  player->getInventory().use(chosenItem);
+                  validItem = true;
+              } catch (const exception& e) {
+                  cout << "Item \"" << chosenItem
+                      << "\" not found or could not be used: " << e.what() << endl;
+                  cout << "Please enter a valid item or type 'back' to cancel.\n";
+              } catch (...) {
+                  cout << "Unknown error using item \"" << chosenItem << "\".\n";
+                  cout << "Please try again or type 'back' to cancel.\n";
+              }
+          } while (!validItem);
+
+          break;
       }
       case 7:
         cout << "Saving game...\n\n";
