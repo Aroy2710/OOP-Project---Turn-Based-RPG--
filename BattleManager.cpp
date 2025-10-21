@@ -14,7 +14,7 @@ BattleManager::BattleManager(Player* player, Enemy* enemy) {
   this->player = player;
   this->enemy = enemy;
   isBattleActive = false;
-  turnCounter = 0;
+  turnCounter = 1;
 }
 
 BattleManager::BattleManager(Player* player, Enemy* enemy, string saveFileName) {
@@ -22,7 +22,7 @@ BattleManager::BattleManager(Player* player, Enemy* enemy, string saveFileName) 
   this->enemy = enemy;
   this->saveFileName = saveFileName;
   isBattleActive = false;
-  turnCounter = 0;
+  turnCounter = 1;
 }
 
 BattleManager::~BattleManager() = default;
@@ -30,7 +30,7 @@ BattleManager::~BattleManager() = default;
 // Starts a new battle sequence between the player and enemy.
 void BattleManager::startBattle() {
   isBattleActive = true;
-  turnCounter = 1;
+  turnCounter = getTurnCounter();
 
   cout << "Battle started between " << player->getName() << " and "
        << enemy->getTypeName() << "!" << endl;
@@ -135,7 +135,13 @@ void BattleManager::getPlayerAction() {
         break;
 
       case 3:
+        if (player->getSpecialSkillCounter() <= 0) {
+          cout << "No Special skill charges left!" << endl;
+          validCommand = false;
+          break;
+        }
         player->useSpecialSkill(enemy);
+        break;;
         break;
 
       case 4:
@@ -255,7 +261,7 @@ void BattleManager::saveGame() {
     outFile << enemy->getAttackStat() << endl;
     outFile << enemy->getDefenseStat() << endl;
     outFile << enemy->getHealthStat() << endl;
-    
+
     // --- Battle state ---
     outFile << turnCounter << endl;
     outFile << player->getUltimateCounter() << " "
@@ -265,4 +271,10 @@ void BattleManager::saveGame() {
     outFile.close();
 
     cout << "Game saved successfully to " << fullFile << "!" << endl;
+}
+
+int BattleManager::getTurnCounter(void)
+{
+  return turnCounter;
+  
 }

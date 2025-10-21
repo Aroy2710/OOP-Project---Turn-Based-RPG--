@@ -331,13 +331,8 @@ void GameManager::quitGame() {
 
 void GameManager::showBattleResults() {
   cout << "Press any key to view battle results..." << endl;
-  system("pause");
-  system("clear");
   cout << "The battle lasted " << currentBattle->turnCounter << " turns." << endl;
   cout << "You took " << 1000-player->getHealthStat() << " damage." << endl;
   cout << "Enemy took " << 1800-enemy->getHealthStat() << " damage." << endl;
-  cout << "Press any key to return to the main menu..." << endl;
-  system("pause");
-  system("clear");
   showMainMenu();
 }

@@ -23,6 +23,7 @@ class BattleManager {
         void checkWinCondition();
         void getPlayerAction();
         void saveGame();
+        int getTurnCounter(void);
 
     private:
 

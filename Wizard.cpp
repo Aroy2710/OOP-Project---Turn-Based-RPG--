@@ -45,5 +45,19 @@ void Wizard::useSpecialSkill(Entity* entity) {
   }
 }
 
+void Wizard::basicAttack(Entity* entity)
+{
+  float damage = mana;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+  
+}
+
 // Destructor.
 Wizard::~Wizard() = default;
