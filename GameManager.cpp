@@ -248,10 +248,15 @@ void GameManager::showMainMenu() {
   bool validChoice = true;
 
   do {
+  cout << "Enter the number of your choice: ";
+  if (!(cin >> choice)) {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "Invalid input. Please enter a number between 1 and 3.\n";
+    validChoice = false;
+    continue;
+  }
     validChoice = true;
-    cout << "Enter the number of your choice: ";
-    cin >> choice;
-
     switch (choice) {
       case 1:
         startNewGame();
