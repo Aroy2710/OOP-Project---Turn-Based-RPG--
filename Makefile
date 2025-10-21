@@ -41,3 +41,9 @@ else
 	valgrind --leak-check=full ./$(TARGET)
 endif
 
+delete-dat:
+	@echo "Deleting all .dat save files..."
+	@rm -f *.dat
+	@echo "All save files deleted."
+
+

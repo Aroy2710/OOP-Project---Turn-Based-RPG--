@@ -4,7 +4,8 @@
 #include <string>
 #include <limits>
 #include <stdexcept>
-
+#include <algorithm>
+#include <cctype>
 /**
  *Constructs a new GameManager and immediately shows the main menu.
  */
@@ -31,10 +32,60 @@ GameManager::~GameManager() {
  * and starting a battle.
  */
 void GameManager::startNewGame() {
+string playerName;
+
+while (true) {
   cout << "Please enter your character's name: ";
-  string playerName;
-  cin.ignore();
-  getline(cin, playerName);
+  std::getline(cin >> std::ws, playerName);  // Trim leading spaces
+
+  // Trim trailing spaces
+  playerName.erase(
+      std::find_if(playerName.rbegin(), playerName.rend(),
+                   [](unsigned char ch) { return !std::isspace(ch); })
+          .base(),
+      playerName.end());
+
+  // Default to "Hero" if blank
+  if (playerName.empty()) {
+    cout << "No name entered. Defaulting to 'Hero'.\n";
+    playerName = "Hero";
+    break;
+  }
+
+  // Disallow purely numeric names
+  bool allDigits = std::all_of(
+      playerName.begin(), playerName.end(),
+      [](unsigned char c) { return std::isdigit(c); });
+  if (allDigits) {
+    cout << "Name cannot be only numbers. Please enter a valid name.\n";
+    continue;
+  }
+
+  // Allow only alphabetic characters and spaces
+  bool valid = std::all_of(
+      playerName.begin(), playerName.end(),
+      [](unsigned char c) { return std::isalpha(c) || std::isspace(c); });
+  if (!valid) {
+    std::cout << "Name may only contain letters and spaces. Try again.\n";
+    continue;
+  }
+
+  // Capitalize first letter of each word (e.g. "john smith" → "John Smith")
+  bool newWord = true;
+  for (char& c : playerName) {
+    if (std::isspace(static_cast<unsigned char>(c))) {
+      newWord = true;
+    } else if (newWord) {
+      c = std::toupper(static_cast<unsigned char>(c));
+      newWord = false;
+    } else {
+      c = std::tolower(static_cast<unsigned char>(c));
+    }
+  }
+
+  break;
+}
+
 
   bool validChoice = true;
   int archetypeChoice;
