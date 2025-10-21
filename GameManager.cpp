@@ -63,12 +63,13 @@ void GameManager::startNewGame() {
     validChoice = true;
 
     if (archetypeChoice == 1) {
+      cout<<endl;
       // --- Warrior intro and selection ---
       cout << "\n=== Warrior ===\n"
            << "Warriors are frontline fighters who rely on raw strength.\n"
            << "Use boosts to spike your Strength, and unleash a high-impact "
               "ultimate that hits even harder when your health is low.\n\n";
-
+      cout<<endl;
       cout << "Please choose your warrior type:\n"
            << "1. Swordsman- a disciplined fighter who trades health for explosive power.\n"
            << "2. Barbarian - a fierce brawler who gains strength at the cost of defense, favoring raw aggression\n";
@@ -86,6 +87,7 @@ void GameManager::startNewGame() {
       }
 
     } else if (archetypeChoice == 2) {
+      cout<<endl;
       // --- Mage intro and selection ---
       cout << "\n=== Mage ===\n"
            << "Mages are powerful spellcasters who trade endurance for immense "
@@ -94,7 +96,7 @@ void GameManager::startNewGame() {
               "vulnerable in defense.\n"
            << "Manage your mana wisely—boosting it increases your magical "
               "potential.\n\n";
-
+      cout<<endl;
       cout << "Please choose your mage type:\n"
            << "1. Wizard - manipulates raw mana for a powerful fireball spell, "
               "but sacrifices health in battle\n"
@@ -114,6 +116,7 @@ void GameManager::startNewGame() {
       }
 
     } else if (archetypeChoice == 3) {
+      cout<<endl;
       // --- Ranger intro and selection ---
       cout << "\n=== Ranger ===\n"
            << "Rangers are agile marksmen who fight from range using precision "
@@ -121,7 +124,7 @@ void GameManager::startNewGame() {
            << "Their attacks scale with Dexterity, making accuracy their "
               "strongest weapon.\n"
            << "Use boosts to sharpen focus and power up their strikes.\n\n";
-
+      cout<<endl;
       cout << "Please choose your ranger type:\n"
            << "1. Archer - a precise marksman whose attacks grow stronger with every shot.\n"
            << "2. Gunner - a tactical fighter who delivers precise bursts and hardens defense after each shot.\n";
@@ -147,7 +150,7 @@ void GameManager::startNewGame() {
   int enemyChoice;
   do {
     validChoice = true;
-
+    cout<<endl;
     cout << "Please choose an enemy to battle:\n"
          << "1. Goblin - a reckless brawler that grows more dangerous as its health drops, using Bleed Damage to strike harder with each attack.\n"
          << "2. Orc - a brutal warrior who relies on raw strength and defense, going berserk at low health to attack relentlessly with devastating force.\n"

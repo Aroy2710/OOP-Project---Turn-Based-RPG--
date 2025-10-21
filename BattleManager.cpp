@@ -66,7 +66,7 @@ void BattleManager::processTurn() {
 
   // Polymorphic unique stat (e.g., "Player Mana :").
   cout << left;
-  cout << setw(8) << right << player->getUniqueStat() << "   |" << endl;
+  cout << setw(8) << right << player->getUniqueStat() << "     |" << endl;
 
   cout << endl;
   cout << "----------------------------------------" << endl;
