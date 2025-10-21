@@ -21,6 +21,9 @@ class Warrior : public Player {
   // Returns the current strength value of the Warrior.
   float getUniqueStat() const override;
 
+  // Sets the Warrior's strength to the specified value.
+  void setUniqueStat(float value) override;
+
   // Boosts the warriors strength
   void useBoost() override;
 

@@ -31,7 +31,7 @@ float Ranger::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player DEX :         " ;
+    cout<< "Player DEX:         " ;
     
   }
   
@@ -40,13 +40,18 @@ float Ranger::getUniqueStat() const
   
 }
 
+// Sets the Ranger's dexterity to a specific value.
+void Ranger::setUniqueStat(float value) {
+  dexterity = value;
+}
+
 
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
 void Ranger::useBoost() {
   if (boostCounter > 0) {
     if(gameText){
-      cout<<name<<"'s mana has been boosted by 30 points! "<<endl;
+      cout<<name<<"'s dexterity has been boosted by 30 points! "<<endl;
     }
     dexterity += 30.0f;
     boostCounter -= 1;

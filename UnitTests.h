@@ -32,6 +32,10 @@ class TestPlayer : public Player {
     (void)entity;  // Avoid unused parameter warning.
     // Intentionally left empty for testing purposes.
   }
+  void setUniqueStat(float value) override {
+    (void)value; // Avoid unused parameter warning.
+    // Intentionally left empty for testing purposes.
+  }
 };
 
 // UnitTests contains a collection of methods that test (Normal Operations) various functionalities

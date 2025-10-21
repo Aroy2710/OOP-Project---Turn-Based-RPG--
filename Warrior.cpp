@@ -30,12 +30,17 @@ float Warrior::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player STR :          " ;
+    cout<< "Player STR:          " ;
   }
   
   
   return strength;
   
+}
+
+void Warrior::setUniqueStat(float value) 
+{
+  strength = value;
 }
 
 // Each use consumes one available boost charge.

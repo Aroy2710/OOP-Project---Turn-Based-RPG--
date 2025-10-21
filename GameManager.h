@@ -11,11 +11,11 @@
 #include "Gunner.h"
 #include "Wizard.h"
 #include "Warlock.h"
-#include "BattleManager.h"
 #include "Enemy.h"
 #include "Orc.h"
 #include "Goblin.h"
 #include "Human.h"
+#include "BattleManager.h"
 
 class GameManager {
 
@@ -27,7 +27,6 @@ class GameManager {
         void startNewGame();
         void showMainMenu();
         void loadGame();
-        void saveGame();
         void quitGame();
         void showBattleResults();
 
@@ -39,4 +38,5 @@ class GameManager {
         bool saveFileExists;
 
 };
+
 #endif // __GAMEMANAGER_H__

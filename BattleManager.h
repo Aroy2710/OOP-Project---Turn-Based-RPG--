@@ -11,7 +11,10 @@ class BattleManager {
 
     public:
 
+        int turnCounter;
+
         BattleManager(Player* player, Enemy* enemy);
+        BattleManager(Player* player, Enemy* enemy, string saveFileName);
         ~BattleManager();
 
         void startBattle();
@@ -19,13 +22,14 @@ class BattleManager {
         void processTurn();
         void checkWinCondition();
         void getPlayerAction();
+        void saveGame();
 
     private:
 
         Player* player;
         Enemy* enemy;
         bool isBattleActive;
-        int turnCounter;
+        string saveFileName;
 };
 
 #endif  // BATTLEMANAGER_H_

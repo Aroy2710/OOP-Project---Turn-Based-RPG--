@@ -20,6 +20,9 @@ class Ranger : public Player {
   // Returns the current dexterity value of the Ranger.
   float getUniqueStat() const override;
 
+  // Sets the Ranger's dexterity to the specified value.
+  void setUniqueStat(float value) override;
+
   // oosts the Ranger's dexterity , has a turn cooldown.
   void useBoost() override;
 

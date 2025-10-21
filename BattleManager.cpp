@@ -2,8 +2,10 @@
 #include <unistd.h>
 #include <limits>
 #include <iomanip>
+#include <fstream>
 
 #include "BattleManager.h"
+#include "GameManager.h"
 
 using namespace std;
 
@@ -11,6 +13,14 @@ using namespace std;
 BattleManager::BattleManager(Player* player, Enemy* enemy) {
   this->player = player;
   this->enemy = enemy;
+  isBattleActive = false;
+  turnCounter = 0;
+}
+
+BattleManager::BattleManager(Player* player, Enemy* enemy, string saveFileName) {
+  this->player = player;
+  this->enemy = enemy;
+  this->saveFileName = saveFileName;
   isBattleActive = false;
   turnCounter = 0;
 }
@@ -74,6 +84,8 @@ void BattleManager::processTurn() {
   sleep(2);
   cout << endl;
 
+  checkWinCondition();
+
   cout << "Enemy's turn:" << endl;
   enemy->performTurn(player);
   sleep(3);
@@ -92,6 +104,8 @@ void BattleManager::getPlayerAction() {
   cout << "4. Use boost" << endl;
   cout << "5. Use ultimate skill" << endl;
   cout << "6. Use item" << endl;
+  cout << "7. Save game" << endl;
+  cout << "8. Quit game" << endl;
 
   bool validCommand = false;
 
@@ -108,6 +122,7 @@ void BattleManager::getPlayerAction() {
       cout << "Enter the number of your choice: ";
       continue;
     }
+
     cout << endl;
 
     switch (command) {
@@ -172,7 +187,15 @@ void BattleManager::getPlayerAction() {
         } while (!validItem);
         break;
       }
-
+      case 7:
+        cout << "Saving game...\n\n";
+        saveGame();
+        validCommand = false;
+        break;
+      case 8:
+        cout << "Quitting game...\n";
+        exit(0);
+        break;
       default:
         cout << "Not sure how you got here, turn skipped." << endl;
         break;
@@ -194,4 +217,47 @@ void BattleManager::checkWinCondition() {
 // Ends the current battle.
 void BattleManager::endBattle() {
   isBattleActive = false;
+}
+
+#include <fstream>
+#include <iostream>
+
+void BattleManager::saveGame() {
+    if (saveFileName.empty()) {
+      cout << saveFileName << endl;
+      cout << "No save file name specified. Cannot save game." << endl;
+      return;
+    }
+
+    // Append .dat extension if not already included
+    string fullFile = saveFileName;
+    if (fullFile.find(".dat") == string::npos) {
+        fullFile += ".dat";
+    }
+
+    // Open file for writing (overwrite existing)
+    ofstream outFile(fullFile, ios::out | ios::trunc);
+    if (!outFile) {
+        cerr << "Error: Could not open " << fullFile << " for writing!" << endl;
+        return;
+    }
+
+    // Write player data
+    outFile << player->getName() << endl;
+    outFile << player->getWeapon() << endl;
+    outFile << player->getAttackStat() << endl;
+    outFile << player->getDefenseStat() << endl;
+    outFile << player->getHealthStat() << endl;
+    outFile << player->getUniqueStat() << endl;
+
+    // Write enemy data
+    outFile << enemy->getTypeName() << endl;
+    outFile << enemy->getAttackStat() << endl;
+    outFile << enemy->getDefenseStat() << endl;
+    outFile << enemy->getHealthStat() << endl;
+
+    // Close the file
+    outFile.close();
+
+    cout << "Game saved successfully to " << fullFile << "!" << endl;
 }

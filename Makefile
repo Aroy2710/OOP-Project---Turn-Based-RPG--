@@ -22,7 +22,7 @@ all:
 
 #run all tests
 TESTALL:
-	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
 	./$(TARGET)
 
 #deleting object files
@@ -32,12 +32,12 @@ clean:
 
 # Memory check target
 memcheck:
-	$(CXX) $(CXXFLAGS) -o $(TESTTARGET) $(SRCS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
 ifeq ($(OS),Windows_NT)
 	@echo "Running Dr. Memory (Windows)..."
-	"$(DRMEMORY)" -- ./$(TESTTARGET)
+	"$(DRMEMORY)" -- ./$(TARGET)
 else
 	@echo "Running Valgrind (Linux/WSL)..."
-	valgrind --leak-check=full ./$(TESTTARGET)
+	valgrind --leak-check=full ./$(TARGET)
 endif
 

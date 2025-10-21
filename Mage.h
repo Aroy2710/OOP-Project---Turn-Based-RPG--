@@ -20,6 +20,9 @@ class Mage : public Player {
   // Returns the current mana value of the Mage.
   float getUniqueStat() const override;
 
+  // Sets the Mage's mana to the specified value.
+  void setUniqueStat(float value) override;
+
   // boosts the Mage's mana.
   void useBoost() override;
 

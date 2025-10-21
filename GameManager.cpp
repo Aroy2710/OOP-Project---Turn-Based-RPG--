@@ -1,10 +1,20 @@
 #include "GameManager.h"
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <limits>
+#include <stdexcept>
+
 /**
  *Constructs a new GameManager and immediately shows the main menu.
  */
 GameManager::GameManager() {
-  showMainMenu();
+  player = nullptr;
+  enemy = nullptr;
+  currentBattle = nullptr;
+  saveFileName = "";
   saveFileExists = false;
+  showMainMenu();
 }
 
 /**
@@ -157,15 +167,18 @@ void GameManager::startNewGame() {
     }
   } while (!validChoice);
 
-  // --- Save file name setup ---
-  cout << "Please enter a save file name (default: savegame.dat): ";
+  // Save file name for saving the game
+  cout << "Please enter a save file name: ";
   cin >> saveFileName;
 
   system("clear");
 
-  // --- Start battle ---
-  currentBattle = new BattleManager(player, enemy);
+  // Start the battle
+  currentBattle = new BattleManager(player, enemy, saveFileName);
   currentBattle->startBattle();
+
+  showBattleResults();
+
 }
 
 /**
@@ -203,25 +216,112 @@ void GameManager::showMainMenu() {
   } while (!validChoice);
 }
 
-/**
- * @Placeholder for loading a saved game file.
- */
 void GameManager::loadGame() {
-  cout << "Load game functionality not yet implemented." << endl;
+    
+    cout << "Enter the name of the save file to load: ";
+    cin >> saveFileName;
+
+    string fullFile = saveFileName + ".dat";
+
+    try {
+        ifstream inFile(fullFile);
+        if (!inFile.is_open()) {
+            throw runtime_error("Save file '" + fullFile + "' could not be opened.");
+        }
+
+        cout << "Loading game from " << fullFile << "..." << endl;
+
+        string playerName, playerWeapon, enemyType;
+        float playerAttack, playerDefense, playerHealth, playerUnique;
+        float enemyAttack, enemyDefense, enemyHealth;
+
+        // Check if player data exists
+        if (!getline(inFile, playerName))
+            throw runtime_error("Missing player name in save file.");
+
+        if (!getline(inFile, playerWeapon))
+            throw runtime_error("Missing player weapon in save file.");
+
+        if (!(inFile >> playerAttack >> playerDefense >> playerHealth >> playerUnique))
+            throw runtime_error("Invalid or missing player stats in save file.");
+
+        // Consume leftover newline before reading enemy type
+        inFile.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        // Check if enemy data exists
+        if (!getline(inFile, enemyType))
+            throw runtime_error("Missing enemy type in save file.");
+
+        if (!(inFile >> enemyAttack >> enemyDefense >> enemyHealth))
+            throw runtime_error("Invalid or missing enemy stats in save file.");
+
+        inFile.close();
+
+        // Create player object
+        if (playerWeapon == "Sword") {
+          player = new Swordsman(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else if (playerWeapon == "Axe") {
+          player = new Barbarian(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else if (playerWeapon == "Staff") {
+          player = new Wizard(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else if (playerWeapon == "Tome") {
+          player = new Warlock(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else if (playerWeapon == "Bow") {
+          player = new Archer(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else if (playerWeapon == "Gun") {
+          player = new Gunner(playerName, playerWeapon, playerAttack, playerDefense, playerHealth);
+          player->setUniqueStat(playerUnique);
+        } else {
+          throw runtime_error("Unknown weapon type: " + playerWeapon);
+        }
+
+        // Create enemy object
+        if (enemyType == "Orc") {
+            enemy = new Orc(enemyAttack, enemyDefense, enemyHealth);
+        } else if (enemyType == "Goblin") {
+            enemy = new Goblin(enemyAttack, enemyDefense, enemyHealth);
+        } else if (enemyType == "Human") {
+            enemy = new Human(enemyAttack, enemyDefense, enemyHealth);
+        } else {
+            throw runtime_error("Unknown enemy type: " + enemyType);
+        }
+
+        cout << "Game loaded successfully!" << endl;
+
+        // Start battle
+        currentBattle = new BattleManager(player, enemy, saveFileName);
+        currentBattle->startBattle();
+        showBattleResults();
+    }
+    catch (const std::exception& e) {
+        cerr << "Error: " << e.what() << endl;
+        return;
+    }
 }
 
-/**
- * @Placeholder for saving the current game state.
- */
-void GameManager::saveGame() {
-  cout << "Save game functionality not yet implemented." << endl;
-}
 
 /**
  * Quits the game after saving progress.
  */
 void GameManager::quitGame() {
-  saveGame();
   cout << "Thank you for playing! Goodbye." << endl;
   exit(0);
+}
+
+void GameManager::showBattleResults() {
+  cout << "Press any key to view battle results..." << endl;
+  system("pause");
+  system("clear");
+  cout << "The battle lasted " << currentBattle->turnCounter << " turns." << endl;
+  cout << "You took " << 1000-player->getHealthStat() << " damage." << endl;
+  cout << "Enemy took " << 1800-enemy->getHealthStat() << " damage." << endl;
+  cout << "Press any key to return to the main menu..." << endl;
+  system("pause");
+  system("clear");
+  showMainMenu();
 }

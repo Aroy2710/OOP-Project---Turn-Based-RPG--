@@ -40,6 +40,7 @@ class Player : public Entity {
   void setDefenseStat(float defense_stat);
   void setHealthStat(float health_stat);
   void setWeapon(const string weapon_name);
+  virtual void setUniqueStat(float value) = 0;
 
   // Combat methods
   void basicAttack(Entity* entity) override;

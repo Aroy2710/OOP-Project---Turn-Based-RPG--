@@ -35,12 +35,17 @@ float Mage::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player Mana  :       " ;
+    cout<< "Player Mana:       " ;
   }
   
   
   return mana;
   
+}
+
+void Mage::setUniqueStat(float value) 
+{
+  mana = value;
 }
 
 // Increases the Mage's mana
