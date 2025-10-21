@@ -4,7 +4,7 @@
 // Default constructor
 // Sets a default name and heal amount for the health potion.
 HealthPotion::HealthPotion() 
-  : Item("Health Potion", 200)
+  : Item("Health Potion", 300)
 {}
 
 // Constructor

@@ -11,7 +11,7 @@ DRMEMORY = C:/Program Files (x86)/Dr. Memory/bin/drmemory.exe
 TARGET = main
 
 #Source files for testing 
-SRCS =  main.cpp Player.cpp Inventory.cpp Item.cpp HealthPotion.cpp Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp Enemy.cpp Orc.cpp Human.cpp Goblin.cpp BattleManager.cpp GameManager.cpp
+SRCS =  main.cpp Player.cpp Inventory.cpp Item.cpp HealthPotion.cpp AttackPotion.cpp DefensePotion.cpp Ranger.cpp Warrior.cpp Mage.cpp Archer.cpp Gunner.cpp Wizard.cpp Warlock.cpp Swordsman.cpp Barbarian.cpp Enemy.cpp Orc.cpp Human.cpp Goblin.cpp BattleManager.cpp GameManager.cpp
 
 .PHONY: all clean memcheck TESTALL
 

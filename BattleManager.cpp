@@ -118,7 +118,7 @@ void BattleManager::getPlayerAction() {
     while (!(cin >> command)) {
       cin.clear();
       cin.ignore(numeric_limits<streamsize>::max(), '\n');
-      cout << "Invalid input. Please enter a number between 1 and 6." << endl;
+      cout << "Invalid input. Please enter a number between 1 and 8." << endl;
       cout << "Enter the number of your choice: ";
       continue;
     }
@@ -203,7 +203,10 @@ void BattleManager::getPlayerAction() {
         exit(0);
         break;
       default:
-        cout << "Not sure how you got here, turn skipped." << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Please enter a number between 1 and 8." << endl;
+        validCommand = false;
         break;
     }
   } while (!validCommand);

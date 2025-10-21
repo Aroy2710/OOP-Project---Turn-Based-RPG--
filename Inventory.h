@@ -5,6 +5,8 @@
 #include <vector>
 
 #include "HealthPotion.h"
+#include "AttackPotion.h"
+#include "DefensePotion.h"
 
 using namespace std;
 

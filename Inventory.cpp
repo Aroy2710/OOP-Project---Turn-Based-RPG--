@@ -9,8 +9,8 @@
 Inventory::Inventory(Player* owner) {
     this->owner = owner;
     items.push_back(new HealthPotion("Health Potion", 200)); // default items
-    //items.push_back(new AttackPotion("Attack Potion", 20)); // default items
-    //items.push_back(new DefensePotion("Defense Potion", 20)); // default items
+    items.push_back(new AttackPotion("Attack Potion", 30)); // default items
+    items.push_back(new DefensePotion("Defense Potion", 20)); // default items
 }
 
 Inventory::~Inventory() { 
