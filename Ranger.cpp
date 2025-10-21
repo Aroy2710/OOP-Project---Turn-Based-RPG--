@@ -31,7 +31,7 @@ float Ranger::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player DEX:         " ;
+    cout<< "Player DEX:           " ;
     
   }
   

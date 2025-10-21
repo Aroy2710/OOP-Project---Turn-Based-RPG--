@@ -35,7 +35,7 @@ float Mage::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player Mana:       " ;
+    cout<< "Player Mana:         " ;
   }
   
   

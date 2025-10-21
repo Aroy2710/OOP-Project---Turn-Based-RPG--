@@ -30,7 +30,7 @@ float Warrior::getUniqueStat() const
 {
   if (gameText)
   {
-    cout<< "Player STR:          " ;
+    cout<< "Player STR:           " ;
   }
   
   
