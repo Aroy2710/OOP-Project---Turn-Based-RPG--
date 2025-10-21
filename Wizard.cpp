@@ -2,21 +2,27 @@
 
 // Default constructor.
 // Initializes a Wizard with base Mage attributes.
-Wizard::Wizard() : Mage() {}
+Wizard::Wizard() : Mage() {
+  this->weapon = "Staff";
+}
 
 // Constructor with a name.
 // Initializes a Wizard with base Mage attributes and the given name.
-Wizard::Wizard(string name) : Mage(name) {}
+Wizard::Wizard(string name) : Mage(name) {
+  this->weapon = "Staff";
+}
 
 // Fully parameterized constructor.
 // Useful for testing with explicit stat values.
 Wizard::Wizard(string name, string weapon, float attackStat, float defenseStat,
                float healthStat)
-    : Mage(name, weapon, attackStat, defenseStat, healthStat) {}
+    : Mage(name, weapon, attackStat, defenseStat, healthStat) {
+      this->weapon = "Staff";
+    }
 
 // Executes the Wizard’s special skill.
 // Deals magic damage proportional to mana and reduces Wizard's own health.
-void Wizard::useSpecialSkill(Action* entity) {
+void Wizard::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -32,11 +38,25 @@ void Wizard::useSpecialSkill(Action* entity) {
     entity->takeDamage(damage);
 
     mana += 10;  // Increase mana
-    takeDamage(30);  // Wizard sacrifices some health
+    healthStat = healthStat - 30;  // Wizard sacrifices some health
     specialSkillCounter -= 1;
   } else if (gameText) {
     cout << "You have used up all your special skill charges." << endl;
   }
+}
+
+void Wizard::basicAttack(Entity* entity)
+{
+  float damage = mana;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+  
 }
 
 // Destructor.

@@ -7,7 +7,7 @@ using namespace std;
 // By default, the player is not defending, can use the ultimate once,
 // and can use special skills three times per battle.
 Player::Player(string name, string weapon, float attackStat,
-               float defenseStat, float healthStat) {
+               float defenseStat, float healthStat) : inventory(this) {
   this->name = name;
   this->weapon = weapon;
   this->attackStat = attackStat;
@@ -22,7 +22,7 @@ Player::Player(string name, string weapon, float attackStat,
 
 // Default constructor.
 // Initializes a Player with generic "Hero" attributes.
-Player::Player() {
+Player::Player() : inventory(this) {
   name = "Hero";
   weapon = "None";
   attackStat = 50.0f;
@@ -37,7 +37,7 @@ Player::Player() {
 }
 
 // Constructor with custom name but default stats.
-Player::Player(string name) {
+Player::Player(string name) : inventory(this) {
   this->name = name;
   weapon = "None";
   attackStat = 50.0f;
@@ -68,7 +68,9 @@ int Player::getUltimateCounter() const { return ultimateCounter; }
 
 int Player::getSpecialSkillCounter() const { return specialSkillCounter; }
 
+Inventory& Player::getInventory() { return inventory; }
 
+float Player::getUniqueStat() const { return 0; }
 
 // Setter methods with validation
 void Player::setAttackStat(float attackStat) {
@@ -85,9 +87,27 @@ void Player::setHealthStat(float healthStat) {
 
 void Player::setWeapon(string weapon) { this->weapon = weapon; }
 
+void Player::setUltimateCounter(int ultimateCounter)
+{
+  this->ultimateCounter = ultimateCounter;
+  
+}
+
+void Player::setBoostCounter(int boostCounter)
+{
+  this->boostCounter = boostCounter;
+  
+}
+
+void Player::setSpecialSkillCounter(int specialSkillCounter)
+{
+  this->specialSkillCounter = specialSkillCounter;
+  
+}
+
 // Executes a basic attack on another entity.
 // The entity takes damage based on the Player's attack value.
-void Player::basicAttack(Action* entity) {
+void Player::basicAttack(Entity* entity) {
   float damage = attackStat;
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
@@ -100,7 +120,10 @@ void Player::basicAttack(Action* entity) {
 }
 
 // Sets the player to a defending state for the next turn.
-void Player::defend() { isDefending = true; }
+void Player::defend() {
+  cout<<name<<" is now defending"<<endl; 
+  isDefending = true; 
+}
 
 // Handles how the Player takes damage during battle.
 // - If defending: damage is halved.
@@ -149,7 +172,7 @@ void Player::useBoost()
 }
 
 
-void Player::useSpecialSkill(Action* entity)
+void Player::useSpecialSkill(Entity* entity)
 {
   (void)entity;  // suppress unused warning
   

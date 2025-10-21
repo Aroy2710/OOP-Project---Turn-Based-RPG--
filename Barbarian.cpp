@@ -3,13 +3,13 @@
 // Default constructor.
 // Initializes a Barbarian with default Warrior attributes.
 Barbarian::Barbarian() : Warrior() { 
-  weapon = "Fist"; 
+  this->weapon = "Axe"; 
 }
 
 // Constructor with a custom name.
 // Initializes a Barbarian with the given name.
 Barbarian::Barbarian(string name) : Warrior(name) { 
-  weapon = "Fist"; 
+  this->weapon = "Axe"; 
 }
 
 // Fully parameterized constructor.
@@ -17,12 +17,27 @@ Barbarian::Barbarian(string name) : Warrior(name) {
 Barbarian::Barbarian(string name, string weapon, float attackStat, float defenseStat,
                      float healthStat)
     : Warrior(name, weapon, attackStat, defenseStat, healthStat) { 
-  this->weapon = "Fist"; 
+  this->weapon = "Axe"; 
+}
+
+void Barbarian::basicAttack(Entity* entity)
+{
+  float damage = 1.2*strength;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+  
+  
 }
 
 // Executes the Barbarian’s special skill.
 // Deals heavy damage, increases strength, and decreases defense.
-void Barbarian::useSpecialSkill(Action* entity) {
+void Barbarian::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

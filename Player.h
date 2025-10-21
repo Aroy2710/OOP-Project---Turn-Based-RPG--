@@ -2,16 +2,17 @@
 #define __PLAYER_H__
 
 #include <iostream>
-
-
-#include "Action.h"
+#include <string>
 
 using namespace std;
+
+#include "Entity.h"
+#include "Inventory.h"
 
 // The Player class defines shared attributes and actions
 // for all playable archetypes (e.g., Warrior, Ranger, Mage).
 // Players can attack, defend, and use special or ultimate abilities.
-class Player : public Action {
+class Player : public Entity {
  public:
   // Constructors
   Player();             // Default constructor for gameplay.
@@ -31,24 +32,30 @@ class Player : public Action {
   int getUltimateCounter() const;
   int getBoostCounter() const;
   int getSpecialSkillCounter() const;
+  Inventory& getInventory();
+  virtual float getUniqueStat() const;
 
   // Setters
   void setAttackStat(float attack_stat);
   void setDefenseStat(float defense_stat);
   void setHealthStat(float health_stat);
   void setWeapon(const string weapon_name);
+  virtual void setUniqueStat(float value) = 0;
+  void setUltimateCounter(int ultimateCounter);
+  void setBoostCounter(int boostCounter);
+  void setSpecialSkillCounter(int specialSkillCounter);
 
   // Combat methods
-  void basicAttack(Action* entity) override;
+  void basicAttack(Entity* entity) override;
   void defend() override;
   void takeDamage(float damage) override;
 
   // Pure virtual method for archetype-specific ultimate skill.
-  virtual void useUltimateSkill(Action* entity) = 0;
+  virtual void useUltimateSkill(Entity* entity) = 0;
 
   //methods for boost and special skill
   virtual void useBoost();
-  void useSpecialSkill(Action* entity) override;
+  void useSpecialSkill(Entity* entity) override;
 
   // Controls console output (true = print battle messages).
   bool gameText = true;
@@ -70,6 +77,9 @@ class Player : public Action {
   int ultimateCounter;
   int boostCounter;
   int specialSkillCounter;
+
+  // Inventory
+  Inventory inventory;
 };
 
 #endif  // __PLAYER_H__

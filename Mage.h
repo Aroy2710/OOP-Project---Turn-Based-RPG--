@@ -18,13 +18,16 @@ class Mage : public Player {
        float healthStat);
 
   // Returns the current mana value of the Mage.
-  float getMana();
+  float getUniqueStat() const override;
+
+  // Sets the Mage's mana to the specified value.
+  void setUniqueStat(float value) override;
 
   // boosts the Mage's mana.
   void useBoost() override;
 
   // Executes the Mage's ultimate skill on the target entity.
-  void useUltimateSkill(Action* entity) override;
+  void useUltimateSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Mage();

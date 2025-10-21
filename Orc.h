@@ -11,10 +11,10 @@ class Orc : public Enemy {
   Orc(float attackStat, float defenseStat, float healthStat);
 
   // Unique attack action for the Orc.
-  void useSpecialSkill(Action* target) override;
+  void useSpecialSkill(Entity* target) override;
 
   // Determines the Orc's behavior during its turn.
-  void performTurn(Action* target) override;
+  void performTurn(Entity* target) override;
 
   // Triggered when the Orc's HP drops below a threshold.
   void onLowHP() override;

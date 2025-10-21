@@ -1,15 +1,16 @@
 #include "Swordsman.h"
+#include "Swordsman.h"
 
 // Default constructor.
 // Initializes a Swordsman with default Warrior attributes.
 Swordsman::Swordsman() : Warrior() { 
-  weapon = "Sword"; 
+  this->weapon = "Sword"; 
 }
 
 // Constructor with a custom name.
 // Initializes a Swordsman with the given name.
 Swordsman::Swordsman(string name) : Warrior(name) { 
-  weapon = "Sword"; 
+  this->weapon = "Sword"; 
 }
 
 // Fully parameterized constructor.
@@ -22,7 +23,7 @@ Swordsman::Swordsman(string name, string weapon, float attackStat, float defense
 
 // Executes the Swordsman’s special skill.
 // Deals heavy damage, increases strength, and decreases HP.
-void Swordsman::useSpecialSkill(Action* entity) {
+void Swordsman::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -31,9 +32,10 @@ void Swordsman::useSpecialSkill(Action* entity) {
     if (gameText) {
       cout << "The Swordsman charges at the enemy with their sword!" << endl;
       cout << "The Swordsman's HP decreases in exchange for greater strength!" << endl;
+      cout << "The Swordsman's HP decreases by 30 points..." << endl;
     }
-
-    float damage = (5 * strength) + attackStat;
+    
+    float damage = (2 * strength) + attackStat;
     entity->takeDamage(damage);
 
     strength += 10;
@@ -43,6 +45,19 @@ void Swordsman::useSpecialSkill(Action* entity) {
   } else if (gameText) {
     cout << "You have used up all your special skill charges." << endl;
   }
+  
+}
+
+void Swordsman::basicAttack(Entity* entity) {
+  float damage = strength;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
 }
 
 // Destructor.

@@ -26,15 +26,34 @@ Warrior::Warrior(std::string name, std::string weapon, float attack_stat,
   strength = 0.5f * attackStat;
 }
 
-// Returns the Warrior's current strength value.
-float Warrior::getStrength() {
+float Warrior::getUniqueStat() const 
+{
+  if (gameText)
+  {
+    cout<< "Player STR:          " ;
+  }
+  
+  
   return strength;
+  
+}
+
+void Warrior::setUniqueStat(float value) 
+{
+  strength = value;
 }
 
 // Each use consumes one available boost charge.
 // Requires an external battle manager to enforce cooldowns.
 void Warrior::useBoost() {
   if (boostCounter > 0) {
+    if (gameText)
+    {
+      cout<<name<<"'s strength has been boosted by 30 points! "<<endl;
+
+    }
+    
+
     strength += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {
@@ -47,7 +66,7 @@ void Warrior::useBoost() {
 // Damage output depends on current health:
 // - Below 50% health: higher damage multiplier.
 // - Above 50% health: lower damage multiplier.
-void Warrior::useUltimateSkill(Action* entity) {
+void Warrior::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;

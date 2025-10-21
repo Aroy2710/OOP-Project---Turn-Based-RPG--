@@ -18,13 +18,16 @@ class Ranger : public Player {
          float healthStat);
 
   // Returns the current dexterity value of the Ranger.
-  float getDexterity();
+  float getUniqueStat() const override;
+
+  // Sets the Ranger's dexterity to the specified value.
+  void setUniqueStat(float value) override;
 
   // oosts the Ranger's dexterity , has a turn cooldown.
   void useBoost() override;
 
   // Executes the Ranger's ultimate skill on the target entity.
-  void useUltimateSkill(Action* entity) override;
+  void useUltimateSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Ranger();

@@ -7,10 +7,10 @@ using namespace std;
 // Initializes an Enemy with generic attributes.
 Enemy::Enemy() {
   typeName = "Enemy";
-  attackStat = 40.0f;
-  defenseStat = 30.0f;
-  healthStat = 2000.0f;
-  maxHealth = 2000.0f;
+  attackStat = 100.0f;
+  defenseStat = 70.0f;
+  healthStat = 1800.0f;
+  maxHealth = 1500.0f;
   isDefending = false;
 }
 
@@ -48,14 +48,13 @@ void Enemy::setHealthStat(float healthStat) {
 }
 
 // Executes a basic attack on another entity.
-void Enemy::basicAttack(Action* target) {
-  float damage = attackStat;
+void Enemy::basicAttack(Entity* target) {
   if (!target) {
     if (gameText) cout << typeName << " tried to attack, but there's no target!\n";
     return;
   }
   if (gameText) cout << typeName << " attacks." << endl;
-  target->takeDamage(damage);
+  target->takeDamage(attackStat);
 }
 
 // Sets the enemy to a defending state for the next turn.
@@ -103,10 +102,12 @@ void Enemy::takeDamage(float damage) {
   if (healthStat < 0.0f) {
     healthStat = 0.0f;
   }
+  if (healthStat<0.5*maxHealth){
+    onLowHP();
+  }
 }
 
-
-void Enemy::useSpecialSkill(Action* target)
+void Enemy::useSpecialSkill(Entity* target)
 {
   (void)target;  // suppress unused warning
   

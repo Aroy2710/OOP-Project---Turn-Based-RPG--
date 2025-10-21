@@ -27,8 +27,22 @@ Ranger::Ranger(std::string name, std::string weapon, float attack_stat,
 }
 
 // Returns the Ranger's current dexterity value.
-float Ranger::getDexterity() {
+float Ranger::getUniqueStat() const 
+{
+  if (gameText)
+  {
+    cout<< "Player DEX:         " ;
+    
+  }
+  
+  
   return dexterity;
+  
+}
+
+// Sets the Ranger's dexterity to a specific value.
+void Ranger::setUniqueStat(float value) {
+  dexterity = value;
 }
 
 
@@ -36,6 +50,9 @@ float Ranger::getDexterity() {
 // Requires an external battle manager to enforce cooldowns.
 void Ranger::useBoost() {
   if (boostCounter > 0) {
+    if(gameText){
+      cout<<name<<"'s dexterity has been boosted by 30 points! "<<endl;
+    }
     dexterity += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {
@@ -46,20 +63,21 @@ void Ranger::useBoost() {
 
 // Uses the Ranger's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
-void Ranger::useUltimateSkill(Action* entity) {
+void Ranger::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
   }
   if (ultimateCounter > 0) {
-    float damage = (attackStat * 1.5f) + (dexterity * 0.8f);
+    float damage = 2.5*((attackStat * 1.5f) + (dexterity * 0.8f));
 
-    entity->takeDamage(damage);
+    
 
     if (gameText) {
       std::cout << "Drawing every ounce of focus... ultimate shot fired!"
                 << std::endl;
     }
+    entity->takeDamage(damage);
 
     ultimateCounter -= 1;
   } else if (gameText) {

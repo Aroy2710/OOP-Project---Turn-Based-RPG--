@@ -19,13 +19,16 @@ class Warrior : public Player {
           float healthStat);
 
   // Returns the current strength value of the Warrior.
-  float getStrength();
+  float getUniqueStat() const override;
+
+  // Sets the Warrior's strength to the specified value.
+  void setUniqueStat(float value) override;
 
   // Boosts the warriors strength
   void useBoost() override;
 
   // Executes the Warrior's ultimate skill on the target entity.
-  void useUltimateSkill(Action* entity) override;
+  void useUltimateSkill(Entity* entity) override;
 
   // Destructor cleans up any allocated resources.
   ~Warrior();

@@ -18,8 +18,9 @@ class Swordsman : public Warrior {
             float healthStat);
 
   // Executes the Swordsman's special skill on the target entity.
-  void useSpecialSkill(Action* entity);
-
+  void useSpecialSkill(Entity* entity);
+  
+  void basicAttack(Entity* entity) override ;
   // Destructor cleans up any allocated resources.
   ~Swordsman();
 };

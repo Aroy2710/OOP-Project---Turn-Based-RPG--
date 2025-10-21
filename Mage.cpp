@@ -31,9 +31,21 @@ Mage::Mage(std::string name, std::string weapon, float attack_stat,
   mana = 2.0f * attackStat;
 }
 
-// Returns the Mage's current mana value.
-float Mage::getMana() {
+float Mage::getUniqueStat() const 
+{
+  if (gameText)
+  {
+    cout<< "Player Mana:       " ;
+  }
+  
+  
   return mana;
+  
+}
+
+void Mage::setUniqueStat(float value) 
+{
+  mana = value;
 }
 
 // Increases the Mage's mana
@@ -41,6 +53,12 @@ float Mage::getMana() {
 // Requires an external battle manager to enforce cooldowns.
 void Mage::useBoost() {
   if (boostCounter > 0) {
+    if (gameText)
+    {
+      cout<<name<<"'s mana has been boosted by 30 points! "<<endl;
+      
+    }
+    
     mana += 30.0f;
     boostCounter -= 1;
   } else if (gameText) {
@@ -51,7 +69,7 @@ void Mage::useBoost() {
 
 // Uses the Mage's ultimate skill on a target entity.
 // The attack combines precision (dexterity) and power (attack stat).
-void Mage::useUltimateSkill(Action* entity) {
+void Mage::useUltimateSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -59,12 +77,13 @@ void Mage::useUltimateSkill(Action* entity) {
   if (ultimateCounter > 0) {
     float damage = (attackStat * 2.0f) + (mana * 2.0f);
 
-    entity->takeDamage(damage);
+    
 
     if (gameText) {
       std::cout << "The Mage calls upon the light from the heavens!"
                 << std::endl;
     }
+    entity->takeDamage(damage);
 
     ultimateCounter -= 1;
   } else if (gameText) {

@@ -3,12 +3,12 @@
 // Default constructor.
 // Initializes an Archer with default Ranger attributes.
 Archer::Archer() : Ranger() { 
-  weapon = "Bow"; 
+  this->weapon = "Bow"; 
 }
 
 // Constructor for Archer with a custom name.
 Archer::Archer(string name) : Ranger(name) { 
-  weapon = "Bow"; 
+  this->weapon = "Bow"; 
 }
 
 // Parameterized constructor.
@@ -21,7 +21,7 @@ Archer::Archer(string name, string weapon, float attackStat, float defenseStat,
 
 // Executes the Archer’s special skill.
 // Deals damage and increases attack power permanently.
-void Archer::useSpecialSkill(Action* entity) {
+void Archer::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -32,15 +32,29 @@ void Archer::useSpecialSkill(Action* entity) {
       cout << "The Archer's attack stat and therefore dexterity has increased!" << endl;
     }
 
-    float damage = attackStat + dexterity;
+    float damage = 1.5*(attackStat + dexterity);
     entity->takeDamage(damage);
 
-    attackStat += 10;
+    attackStat += 20;
     dexterity = 1.5f * attackStat;
     specialSkillCounter -= 1;
   } else if (gameText) {
     cout << "You have used up all your special skill charges." << endl;
   }
+}
+
+void Archer::basicAttack(Entity* entity)
+{
+  float damage = 1.2*dexterity;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+  
 }
 
 // Destructor.

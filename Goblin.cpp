@@ -7,19 +7,19 @@ using namespace std;
 // Default constructor.
 // Initializes a Goblin with default Enemy stats.
 Goblin::Goblin() : Enemy() {
-  typeName = "Goblin";
+  this->typeName = "Goblin";
 }
 
 // Parameterized constructor.
 // Initializes a Goblin with specific stats.
 Goblin::Goblin(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
-  typeName = "Goblin";
+  this->typeName = "Goblin";
 }
 
 // Special attack: Bleed Damage.
 // Deals enhanced damage and increases the Goblin's attack stat.
-void Goblin::useSpecialSkill(Action* target) {
+void Goblin::useSpecialSkill(Entity* target) {
   float damage = attackStat * 1.3f + (damageBoost ? extraDamage : 0);
   attackStat += 10.0f;
 
@@ -31,25 +31,31 @@ void Goblin::useSpecialSkill(Action* target) {
 }
 
 // Defines the Goblin's behavior during its turn.
-void Goblin::performTurn(Action* target) {
-  int r = rand() % 100;  // Random number between 0-99
+void Goblin::performTurn(Entity* target) {
+  // Generate a random number from 0 to 99.
+  // Create a static random generator once (not every turn)
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> dist(0, 99);
+  int randomAction = dist(gen);  // truly random in [0, 99]
 
   if (damageBoost) {
     // When in damage boost mode, only use basic attacks or Bleed Damage
-    if (r < 50) {
+    if (randomAction < 50) {
       basicAttack(target);
-      extraDamage += 2;  // Increase extraDamage per attack
+      extraDamage += 10;  // Increase extraDamage per attack
     } else {
       useSpecialSkill(target);
-      extraDamage += 2;
+      extraDamage += 10;
     }
 
   } else {
     // Normal behavior
-    if (r < 65) {
+    if (randomAction < 65) {
       basicAttack(target);
+      if (damageBoost) extraDamage += 10;
 
-    } else if (r < 95) {
+    } else if (randomAction < 95) {
       defend();
 
     } else {
@@ -58,7 +64,7 @@ void Goblin::performTurn(Action* target) {
   }
 }
 // Basic attack specifically for goblin
-void Goblin::basicAttack(Action* target) {
+void Goblin::basicAttack(Entity* target) {
   float damage;
   if (damageBoost){
     damage = attackStat + extraDamage;

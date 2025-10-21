@@ -1,19 +1,25 @@
 #include "Warlock.h"
 
 // Default constructor initializes a Warlock with base Mage stats.
-Warlock::Warlock() : Mage() {}
+Warlock::Warlock() : Mage() {
+  this->weapon = "Tome";
+}
 
 // Constructor with a name.
-Warlock::Warlock(string name) : Mage(name) {}
+Warlock::Warlock(string name) : Mage(name) {
+  this->weapon = "Tome";
+}
 
 // Fully parameterized constructor.
 Warlock::Warlock(string name, string weapon, float attackStat, float defenseStat,
                  float healthStat)
-    : Mage(name, weapon, attackStat, defenseStat, healthStat) {}
+    : Mage(name, weapon, attackStat, defenseStat, healthStat) {
+      this->weapon = "Tome";
+    }
 
 // Executes the Warlock's special skill on the target entity.
 // Deals damage proportional to 25% of Warlock's health and consumes a skill charge.
-void Warlock::useSpecialSkill(Action* entity) {
+void Warlock::useSpecialSkill(Entity* entity) {
   if (!entity) {
     if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
     return;
@@ -38,5 +44,17 @@ void Warlock::useSpecialSkill(Action* entity) {
   }
 }
 
+
+void Warlock::basicAttack(Entity* entity) {
+  float damage = mana;
+  if (!entity) {
+    if (gameText) std::cout << name << " tried to attack, but there's no target!\n";
+    return;
+  }
+  if (gameText) {
+    cout << name << " is now attacking with their " << weapon << endl;
+  }
+  entity->takeDamage(damage);
+}
 // Destructor.
 Warlock::~Warlock() = default;

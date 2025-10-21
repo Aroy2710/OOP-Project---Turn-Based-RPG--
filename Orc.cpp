@@ -1,25 +1,25 @@
 #include "Orc.h"
 
 
-using namespace std;
+
 
 // Default constructor.
 // Initializes an Orc with default Enemy stats.
 Orc::Orc() : Enemy() {
-  typeName = "Orc";
+  this->typeName = "Orc";
 }
 
 // Parameterized constructor.
 // Initializes an Orc with specific stats.
 Orc::Orc(float attackStat, float defenseStat, float healthStat)
     : Enemy(attackStat, defenseStat, healthStat) {
-  typeName = "Orc";
+  this->typeName = "Orc";
 }
 
 // Special attack: Brute Force.
 // Deals damage based on attack and defense stats.
-void Orc::useSpecialSkill(Action* target) {
-  float damage = attackStat * 1.2f + defenseStat * 0.5f;
+void Orc::useSpecialSkill(Entity* target) {
+  float damage = attackStat * 1.2f + defenseStat;
 
   if (gameText) {
     cout << typeName << " uses Brute Force!" << endl;
@@ -33,7 +33,7 @@ void Orc::useSpecialSkill(Action* target) {
 // Uses probability to decide between Basic Attack, Defend, or Bleed Damage.
 // Defines the Orc's behavior during its turn.
 // If aggressive, always brute forces enemy. Otherwise, uses probability to choose an action.
-void Orc::performTurn(Action* target) {
+void Orc::performTurn(Entity* target) {
   if (aggressive) {
     // Aggressive Orc always attacks
     useSpecialSkill(target);
@@ -41,7 +41,12 @@ void Orc::performTurn(Action* target) {
   }
 
   // Non-aggressive Orc: choose action based on probability
-  int randomAction = rand() % 100;
+    // Create a static random generator once (not every turn)
+  static std::random_device rd;
+  static std::mt19937 gen(rd());
+  std::uniform_int_distribution<int> dist(0, 99);
+  
+  int randomAction = dist(gen);  // truly random in [0, 99]
 
   // Probability map:
   // Basic Attack: 65% (0-64)
