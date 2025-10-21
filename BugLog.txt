@@ -1,7 +1,18 @@
+#include "GameManager.h"
+#include "Inventory.h"
+#include "GameManager.h"
 #include "UnitTests.h"
 11/10/2025 - Resolved bug with warrior ultimate skill not taking health into consideration for damage
+
 Bug Location - Warrior.cpp , line 55 - 58
 What caused the bug = The if conditional for considering health was below 50% was coded incorrectly
 Fix : Created a max health that stores default health at the time of instantiation and used that to compare current health.
+
+21/10/25 - Fixed bug that caused every player input for archetype, class selection and enemy selection to become an infinite loop
+if a non numeric input was entered.
+
+Bug Location - GameManager.cpp
+What caused the bug - Everytime player  gave a non numeric input, it would be stored in the input buffer and treated as the input for the next iteration
+Fix - Introduced a check for non numeric inputs where if the input is non numeric, it would be cleared from the input buffer.
 
 
