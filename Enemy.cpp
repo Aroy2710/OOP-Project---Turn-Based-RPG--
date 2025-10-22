@@ -8,7 +8,7 @@ using namespace std;
 Enemy::Enemy() {
   typeName = "Enemy";
   attackStat = 100.0f;
-  defenseStat = 70.0f;
+  defenseStat = 30.0f;
   healthStat = 1800.0f;
   maxHealth = 1500.0f;
   isDefending = false;

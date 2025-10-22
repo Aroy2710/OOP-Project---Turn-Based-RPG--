@@ -26,7 +26,7 @@ Player::Player() : inventory(this) {
   name = "Hero";
   weapon = "None";
   attackStat = 50.0f;
-  defenseStat = 30.0f;
+  defenseStat = 50.0f;
   healthStat = 1000.0f;
   maxHealth = 1000.0f;
   isDefending = false;
@@ -41,7 +41,7 @@ Player::Player(string name) : inventory(this) {
   this->name = name;
   weapon = "None";
   attackStat = 50.0f;
-  defenseStat = 30.0f;
+  defenseStat = 50.0f;
   healthStat = 1000.0f;
   maxHealth = 1000.0f;
   isDefending = false;

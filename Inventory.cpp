@@ -56,14 +56,26 @@ void Inventory::setGameTextForAll(bool value) {
 
 // Uses an item by finding it in the items vector,
 void Inventory::use(string name) {
+    // --- Convert player input to lowercase ---
+    std::transform(name.begin(), name.end(), name.begin(),
+                   [](unsigned char c){ return std::tolower(c); });
 
-  for (Item* item : items) {
-    if (item && item->getName() == name) {
-      item->use(owner);
-      delete item;
-      removeItem(item);
-      return;
+    for (Item* item : items) {
+        if (item) {
+            // --- Convert item name to lowercase for comparison ---
+            string itemName = item->getName();
+            std::transform(itemName.begin(), itemName.end(), itemName.begin(),
+                           [](unsigned char c){ return std::tolower(c); });
+
+            if (itemName == name) {
+                cout << "Using item: " << item->getName() << endl;  // Debug line
+                item->use(owner);
+                delete item;
+                removeItem(item);
+                return;
+            }
+        }
     }
-  }
-  throw std::invalid_argument("Item not found in inventory.");
+
+    throw std::invalid_argument("Item not found in inventory.");
 }

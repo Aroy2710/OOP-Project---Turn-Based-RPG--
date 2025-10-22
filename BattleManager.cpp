@@ -84,15 +84,14 @@ void BattleManager::processTurn() {
   sleep(2);
   cout << endl;
 
-  checkWinCondition();
-
   cout << "Enemy's turn:" << endl;
   enemy->performTurn(player);
   sleep(3);
 
   // Check victory or defeat at the end of the turn.
-  checkWinCondition();
   turnCounter++;
+  checkWinCondition();
+  
 }
 
 // Prompts the player to select an action each turn.
@@ -270,7 +269,9 @@ void BattleManager::saveGame() {
     outFile << player->getAttackStat() << endl;
     outFile << player->getDefenseStat() << endl;
     outFile << player->getHealthStat() << endl;
+    player->gameText = false;
     outFile << player->getUniqueStat() << endl;
+    player->gameText = true;
 
     // Write enemy data
     outFile << enemy->getTypeName() << endl;

@@ -419,9 +419,15 @@ void GameManager::quitGame() {
 
 //Show battle stats
 void GameManager::showBattleResults() {
-  cout << "Press any key to view battle results..." << endl;
   cout << "The battle lasted " << currentBattle->turnCounter << " turns." << endl;
-  cout << "You took " << 1000-player->getHealthStat() << " damage." << endl;
-  cout << "Enemy took " << 1800-enemy->getHealthStat() << " damage." << endl;
+  if (player->getHealthStat()>0){
+    cout << "You took " << 1000-player->getHealthStat() << " damage." << endl;
+    cout<<endl;
+  }
+  else{
+    cout << "Enemy took " << 1800-enemy->getHealthStat() << " damage." << endl;
+    cout<<endl;
+
+  }
   showMainMenu();
 }
