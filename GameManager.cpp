@@ -336,6 +336,20 @@ void GameManager::loadGame() {
         if (!(inFile >> playerAttack >> playerDefense >> playerHealth >> playerUnique))
             throw runtime_error("Invalid or missing player stats in save file.");
 
+        vector<string> inventory;
+        string itemLine;
+        inFile.ignore(numeric_limits<streamsize>::max(), '\n');
+        for (int i = 0; i < 3; ++i) {
+          streampos pos = inFile.tellg();         // Remember where we are in the file
+          if (!getline(inFile, itemLine)) break;  // Try to read a line, stop if it fails
+          if (itemLine.empty() || itemLine == "Orc" || itemLine == "Goblin" || itemLine == "Human") {
+              inFile.seekg(pos);                  // Go back if we just read the enemy line
+              break;
+          }
+          inventory.push_back(itemLine);          // Store the item
+        }
+
+
         // Consume leftover newline before reading enemy type
         inFile.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -379,6 +393,24 @@ void GameManager::loadGame() {
           player->setUniqueStat(playerUnique);
         } else {
           throw runtime_error("Unknown weapon type: " + playerWeapon);
+        }
+
+        // Remove items from inventory
+        player->getInventory().removeItem("Health Potion");
+        player->getInventory().removeItem("Attack Potion");
+        player->getInventory().removeItem("Defense Potion");
+
+        // Load items into inventory
+        for (const string& itemName : inventory) {
+          if (itemName == "Health Potion") {
+            player->getInventory().addItem(new HealthPotion("Health Potion", 200));
+          } else if (itemName == "Attack Potion") {
+            player->getInventory().addItem(new AttackPotion("Attack Potion", 30));
+          } else if (itemName == "Defense Potion") {
+            player->getInventory().addItem(new DefensePotion("Defense Potion", 20));
+          } else {
+            cerr << "Unknown item '" << itemName << "' in save file. Skipping.\n";
+          }
         }
 
         // Create enemy object

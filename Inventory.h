@@ -21,7 +21,7 @@ class Inventory {
   ~Inventory();                       // Destructor
 
   void addItem(Item* item);            // Adds an item to the inventory
-  void removeItem(Item* item);         // Removes an item from the inventory
+  void removeItem(string itemName);         // Removes an item from the inventory
   std::string listItems() const;       // Displays all the items in the inventory
   void use(string name);                // Uses an item
 

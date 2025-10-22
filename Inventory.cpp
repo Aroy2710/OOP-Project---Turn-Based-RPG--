@@ -25,10 +25,17 @@ void Inventory::addItem(Item* item) {
   items.push_back(item);
 }
 
-// Searches for and removes an item from the items vector.
-void Inventory::removeItem(Item* item) {
-  items.erase(std::remove(items.begin(), items.end(), item), items.end());
+// Removes an item from the inventory by name.
+void Inventory::removeItem(string itemName) {
+    for (auto it = items.begin(); it != items.end(); ++it) {
+        if ((*it)->getName() == itemName) {
+            delete *it;
+            items.erase(it);
+            break; 
+        }
+    }
 }
+
 
 string Inventory::listItems() const {
 
@@ -70,8 +77,7 @@ void Inventory::use(string name) {
             if (itemName == name) {
                 cout << "Using item: " << item->getName() << endl;  // Debug line
                 item->use(owner);
-                delete item;
-                removeItem(item);
+                removeItem(item->getName());  // Remove item after use
                 return;
             }
         }

@@ -272,6 +272,8 @@ void BattleManager::saveGame() {
     player->gameText = false;
     outFile << player->getUniqueStat() << endl;
     player->gameText = true;
+    // Write inventory items
+    outFile << player->getInventory().listItems() << endl;
 
     // Write enemy data
     outFile << enemy->getTypeName() << endl;
