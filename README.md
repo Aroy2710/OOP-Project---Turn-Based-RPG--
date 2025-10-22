@@ -1,6 +1,4 @@
 
-A text-based C++ RPG  featuring archetype , archetype specialisation and enemy selection .
-
 ## Overview
 This project is a turn-based role-playing game (RPG) implemented in C++. The player can create a character, select a combat archetype (Warrior, Mage, or Ranger), and battle enemies with a variety of moves and strategic options. The system supports game saving and loading, inventory management, and polymorphic skill mechanics.
 
