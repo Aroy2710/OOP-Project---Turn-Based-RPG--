@@ -23,8 +23,14 @@ We hope you enjoy the game!
 
 
 ## License
-This project is released under the MIT License.
+This project is licensed under the **CC BY-NC-ND 4.0** License.  
+© 2025 Abhishek Kumar Roy, Shawran Barua, and Eugene Kouchinsky.  
+See the [LICENSE](./LICENSE) file for details.
 
+## Authors
+- Abhishek Kumar Roy  - Aroy2710
+- Shawran Barua  - a1955360
+- Eugene Kouchinsky - EugeneKo1
 
 
 
